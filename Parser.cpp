@@ -7,7 +7,7 @@
 
 void Parser::readFile(string inFile, string outFile)
 {
-
+mnnmnm
 }
 void Parser::setParam()
 {
