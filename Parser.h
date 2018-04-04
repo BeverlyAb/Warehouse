@@ -2,19 +2,30 @@
 #ifndef PARSER_H
 #define PARSER_H
 #include <string>
-#include <iostream>
+#include <fstream>
 
 using namespace std;
 
 class Parser
 {
   private:
-    string filename;
-    int warehouseWidth;
-    int warehouseHeight;
+    //input parameters
+    string inFile;
+    string outFile;
+    string ans; 
+    unsigned int warehouseWidth;
+    unsigned int warehouseHeight;
+    unsigned int mutator;
+
+    //data
+    unsigned int ID;
+    double xCoord;
+    double yCoord;
 
   public:
-    void readFile(string inFile, string outFile);
-    void setParam();
+    Parser();
+    void setUserParam();
+    void readFile();
+    string getAns();
 };
 #endif
