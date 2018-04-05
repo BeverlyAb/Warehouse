@@ -18,14 +18,14 @@ class Parser
     unsigned int mutator;
 
     //data
-    unsigned int ID;
-    double xCoord;
-    double yCoord;
+    string ID;
+    string xCoord;
+    string yCoord;
+
 
   public:
     Parser();
     void setUserParam();
     void readFile();
-    string getAns();
 };
 #endif
