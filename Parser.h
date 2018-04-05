@@ -1,4 +1,3 @@
-
 #ifndef PARSER_H
 #define PARSER_H
 #include <string>
@@ -21,7 +20,6 @@ class Parser
     string ID;
     string xCoord;
     string yCoord;
-
 
   public:
     Parser();

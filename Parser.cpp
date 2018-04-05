@@ -1,5 +1,8 @@
 #include "Parser.h"
+#include "Mapper.h"
+
 #include <iostream>
+
 Parser::Parser()
 {
     inFile = "";
@@ -19,7 +22,7 @@ void Parser::setUserParam()
     printf("What is the file name?\n");
     cin >> inFile;
     printf("Does this file need calibration? Y or N?\n");
-    cin >> ans;
+    cin >> ans; 
     
     if(ans == "Y") {
         printf("What is the max warehouse width?\n");
@@ -34,7 +37,8 @@ void Parser::setUserParam()
 
         outFile = inFile.substr(0,inFile.size()-4) + "_modified.csv";
         printf("A file with these parameters has been created as %s\n",outFile.c_str());
-    } else if(ans == "N")
+    } 
+    else if(ans == "N")
         return;
     else {   
         printf("Please answer with Y or N after retyping the file name.\n");
@@ -56,9 +60,17 @@ void Parser::readFile()
             while(myFile.good()&& newFile.good()){
                 getline(myFile,xCoord,',');
                 getline(myFile,yCoord,'\n');
-                newFile << ID << ',' 
-                        << stoi(xCoord) * mutator << ',' //change to stod
-                        << stoi(yCoord) * mutator << '\n'; //change to stod
+                
+                //change to stod
+                int x = stoi(xCoord);
+                int y = stoi(yCoord);
+                //move to shelving platform of (0,0)
+                if(x == 0)
+                    x += 2; 
+                if(y == 0)   
+                    y += 1;
+
+                newFile << ID << ',' << x * mutator << ',' << y * mutator << '\n';
                 getline(myFile,ID,',');
             }
             myFile.close();
@@ -66,18 +78,18 @@ void Parser::readFile()
         }
         else  
             printf("Files could not be opened\n");
-    } else{
+    } else{ //file is ready to be mapped as is
         ifstream myFile;
         myFile.open(inFile);
+
+        Mapper grid = Mapper();
+
         if(myFile.is_open()){
-
-           while(myFile.good()){
-               getline(myFile,ID,',');
-               getline(myFile,xCoord,',');
-               getline(myFile,yCoord,'\n');
-                //for testing 
-                printf("%s %s %s\n", ID.c_str(), xCoord.c_str(), yCoord.c_str());
-
+            getline(myFile,ID,',');
+            while(myFile.good()){
+                getline(myFile,xCoord,',');
+                getline(myFile,yCoord,'\n');
+                getline(myFile,ID,',');
             }
             myFile.close();
         }
