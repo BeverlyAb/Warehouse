@@ -27,5 +27,7 @@ class Parser
     Parser();
     void setUserParam();
     void readFile();
+    int getWidth();
+    int getHeight();
 };
 #endif

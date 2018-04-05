@@ -28,7 +28,11 @@ void Parser::setUserParam()
         cin >> warehouseHeight;
         printf("By what factor should we scale the map?\n");
         cin >> mutator;
-        outFile = inFile.substr(0,inFile.size()-3) + "_modified.csv";
+        
+        warehouseHeight *= mutator;
+        warehouseHeight *= mutator;
+
+        outFile = inFile.substr(0,inFile.size()-4) + "_modified.csv";
         printf("A file with these parameters has been created as %s\n",outFile.c_str());
     } else if(ans == "N")
         return;
@@ -47,17 +51,15 @@ void Parser::readFile()
         myFile.open(inFile);
         newFile.open(outFile);
         if(myFile.is_open() && newFile.is_open()){
-           
+            
+            getline(myFile,ID,',');
             while(myFile.good()&& newFile.good()){
-                getline(myFile,ID,'\t');
-                getline(myFile,xCoord,'\t');
+                getline(myFile,xCoord,',');
                 getline(myFile,yCoord,'\n');
-                newFile << stoi(ID.c_str()) << "\t"; 
-                printf("%s %s %s\n", ID.c_str(), xCoord.c_str(), yCoord.c_str());
-
-                     //   << (int)stod(xCoord) * mutator << "\t"  
-                     //   << (int)stod(yCoord) * mutator << "\n"; 
-
+                newFile << ID << ',' 
+                        << stoi(xCoord) * mutator << ',' //change to stod
+                        << stoi(yCoord) * mutator << '\n'; //change to stod
+                getline(myFile,ID,',');
             }
             myFile.close();
             newFile.close();
@@ -70,11 +72,11 @@ void Parser::readFile()
         if(myFile.is_open()){
 
            while(myFile.good()){
-               getline(myFile,ID,'\t');
-               getline(myFile,xCoord,'\t');
+               getline(myFile,ID,',');
+               getline(myFile,xCoord,',');
                getline(myFile,yCoord,'\n');
                 //for testing 
-               printf("%s %s %s\n", ID.c_str(), xCoord.c_str(), yCoord.c_str());
+                printf("%s %s %s\n", ID.c_str(), xCoord.c_str(), yCoord.c_str());
 
             }
             myFile.close();
@@ -82,5 +84,14 @@ void Parser::readFile()
         else  
             printf("%s could not be opened\n",inFile.c_str());
     }
+}
+
+int Parser::getWidth()
+{
+    return warehouseWidth;
+}
+int Parser::getHeight()
+{
+    return warehouseHeight;
 }
 
