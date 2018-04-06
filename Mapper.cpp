@@ -29,7 +29,7 @@ void Mapper::makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
         shelf.emplace(itemLoc, 0);
 }
 
-pair<position,bool> * Mapper::makeGrid(pair<position,bool> * grid, map<unsigned int,position> a)
+position * Mapper::makeGrid(position * grid)
 {
     // +2 on to give walkable outer layer
     unsigned int dimension = (width + 2) * (height + 2);
@@ -40,15 +40,55 @@ pair<position,bool> * Mapper::makeGrid(pair<position,bool> * grid, map<unsigned 
     for(int i = 0; i < height + 2; i++){
         for(int j = 0; j < width + 2; j++){
             position temp = {j, i};
-         //   grid[k++] = temp;
+            grid[k++] = temp;
         }
     }
     return grid;
 }
     //use Dijkstra or BFS use queue
-position Mapper::nextPos(position cur, product item, position * grid)
+void Mapper::nextPos(position cur, product item, position * grid)
 {
+    //paths exclude shelves
+    unsigned int n = (width + 2) * (height + 2) - order.size();
+    bool visited[n];
+    int label[n];
+    for (unsigned int i = 0; i < n; i++){
+        visited[i] = false;
+        label[i] = 99999999999;
+    }
+    
+    //find where cur is in grid
+    unsigned int curIndx = 0;
 
+    position temp = grid[curIndx];
+    while(!(cur == temp)){
+        temp = grid[curIndx++];
+    }
+
+    //start has 0 distance from itself
+    label[curIndx] = 0;
+
+    //iterate through vertices
+    for(unsigned int i = 0; i < n - 1; i++){
+        unsigned int next = shortest(label,visited,grid,grid[curIndx]);
+        visited[next] = true;
+
+        for(int j = 0; j < n; j++){
+         //   if(!visited[j] )
+        }
+    }
+}
+
+int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
+{
+   unsigned int min = 999999999999, minIndx;
+  
+   for (unsigned int i = 0; i < order.size(); i++){
+     if (visited[i] == false && label[i] <= min && isValidNeighbor(cur,grid[i]))
+         min = label[i], minIndx = i;
+   }
+
+   return minIndx;
 }
 void Mapper::printPath()
 {
@@ -85,3 +125,7 @@ bool Mapper::isValidStop(product package, position stop)
     else
         return false;
  }
+bool operator==(const position & left, const position & right)
+{
+    return (left.x == right.x && left.y == right.y);
+}

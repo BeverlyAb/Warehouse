@@ -21,11 +21,15 @@ class Mapper
     //updates both maps (ID,product) and (Loc, Product);
     void makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord);
     //returns 2-D array 
-    pair<position,bool> * Mapper::makeGrid(pair<position,bool> * grid, map<unsigned int,position> a);
+    position* makeGrid(position* grid);
    //use Dijkstra or BFS use queue
-    position nextPos(position cur, product item, position * grid);
+    void nextPos(position cur, product item, position * grid);
     bool isValidStop(product package, position stop);
-     bool Mapper::isValidNeighbor(position cur, position next);
+    bool isValidNeighbor(position cur, position next);
+    int shortest(int label[], bool visited[], position * grid, position cur);
     void printPath(); 
+    
+    //friends
+    friend bool operator==(const position &, const position &);
 };
 #endif
