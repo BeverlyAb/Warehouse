@@ -9,17 +9,23 @@ using namespace std;
 class Mapper
 {
   private:
-    position start;
-    position end;
+    unsigned int width;
+    unsigned int height;
     queue <position> path;
+  
+    map<unsigned int, position> order; //reads via ID
+    map<position, unsigned int> shelf; //reads via position and # of items in shelf
   public:
     Mapper();
-    //look at malloc, map takes in ID and product
-    map<unsigned int, position> makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord);
+    Mapper(unsigned int w, unsigned int h);
+    //updates both maps (ID,product) and (Loc, Product);
+    void makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord);
     //returns 2-D array 
-    map<position, map<unsigned int,position> > makeGrid(position * grid, map<unsigned int,position> a, unsigned int width, unsigned int height);
+    pair<position,bool> * Mapper::makeGrid(pair<position,bool> * grid, map<unsigned int,position> a);
    //use Dijkstra or BFS use queue
-    position nextPos(position cur, product item);
+    position nextPos(position cur, product item, position * grid);
+    bool isValidStop(product package, position stop);
+     bool Mapper::isValidNeighbor(position cur, position next);
     void printPath(); 
 };
 #endif
