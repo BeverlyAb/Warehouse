@@ -84,7 +84,7 @@ int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
    unsigned int min = 999999999999, minIndx;
   
    for (unsigned int i = 0; i < order.size(); i++){
-     if (visited[i] == false && label[i] <= min && isValidNeighbor(cur,grid[i]))
+     if (visited[i] == false && label[i] <= min && isValidNeighbor(grid[i]))
          min = label[i], minIndx = i;
    }
 
@@ -107,7 +107,7 @@ bool Mapper::isValidStop(product package, position stop)
     return (stop.x == package.loc.x + 1 || stop.x == package.loc.x - 1);
 }
 //no diagonals allowed!
- bool Mapper::isValidNeighbor(position cur, position next)
+ bool Mapper::isValidNeighbor(position next)
  {
      //out of bounds check
     if(next.x < 0 || next.x > width + 2 ||
@@ -116,15 +116,23 @@ bool Mapper::isValidStop(product package, position stop)
     //obstruction check 
     if(shelf.find(next) != shelf.end())
         return false;
-    //adj. check
-    if( (cur.x + 1 == next.x && cur.y == next.y) ||
-        (cur.x - 1 == next.x && cur.y == next.y) ||
-        (cur.x == next.x && cur.y + 1 == next.y) ||
-        (cur.x == next.x && cur.y - 1 == next.y))
-        return true;
-    else
-        return false;
+    
+    return true;
  }
+void Mapper::validNeighbors(position cur)
+ {
+    position right = {cur.x + 1, cur.y};
+    position left = {cur.x - 1, cur.y};
+    position up = {cur.x, cur.y + 1};
+    position down = {cur.x, cur.y - 1};
+
+    position arr[ADJ_SIZE] = {right, left, up, down};
+    for(int i = 0; i < ADJ_SIZE; i++){
+        if(isValidNeighbor(arr[i]))
+            neighbors.push(arr[i]);
+    }
+ }
+
 bool operator==(const position & left, const position & right)
 {
     return (left.x == right.x && left.y == right.y);
