@@ -4,7 +4,9 @@
 #include <queue> 
 #include "Position.h"
 #include "Product.h"
+
 #define ADJ_SIZE 4
+#define INF 99999999999
 
 using namespace std;
 class Mapper

@@ -45,7 +45,7 @@ position * Mapper::makeGrid(position * grid)
     }
     return grid;
 }
-    //use Dijkstra or BFS use queue
+/*    //use Dijkstra 
 void Mapper::nextPos(position cur, product item, position * grid)
 {
     //paths exclude shelves
@@ -54,7 +54,7 @@ void Mapper::nextPos(position cur, product item, position * grid)
     int label[n];
     for (unsigned int i = 0; i < n; i++){
         visited[i] = false;
-        label[i] = 99999999999;
+        label[i] = INF;
     }
     
     //find where cur is in grid
@@ -64,7 +64,7 @@ void Mapper::nextPos(position cur, product item, position * grid)
     while(!(cur == temp)){
         temp = grid[curIndx++];
     }
-
+    
     //start has 0 distance from itself
     label[curIndx] = 0;
 
@@ -73,19 +73,51 @@ void Mapper::nextPos(position cur, product item, position * grid)
         unsigned int next = shortest(label,visited,grid,grid[curIndx]);
         visited[next] = true;
 
-        for(int j = 0; j < n; j++){
-         //   if(!visited[j] )
+        //iterate through neighbors
+        for(int j = 0; j < neighbors.size(); j++){
+            if  (!visited[j] && label[curIndx] != INF && 
+                label[curIndx] < label[j])
+                label[j] = label[next];
+        }
+    }
+}
+*/
+//BFS single weight
+void Mapper::nextPos(position cur, product item, position * grid)
+{
+    //paths exclude shelves
+    map<unsigned int, position>::iterator it = order.find(item.ID);
+    position dest = it->second;
+
+    unsigned int n = (width + 2) * (height + 2) - order.size();
+    map<position,bool> visited;
+    visited.emplace(cur, true);
+    path.push(cur);
+    while(!visited.empty() || next!= dest){
+        position next = visited.front()->first;
+        visited.erase(cur);
+        
+        validNeighbors(cur);
+        for(int i = 0; i < neighbors.size(); i++){
+            position temp = neighbors.front();
+            neighbors.pop();
+            if(visited.find(temp) != visited.end()){
+                visited.emplace(temp,true);
+            }
         }
     }
 }
 
 int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
 {
-   unsigned int min = 999999999999, minIndx;
+   unsigned int min = INF;
+   unsigned int minIndx; 
+   unsigned int n = (width + 2) * (height + 2) - order.size();
   
-   for (unsigned int i = 0; i < order.size(); i++){
+   for (unsigned int i = 0; i < n; i++){
      if (visited[i] == false && label[i] <= min && isValidNeighbor(grid[i]))
-         min = label[i], minIndx = i;
+        min = label[i];
+        minIndx = i;
    }
 
    return minIndx;
@@ -119,6 +151,7 @@ bool Mapper::isValidStop(product package, position stop)
     
     return true;
  }
+
 void Mapper::validNeighbors(position cur)
  {
     position right = {cur.x + 1, cur.y};
