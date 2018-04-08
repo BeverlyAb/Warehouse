@@ -83,26 +83,35 @@ void Mapper::nextPos(position cur, product item, position * grid)
 }
 */
 //BFS single weight
-void Mapper::nextPos(position cur, product item, position * grid)
+void Mapper::nextPos(position cur, unsigned int item)
 {
     //paths exclude shelves
-    map<unsigned int, position>::iterator it = order.find(item.ID);
+    map<unsigned int, position>::iterator it = order.find(item);
     position dest = it->second;
+    bool found = false;
 
     unsigned int n = (width + 2) * (height + 2) - order.size();
     map<position,bool> visited;
     visited.emplace(cur, true);
     path.push(cur);
-    while(!visited.empty() || next!= dest){
-        position next = visited.front()->first;
-        visited.erase(cur);
-        
-        validNeighbors(cur);
+
+    position next = cur;
+    while(!visited.empty() && !found){
+        visited.erase(next);
+        next = visited.begin()->first;
+        validNeighbors(next);
+
         for(int i = 0; i < neighbors.size(); i++){
             position temp = neighbors.front();
+            
+            if(temp == dest)
+                found  = true;
+    
             neighbors.pop();
             if(visited.find(temp) != visited.end()){
                 visited.emplace(temp,true);
+                path.push(temp);
+                next = temp;
             }
         }
     }

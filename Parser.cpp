@@ -82,16 +82,33 @@ void Parser::readFile()
         ifstream myFile;
         myFile.open(inFile);
 
-        Mapper grid = Mapper();
+        Mapper grid = Mapper(warehouseWidth, warehouseHeight);
 
         if(myFile.is_open()){
             getline(myFile,ID,',');
             while(myFile.good()){
                 getline(myFile,xCoord,',');
                 getline(myFile,yCoord,'\n');
+                grid.makeMap(atoi(ID.c_str()), atoi(xCoord.c_str()), atoi(yCoord.c_str()));
+
                 getline(myFile,ID,',');
             }
             myFile.close();
+            
+            unsigned int x = 0;
+            unsigned int y = 0;
+            unsigned int ID = 0;
+
+            cout << "Starting x-coord?\n";
+            cin >> x;
+            cout << "Starting y-coord?\n";
+            cin >> y;
+            position start = {x,y};
+
+            cout << "Product ID?\n";
+            cin >> ID;
+            grid.nextPos(start, ID);
+            grid.printPath();
         }
         else  
             printf("%s could not be opened\n",inFile.c_str());

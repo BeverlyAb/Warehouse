@@ -2,11 +2,25 @@
 #define MAPPER_H
 #include <map>
 #include <queue> 
-#include "Position.h"
-#include "Product.h"
+//#include "Position.h"
+//#include "Product.h"
 
 #define ADJ_SIZE 4
 #define INF 99999999999
+
+typedef struct position position;
+struct position
+{
+    unsigned int x;
+    unsigned int y;
+};
+
+typedef struct product product;
+struct product
+{
+    unsigned int ID;
+    position loc;
+}; 
 
 using namespace std;
 class Mapper
@@ -27,7 +41,7 @@ class Mapper
     //returns 2-D array 
     position* makeGrid(position* grid);
    //use Dijkstra or BFS use queue
-    void nextPos(position cur, product item, position * grid);
+    void nextPos(position cur, unsigned int item);
     bool isValidStop(product package, position stop);
     bool isValidNeighbor(position next);
     void validNeighbors(position cur);
