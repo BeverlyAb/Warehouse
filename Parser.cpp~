@@ -66,7 +66,7 @@ void Parser::readFile()
                 int y = atoi(yCoord.c_str());
                 //move to shelving platform of (0,0)
                 if(x == 0)
-                    x += 2; 
+                    x += 1; 
                 if(y == 0)   
                     y += 1;
 

@@ -146,11 +146,7 @@ void Mapper::printPath()
 bool Mapper::isValidStop(unsigned int ID, position stop)
 {
 	position temp = order.find(ID)->second;
-    if(	(stop.x == temp.x + 1 && stop.y == temp.y) ||
- 		(stop.x == temp.x - 1 && stop.y == temp.y))
-		return true;
-	else 
-		return false;
+    return (stop.x == temp.x + 1 || stop.x == temp.x - 1);
 }
 //no diagonals allowed!
  bool Mapper::isValidNeighbor(position next)
