@@ -56,8 +56,8 @@ void Parser::readFile()
         newFile.open(outFile.c_str());
         if(myFile.is_open() && newFile.is_open()){
             
-            getline(myFile,ID,',');
-            while(myFile.good()){
+           // getline(myFile,ID,',');
+            while(getline(myFile,ID,',')){
                 getline(myFile,xCoord,',');
                 getline(myFile,yCoord,'\n');
                 
@@ -74,7 +74,7 @@ void Parser::readFile()
                     y += 1;
 
                 newFile << ID << ',' << x  << ',' << y  << '\n';
-                getline(myFile,ID,',');
+               // getline(myFile,ID,',');
             }
             myFile.close();
             newFile.close();

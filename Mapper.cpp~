@@ -97,6 +97,7 @@ void Mapper::nextPos(position cur, unsigned int item)
     position next = cur;
     while(!found){
 		path.push(next);
+		//visited.erase(next);
 
 		//create new list of neighbors	
         validNeighbors(next);

@@ -1,6 +1,5 @@
 #ifndef MAPPER_H
 #define MAPPER_H
-
 #include <map>
 #include <queue> 
 #include <cstdlib>
@@ -45,7 +44,7 @@ class Mapper
     position* makeGrid();
    //use Dijkstra or BFS use queue
     void nextPos(position cur, unsigned int item);
-    bool isValidStop(unsigned int ID, position stop);
+    bool isValidStop(product package, position stop);
     bool isValidNeighbor(position next);
     void validNeighbors(position cur);
     int shortest(int label[], bool visited[], position * grid, position cur);
@@ -53,6 +52,5 @@ class Mapper
     
     //friends
     friend bool operator==(const position &, const position &);
-	friend bool operator<(const position & , const position & );
 };
 #endif
