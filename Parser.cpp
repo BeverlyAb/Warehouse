@@ -68,7 +68,7 @@ void Parser::readFile()
 
                 //move to shelving platform of (0,0)
                 if(x == 0)
-                    x += 2; 
+                    x += 1; 
                 if(y == 0)   
                     y += 1;
 
@@ -77,6 +77,8 @@ void Parser::readFile()
             }
             myFile.close();
             newFile.close();
+			
+			readFile();
         }
         else  
             printf("Files could not be opened\n");
@@ -125,3 +127,4 @@ int Parser::getHeight()
 {
     return warehouseHeight;
 }
+

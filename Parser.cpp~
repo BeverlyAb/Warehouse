@@ -56,7 +56,7 @@ void Parser::readFile()
         if(myFile.is_open() && newFile.is_open()){
             
             getline(myFile,ID,',');
-            while(myFile.good()){
+            while(myFile.good() && !ID.empty()){
                 getline(myFile,xCoord,',');
                 getline(myFile,yCoord,'\n');
                 
@@ -68,7 +68,7 @@ void Parser::readFile()
 
                 //move to shelving platform of (0,0)
                 if(x == 0)
-                    x += 2; 
+                    x += 1; 
                 if(y == 0)   
                     y += 1;
 
@@ -77,6 +77,12 @@ void Parser::readFile()
             }
             myFile.close();
             newFile.close();
+			
+			printf("Old %s\n",inFile.c_str());
+			inFile = outFile;					
+			printf("New %s\n",inFile.c_str());
+			ans = "N";
+			readFile();
         }
         else  
             printf("Files could not be opened\n");
@@ -125,3 +131,4 @@ int Parser::getHeight()
 {
     return warehouseHeight;
 }
+

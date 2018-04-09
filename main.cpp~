@@ -6,5 +6,4 @@ int main()
     Parser test = Parser();
     test.setUserParam();
     test.readFile(); 
-
 }
