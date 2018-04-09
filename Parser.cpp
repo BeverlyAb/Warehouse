@@ -78,6 +78,8 @@ void Parser::readFile()
             myFile.close();
             newFile.close();
 			
+			inFile = outFile;					
+			ans = "N";
 			readFile();
         }
         else  

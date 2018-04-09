@@ -78,10 +78,6 @@ void Parser::readFile()
             myFile.close();
             newFile.close();
 			
-			printf("Old %s\n",inFile.c_str());
-			inFile = outFile;					
-			printf("New %s\n",inFile.c_str());
-			ans = "N";
 			readFile();
         }
         else  
