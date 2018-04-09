@@ -47,7 +47,7 @@ class Mapper
     position* makeGrid();
    //use Dijkstra or BFS use queue
     void nextPos(position cur, unsigned int item);
-    bool isValidStop(unsigned int ID, position stop);
+    bool isValidStop(position, position);
     bool isValidNeighbor(position next);
     void validNeighbors(position cur);
     int shortest(int label[], bool visited[], position * grid, position cur);
