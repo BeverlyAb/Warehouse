@@ -21,20 +21,19 @@ void Parser::setUserParam()
 {   
     printf("What is the file name?\n");
     cin >> inFile;
-    printf("Does this file need calibration? Y or N?\n");
-    cin >> ans; 
-    
-    if(ans == "Y") {
-        printf("What is the max warehouse width?\n");
-        cin >> warehouseWidth;
-        printf("What is the max warehouse height?\n");
-        cin >> warehouseHeight;
-        printf("By what factor should we scale the map?\n");
-        cin >> mutator;
-        
-        warehouseHeight *= mutator;
-        warehouseHeight *= mutator;
 
+    printf("What is the max warehouse width?\n");
+    cin >> warehouseWidth;
+   	printf("What is the max warehouse height?\n");
+    cin >> warehouseHeight;
+    printf("By what factor should we scale the map?\n");
+    cin >> mutator;
+    warehouseHeight *= mutator;
+    warehouseWidth *= mutator;
+
+	printf("Does this file need calibration? Y or N?\n");
+   	 	cin >> ans; 
+	if(ans == "Y") {
         outFile = inFile.substr(0,inFile.size()-4) + "_modified.csv";
         printf("A file with these parameters has been created as %s\n",outFile.c_str());
     } 
@@ -51,26 +50,29 @@ void Parser::readFile()
     {
         ifstream myFile;
         ofstream newFile;
-
+		int x = 0, y = 0;
         myFile.open(inFile.c_str());
         newFile.open(outFile.c_str());
         if(myFile.is_open() && newFile.is_open()){
             
             getline(myFile,ID,',');
-            while(myFile.good()&& newFile.good()){
+            while(myFile.good() && !ID.empty()){
                 getline(myFile,xCoord,',');
                 getline(myFile,yCoord,'\n');
                 
                 //change to stod
-                int x = atoi(xCoord.c_str());
-                int y = atoi(yCoord.c_str());
+                x = atoi(xCoord.c_str());
+                y = atoi(yCoord.c_str());
+				x *= mutator;
+				y *= mutator;
+
                 //move to shelving platform of (0,0)
                 if(x == 0)
                     x += 2; 
                 if(y == 0)   
                     y += 1;
 
-                newFile << ID << ',' << x * mutator << ',' << y * mutator << '\n';
+                newFile << ID << ',' << x  << ',' << y  << '\n';
                 getline(myFile,ID,',');
             }
             myFile.close();
@@ -108,7 +110,7 @@ void Parser::readFile()
             cout << "Product ID?\n";
             cin >> ID;
             grid.nextPos(start, ID);
-            grid.printPath();
+       //     grid.printPath();
         }
         else  
             printf("%s could not be opened\n",inFile.c_str());
@@ -123,4 +125,3 @@ int Parser::getHeight()
 {
     return warehouseHeight;
 }
-

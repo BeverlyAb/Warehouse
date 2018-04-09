@@ -3,8 +3,10 @@
 
 #include <map>
 #include <queue> 
+#include <list>
 #include <cstdlib>
 #include <stdio.h>
+
 //#include "Position.h"
 //#include "Product.h"
 
@@ -45,7 +47,7 @@ class Mapper
     position* makeGrid();
    //use Dijkstra or BFS use queue
     void nextPos(position cur, unsigned int item);
-    bool isValidStop(product package, position stop);
+    bool isValidStop(position, position);
     bool isValidNeighbor(position next);
     void validNeighbors(position cur);
     int shortest(int label[], bool visited[], position * grid, position cur);
