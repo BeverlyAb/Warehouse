@@ -3,8 +3,10 @@
 
 #include <map>
 #include <queue> 
+#include <list>
 #include <cstdlib>
 #include <stdio.h>
+
 //#include "Position.h"
 //#include "Product.h"
 

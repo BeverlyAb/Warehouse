@@ -92,25 +92,28 @@ void Mapper::nextPos(position cur, unsigned int item)
     //unsigned int n = (width + 2) * (height + 2) - order.size();
     map<position,bool> visited;
     visited.insert(pair<position,bool>(cur,true));
-    path.push(cur);
 
     position next = cur;
-    while(!found){
-		path.push(next);
+	validNeighbors(next);
+	path.push(next);
+	visited.find(next)->second = true;
 
+    while(!path.empty() && !found) {
+		next = path.front();	
 		//create new list of neighbors	
         validNeighbors(next);
-        for(int i = 0; i < neighbors.size(); i++){
-            position temp = neighbors.front();
-        	printf("in For %i,%i\n",temp.x,temp.y);    
-            found  = isValidStop(item,temp);
-    
-            if(visited.find(temp) == visited.end() ){
+	
+		printf("(%i, %i)\n",path.front().x, path.front().y);
+		path.pop();	
+		found = isValidStop(item,next);	
+
+       	for(int i = 0; i < neighbors.size(); i++){
+            position temp = neighbors.front(); 
+		    
+			if(visited.find(temp) == visited.end()){
                 visited.insert(pair<position,bool>(temp,true));
-				printf("in For in If %i,%i\n",temp.x,temp.y);
-                next = temp;
-            }
-			
+				path.push(temp);
+           }
 			neighbors.pop();
         }
     }
@@ -156,14 +159,13 @@ bool Mapper::isValidStop(unsigned int ID, position stop)
  bool Mapper::isValidNeighbor(position next)
  {
      //out of bounds check
-    if(next.x < 0 || next.x > width + 2 ||
-        next.y < 0 || next. y > height + 2)
-        return false;
+    if(next.x < 0 || next.x > width + 1 ||
+        next.y < 0 || next. y > height + 1 ||
     //obstruction check 
-    if(shelf.find(next) != shelf.end())
+    (shelf.find(next) != shelf.end()))
         return false;
-    
-    return true;
+    else 
+    	return true;
  }
 
 void Mapper::validNeighbors(position cur)
@@ -174,9 +176,16 @@ void Mapper::validNeighbors(position cur)
     position down = {cur.x, cur.y - 1};
 
     position arr[ADJ_SIZE] = {right, left, up, down};
+	//clear just in case
+	for(int i = 0; i < neighbors.size(); i++)
+		neighbors.pop();	
+
     for(int i = 0; i < ADJ_SIZE; i++){
-        if(isValidNeighbor(arr[i]))
+		
+        if(isValidNeighbor(arr[i])){
             neighbors.push(arr[i]);
+			//printf("%i %i\n",arr[i].x,arr[i].y);
+		}
     }
  }
 bool operator==(const position & left, const position & right)
