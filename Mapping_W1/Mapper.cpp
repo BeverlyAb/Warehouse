@@ -18,6 +18,7 @@ void Mapper::makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
 {
     position itemLoc = {xCoord, yCoord};
     order.insert(pair<unsigned int, position>(ID,itemLoc));
+
     if(!shelf.empty()){
         //is shelf already in use?
         if(shelf.find(itemLoc) != shelf.end()){
@@ -84,12 +85,18 @@ void Mapper::nextPos(position cur, product item, position * grid)
 //BFS single weight
 void Mapper::nextPos(position cur, unsigned int item)
 {
-    //paths exclude shelves
-    map<unsigned int, position>::iterator it = order.find(item);
-    position dest = it->second;
-    bool found = false;
+	//fix later, no idea why map starts at 0 instead of 1 for test_modified.csv
+	//if(item == 1) 
+	//	item++;
+    map<unsigned int, position>::iterator it = order.begin();
+	it = order.find(item);
+    position dest = {it->second.x, it->second.y};
+	//for (it = order.begin(); it != order.end(); it++)
+	//	printf("Order %i : (%i,%i)\n",it->first,it->second.x,it->second.y);
+	
 
-    //unsigned int n = (width + 2) * (height + 2) - order.size();
+    bool found = false;
+	//printf("dest %i,%i\n",dest.x,dest.y);
     map<position,bool> visited;
     visited.insert(pair<position,bool>(cur,true));
 
@@ -98,22 +105,28 @@ void Mapper::nextPos(position cur, unsigned int item)
 	path.push(next);
 	visited.find(next)->second = true;
 
+	bool notVisited = true;
+
     while(!path.empty() && !found) {
 		next = path.front();	
-		//create new list of neighbors	
-        validNeighbors(next);
-	
-		printf("(%i, %i)\n",path.front().x, path.front().y);
+		found = isValidStop(dest,next);	
+		visited.find(next)->second = true;
+		printf("(%i, %i, %d)\n",path.front().x, path.front().y, found);
 		path.pop();	
-		found = isValidStop(item,next);	
 
-       	for(int i = 0; i < neighbors.size(); i++){
+		//create new list of neighbors	
+        validNeighbors(next);		
+
+	//	printf("Valid neighbors for (%i,%i)\n", next.x,next.y); 
+       	while(!neighbors.empty()){//for(int i = 0; i < neighbors.size(); i++){
             position temp = neighbors.front(); 
-		    
-			if(visited.find(temp) == visited.end()){
-                visited.insert(pair<position,bool>(temp,true));
+		//	printf("are (%i %i)\n", temp.x,temp.y);		    
+
+			if	(/*visited.find(temp)->second == false || */
+				visited.find(temp) == visited.end()){
+				visited.insert(pair<position,bool>(temp,false));
 				path.push(temp);
-           }
+			}	
 			neighbors.pop();
         }
     }
@@ -146,11 +159,11 @@ void Mapper::printPath()
 
 
 //stops at either left or right of shelf 
-bool Mapper::isValidStop(unsigned int ID, position stop)
+bool Mapper::isValidStop(position ref, position stop)
 {
-	position temp = order.find(ID)->second;
-    if(	(stop.x == temp.x + 1 && stop.y == temp.y) ||
- 		(stop.x == temp.x - 1 && stop.y == temp.y))
+	//printf("(Ref %i,%i Stop %i, %i )\n",ref.x,ref.y, stop.x, stop.y);
+    if(	(stop.x == ref.x + 1 && stop.y == ref.y) ||
+ 		(stop.x == ref.x - 1 && stop.y == ref.y))
 		return true;
 	else 
 		return false;
@@ -158,12 +171,21 @@ bool Mapper::isValidStop(unsigned int ID, position stop)
 //no diagonals allowed!
  bool Mapper::isValidNeighbor(position next)
  {
-     //out of bounds check
+	//obstruction check until shelf works..
+	map<unsigned int, position>::iterator it = order.begin();
+	for (it = order.begin(); it != order.end(); it++){
+		if(it->second.x == next.x && it->second.y ==next.y){
+			//printf("obstruct: %i,%i\n", it->second.x,it->second.y); 
+			return false;
+		}
+    }
+	//out of bounds check
     if(next.x < 0 || next.x > width + 1 ||
-        next.y < 0 || next. y > height + 1 ||
+        next.y < 0 || next. y > height + 1 ){
     //obstruction check 
-    (shelf.find(next) != shelf.end()))
+    //(shelf.find(next) != shelf.end()))
         return false;
+	}
     else 
     	return true;
  }
@@ -181,10 +203,9 @@ void Mapper::validNeighbors(position cur)
 		neighbors.pop();	
 
     for(int i = 0; i < ADJ_SIZE; i++){
-		
         if(isValidNeighbor(arr[i])){
             neighbors.push(arr[i]);
-			//printf("%i %i\n",arr[i].x,arr[i].y);
+		//	printf("GOOD %i %i\n",arr[i].x,arr[i].y);
 		}
     }
  }
