@@ -48,6 +48,7 @@ class Mapper
    //use Dijkstra or BFS use queue
     void nextPos(position cur, unsigned int item);
     bool isValidStop(position, position);
+	bool isValidStart(position start);
     bool isValidNeighbor(position next);
     void validNeighbors(position cur);
     int shortest(int label[], bool visited[], position * grid, position cur);
@@ -58,3 +59,4 @@ class Mapper
 	friend bool operator<(const position & , const position & );
 };
 #endif
+

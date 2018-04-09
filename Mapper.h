@@ -36,7 +36,7 @@ class Mapper
     queue <position> path;
     queue <position> neighbors;
   
-    map<unsigned int, position> order; //reads via ID
+    map<unsigned int, position> stock; //reads via ID
     map<position, unsigned int> shelf; //reads via position and # of items in shelf
   public:
     Mapper();
@@ -48,6 +48,7 @@ class Mapper
    //use Dijkstra or BFS use queue
     void nextPos(position cur, unsigned int item);
     bool isValidStop(position, position);
+	bool isValidStart(position start);
     bool isValidNeighbor(position next);
     void validNeighbors(position cur);
     int shortest(int label[], bool visited[], position * grid, position cur);

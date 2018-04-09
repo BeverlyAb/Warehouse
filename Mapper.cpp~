@@ -17,8 +17,7 @@ Mapper::Mapper()
 void Mapper::makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
 {
     position itemLoc = {xCoord, yCoord};
-    order.insert(pair<unsigned int, position>(ID,itemLoc));
-	printf("Order: %i (%i,%i)\n",ID, xCoord, yCoord);
+    stock.insert(pair<unsigned int, position>(ID,itemLoc));
 
     if(!shelf.empty()){
         //is shelf already in use?
@@ -50,7 +49,7 @@ position * Mapper::makeGrid()
 void Mapper::nextPos(position cur, product item, position * grid)
 {
     //paths exclude shelves
-    unsigned int n = (width + 2) * (height + 2) - order.size();
+    unsigned int n = (width + 2) * (height + 2) - stock.size();
     bool visited[n];
     int label[n];
     for (unsigned int i = 0; i < n; i++){
@@ -60,7 +59,6 @@ void Mapper::nextPos(position cur, product item, position * grid)
     
     //find where cur is in grid
     unsigned int curIndx = 0;
-
     position temp = grid[curIndx];
     while(!(cur == temp)){
         temp = grid[curIndx++];
@@ -68,12 +66,10 @@ void Mapper::nextPos(position cur, product item, position * grid)
     
     //start has 0 distance from itself
     label[curIndx] = 0;
-
     //iterate through vertices
     for(unsigned int i = 0; i < n - 1; i++){
         unsigned int next = shortest(label,visited,grid,grid[curIndx]);
         visited[next] = true;
-
         //iterate through neighbors
         for(int j = 0; j < neighbors.size(); j++){
             if  (!visited[j] && label[curIndx] != INF && 
@@ -89,16 +85,16 @@ void Mapper::nextPos(position cur, unsigned int item)
 	//fix later, no idea why map starts at 0 instead of 1 for test_modified.csv
 	//if(item == 1) 
 	//	item++;
-    map<unsigned int, position>::iterator it = order.begin();
-	it = order.find(item);
+    map<unsigned int, position>::iterator it = stock.begin();
+	it = stock.find(item);
     position dest = {it->second.x, it->second.y};
-	for (it = order.begin(); it != order.end(); it++)
-		printf("Order %i : (%i,%i)\n",it->first,it->second.x,it->second.y);
+	//for (it = stock.begin(); it != stock.end(); it++)
+	//	printf("stock %i : (%i,%i)\n",it->first,it->second.x,it->second.y);
 	
 
     bool found = false;
 	//printf("dest %i,%i\n",dest.x,dest.y);
-    map<position,bool> visited;
+    map<position,unsignned> visited;
     visited.insert(pair<position,bool>(cur,true));
 
     position next = cur;
@@ -137,14 +133,13 @@ int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
 {
  /*  unsigned int min = INF;
    unsigned int minIndx; 
-   unsigned int n = (width + 2) * (height + 2) - order.size();
+   unsigned int n = (width + 2) * (height + 2) - stock.size();
   
    for (unsigned int i = 0; i < n; i++){
      if (visited[i] == false && label[i] <= min && isValidNeighbor(grid[i]))
         min = label[i];
         minIndx = i;
    }
-
    return minIndx; */
 	return 0;
 } 
@@ -169,12 +164,31 @@ bool Mapper::isValidStop(position ref, position stop)
 	else 
 		return false;
 }
+bool Mapper::isValidStart(position start)
+ {
+	//obstruction check until shelf works..
+	map<unsigned int, position>::iterator it = stock.begin();
+	for (it = stock.begin(); it != stock.end(); it++){
+		if(it->second.x == start.x && it->second.y == start.y){
+			return false;
+		}
+    }
+	//out of bounds check
+    if(start.x < 0 || start.x > width + 1 ||
+        start.y < 0 || start. y > height + 1 ){
+        return false;
+	}
+    else 
+    	return true;
+ }
+
+
 //no diagonals allowed!
  bool Mapper::isValidNeighbor(position next)
  {
 	//obstruction check until shelf works..
-	map<unsigned int, position>::iterator it = order.begin();
-	for (it = order.begin(); it != order.end(); it++){
+	map<unsigned int, position>::iterator it = stock.begin();
+	for (it = stock.begin(); it != stock.end(); it++){
 		if(it->second.x == next.x && it->second.y ==next.y){
 			//printf("obstruct: %i,%i\n", it->second.x,it->second.y); 
 			return false;
@@ -218,4 +232,3 @@ bool operator==(const position & left, const position & right)
 bool operator<(const position & l, const position & r) {
      return (l.x<r.x || (l.x==r.x && l.y<r.y));
 }
-
