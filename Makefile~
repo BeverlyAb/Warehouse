@@ -7,8 +7,14 @@ LDFLAGS =
 main: main.o Parser.o Mapper.o
 	$(CC) $(COPTFLAGS) -o $@ $^
 
-%.o: %.cc
-	$(CC) $(CFLAGS) $(COPTFLAGS) -o $@ -c $<
+main.o: main.cpp
+	g++ -c main.cpp
+
+Parser.o: Parser.cpp
+	g++ -c Parser.cpp
+
+Mapper.o: Mapper.cpp
+	g++ -c Mapper.cpp
 
 clean:
 	rm *.o

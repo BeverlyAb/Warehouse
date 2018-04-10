@@ -83,19 +83,22 @@ void Mapper::nextPos(position cur, product item, position * grid)
 void Mapper::nextPos(position cur, unsigned int item)
 {
 	//fix later, no idea why map starts at 0 instead of 1 for test_modified.csv
-	//if(item == 1) 
-	//	item++;
+
     map<unsigned int, position>::iterator it = stock.begin();
 	it = stock.find(item);
     position dest = {it->second.x, it->second.y};
+	
+
 	//for (it = stock.begin(); it != stock.end(); it++)
 	//	printf("stock %i : (%i,%i)\n",it->first,it->second.x,it->second.y);
 	
 
     bool found = false;
-	//printf("dest %i,%i\n",dest.x,dest.y);
-    map<position,unsignned> visited;
-    visited.insert(pair<position,bool>(cur,true));
+	
+	//marks if visited and # of hops
+	unsigned int hops = 0;
+    map<position,unsigned int> visited;
+    visited.insert(pair<position,unsigned int>(cur,hops));
 
     position next = cur;
 	validNeighbors(next);
@@ -107,8 +110,7 @@ void Mapper::nextPos(position cur, unsigned int item)
     while(!path.empty() && !found) {
 		next = path.front();	
 		found = isValidStop(dest,next);	
-		visited.find(next)->second = true;
-		printf("(%i, %i, %d)\n",path.front().x, path.front().y, found);
+		printf("(%i, %i,%i, %d)\n",path.front().x, path.front().y,hops, found);
 		path.pop();	
 
 		//create new list of neighbors	
@@ -119,13 +121,14 @@ void Mapper::nextPos(position cur, unsigned int item)
             position temp = neighbors.front(); 
 		//	printf("are (%i %i)\n", temp.x,temp.y);		    
 
-			if	(/*visited.find(temp)->second == false || */
-				visited.find(temp) == visited.end()){
-				visited.insert(pair<position,bool>(temp,false));
+			if	(visited.find(temp) == visited.end()){
+				unsigned int h = hops +1;
+				visited.insert(pair<position,unsigned int>(temp,3));
 				path.push(temp);
-			}	
+			}
 			neighbors.pop();
         }
+		
     }
 }
 
@@ -214,9 +217,11 @@ void Mapper::validNeighbors(position cur)
 
     position arr[ADJ_SIZE] = {right, left, up, down};
 	//clear just in case
+	#pragma omp parallel num_threads(THREADS/2)
+	{
 	for(int i = 0; i < neighbors.size(); i++)
 		neighbors.pop();	
-
+	}
     for(int i = 0; i < ADJ_SIZE; i++){
         if(isValidNeighbor(arr[i])){
             neighbors.push(arr[i]);

@@ -1,6 +1,7 @@
 #ifndef MAPPER_H
 #define MAPPER_H
 
+#include <omp.h>
 #include <map>
 #include <queue> 
 #include <list>
@@ -12,6 +13,7 @@
 
 #define ADJ_SIZE 4
 #define INF 99999999999
+#define THREADS 8
 
 typedef struct position position;
 struct position

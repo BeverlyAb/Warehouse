@@ -1,6 +1,7 @@
 #ifndef MAPPER_H
 #define MAPPER_H
 
+#include <omp.h>
 #include <map>
 #include <queue> 
 #include <list>
@@ -36,7 +37,7 @@ class Mapper
     queue <position> path;
     queue <position> neighbors;
   
-    map<unsigned int, position> order; //reads via ID
+    map<unsigned int, position> stock; //reads via ID
     map<position, unsigned int> shelf; //reads via position and # of items in shelf
   public:
     Mapper();
