@@ -56,7 +56,7 @@ void Parser::readFile()
         if(myFile.is_open() && newFile.is_open()){
             
             getline(myFile,ID,',');
-            while(myFile.good() && !ID.empty()){
+            while(myFile.good()){
                 getline(myFile,xCoord,',');
                 getline(myFile,yCoord,'\n');
                 
@@ -68,7 +68,7 @@ void Parser::readFile()
 
                 //move to shelving platform of (0,0)
                 if(x == 0)
-                    x += 1; 
+                    x += 2; 
                 if(y == 0)   
                     y += 1;
 
@@ -77,10 +77,6 @@ void Parser::readFile()
             }
             myFile.close();
             newFile.close();
-			
-			inFile = outFile;					
-			ans = "N";
-			readFile();
         }
         else  
             printf("Files could not be opened\n");
@@ -113,15 +109,8 @@ void Parser::readFile()
 
             cout << "Product ID?\n";
             cin >> ID;
-			
-			if(grid.isValidStart(start))
-            	grid.nextPos(start, ID);
-			else{
-				printf("Starting position is either out of bounds or starts on a shelf.\n");
-				printf("Check with the 'modified' version of the file. Ending program.\n");
-				return;
-			}			
-            grid.printPath();
+            grid.nextPos(start, ID);
+       //     grid.printPath();
         }
         else  
             printf("%s could not be opened\n",inFile.c_str());
@@ -136,4 +125,3 @@ int Parser::getHeight()
 {
     return warehouseHeight;
 }
-

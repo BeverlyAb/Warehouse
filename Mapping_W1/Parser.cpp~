@@ -21,19 +21,20 @@ void Parser::setUserParam()
 {   
     printf("What is the file name?\n");
     cin >> inFile;
+    printf("Does this file need calibration? Y or N?\n");
+    cin >> ans; 
+    
+    if(ans == "Y") {
+        printf("What is the max warehouse width?\n");
+        cin >> warehouseWidth;
+        printf("What is the max warehouse height?\n");
+        cin >> warehouseHeight;
+        printf("By what factor should we scale the map?\n");
+        cin >> mutator;
+        
+        warehouseHeight *= mutator;
+        warehouseHeight *= mutator;
 
-    printf("What is the max warehouse width?\n");
-    cin >> warehouseWidth;
-   	printf("What is the max warehouse height?\n");
-    cin >> warehouseHeight;
-    printf("By what factor should we scale the map?\n");
-    cin >> mutator;
-    warehouseHeight *= mutator;
-    warehouseWidth *= mutator;
-
-	printf("Does this file need calibration? Y or N?\n");
-   	 	cin >> ans; 
-	if(ans == "Y") {
         outFile = inFile.substr(0,inFile.size()-4) + "_modified.csv";
         printf("A file with these parameters has been created as %s\n",outFile.c_str());
     } 
@@ -55,8 +56,8 @@ void Parser::readFile()
         newFile.open(outFile.c_str());
         if(myFile.is_open() && newFile.is_open()){
             
-            getline(myFile,ID,',');
-            while(myFile.good() && !ID.empty()){
+           // getline(myFile,ID,',');
+            while(getline(myFile,ID,',')){
                 getline(myFile,xCoord,',');
                 getline(myFile,yCoord,'\n');
                 
@@ -68,19 +69,15 @@ void Parser::readFile()
 
                 //move to shelving platform of (0,0)
                 if(x == 0)
-                    x += 1; 
+                    x += 2; 
                 if(y == 0)   
                     y += 1;
 
                 newFile << ID << ',' << x  << ',' << y  << '\n';
-                getline(myFile,ID,',');
+               // getline(myFile,ID,',');
             }
             myFile.close();
             newFile.close();
-			
-			inFile = outFile;					
-			ans = "N";
-			readFile();
         }
         else  
             printf("Files could not be opened\n");
@@ -113,14 +110,7 @@ void Parser::readFile()
 
             cout << "Product ID?\n";
             cin >> ID;
-			
-			if(grid.isValidStart(start))
-            	grid.nextPos(start, ID);
-			else{
-				printf("Starting position is either out of bounds or starts on a shelf.\n");
-				printf("Check with the 'modified' version of the file. Ending program.\n");
-				return;
-			}			
+            grid.nextPos(start, ID);
             grid.printPath();
         }
         else  
