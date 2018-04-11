@@ -53,10 +53,9 @@ class Mapper
    //use Dijkstra or BFS use queue
     void nextPos(position cur, unsigned int item);
     
-	bool isValidStop(position, position);
-	bool isValidStart(position start);
-    bool isValidNeighbor(position next);
-    void validNeighbors(position cur);
+	bool isValidStop(position ref, position stop);
+	bool isValid(position cur);
+    bool validNeighbors(position next);
     
 	int shortest(int label[], bool visited[], position * grid, position cur);
     void printPath(); 

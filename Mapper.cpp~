@@ -19,14 +19,16 @@ void Mapper::makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
     position itemLoc = {xCoord, yCoord};
     stock.insert(pair<unsigned int, position>(ID,itemLoc));
 
-    if(!shelf.empty()){
         //is shelf already in use?
         if(shelf.find(itemLoc) != shelf.end()){
             unsigned int counter = shelf.find(itemLoc)->second + 1;
-            shelf.insert(pair<position, unsigned int>(itemLoc, counter));
+            shelf.insert(pair<position, unsigned int>(itemLoc,counter));	
+			printf("so far shelf %i : (%i,%i)\n",counter,itemLoc.x,itemLoc.y);
         }
-    } else
+    	else{
         shelf.insert(pair<position, unsigned int>(itemLoc, 0));
+			printf("new shelf %i : (%i,%i)\n",shelf.find(itemLoc)->second,itemLoc.x,itemLoc.y);
+		}
 }
 
 position * Mapper::makeGrid()
@@ -103,7 +105,7 @@ void Mapper::nextPos(position cur, unsigned int item)
 	bool notVisited = true;
 
     while(!active.empty() && !found) {
-		next = active.front();	
+		position next = active.front();	
 		found = isValidStop(dest,next);	
 		printf("(%i, %i, %d)\n",active.front().x, active.front().y, found);
 		active.pop();	
@@ -165,41 +167,14 @@ bool Mapper::isValidStop(position ref, position stop)
 	else 
 		return false;
 }
-
-bool Mapper::isValidStart(position start)
- {
-	//obstruction check until shelf works..
-	map<unsigned int, position>::iterator it = stock.begin();
-	for (it = stock.begin(); it != stock.end(); it++){
-		if(it->second.x == start.x && it->second.y == start.y){
-			return false;
-		}
-    }
-	//out of bounds check
-    if(start.x < 0 || start.x > width + 1 ||
-        start.y < 0 || start. y > height + 1 ){
-        return false;
-	}
-    else 
-    	return true;
- }
-
 //no diagonals allowed!
- bool Mapper::isValidNeighbor(position next)
+ bool Mapper::isValid(position cur)
  {
-	//obstruction check until shelf works..
-	map<unsigned int, position>::iterator it = stock.begin();
-	for (it = stock.begin(); it != stock.end(); it++){
-		if(it->second.x == next.x && it->second.y ==next.y){
-			//printf("obstruct: %i,%i\n", it->second.x,it->second.y); 
-			return false;
-		}
-    }
 	//out of bounds check
-    if(next.x < 0 || next.x > width + 1 ||
-        next.y < 0 || next. y > height + 1 ){
+    if(cur.x < 0 || cur.x > width + 1 ||
+        cur.y < 0 || cur. y > height + 1  ||
     //obstruction check 
-    //(shelf.find(next) != shelf.end()))
+    shelf.find(cur) != shelf.end()) {
         return false;
 	}
     else 
@@ -219,7 +194,7 @@ void Mapper::validNeighbors(position cur)
 		neighbors.pop();	
 
     for(int i = 0; i < ADJ_SIZE; i++){
-        if(isValidNeighbor(arr[i])){
+        if(isValid(arr[i])){
             neighbors.push(arr[i]);
 		//	printf("GOOD %i %i\n",arr[i].x,arr[i].y);
 		}
