@@ -19,17 +19,17 @@ struct position
     unsigned int x;
     unsigned int y;
   
-	bool operator < (const position & right) const
+	/*bool operator < (const position & right) const
     {
         return ((y < right.y) || (y == right.y &&  x < right.x));
-    }
+    }*/
 };
 
-typedef struct product product;
-struct product
+typedef struct moveSpace moveSpace;
+struct moveSpace
 {
-    unsigned int ID;
-    position loc;
+	position loc;
+    unsigned int hop;
 }; 
 
 using namespace std;
@@ -38,7 +38,7 @@ class Mapper
   private:
     unsigned int width;
     unsigned int height;
-    queue <position> path;
+    map <position,position> path;
     queue <position> neighbors;
   
     map<unsigned int, position> stock; //reads via ID
@@ -58,10 +58,15 @@ class Mapper
     void validNeighbors(position next);
     
 	int shortest(int label[], bool visited[], position * grid, position cur);
-    void printPath(); 
+    void printPath( map<position,unsigned int>, position start, position end);
+
+//	bool lessVal(	const pair<position,unsigned int> & left,
+//					const pair<position,unsigned int> & right);
+	//position minVal(const map<position, unsigned int> &);  
     
     //friends
     friend bool operator==(const position &, const position &);
-	//friend bool operator<(const position & , const position & );
+	friend bool operator<(const position & , const position & );
+
 };
 #endif

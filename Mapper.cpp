@@ -4,14 +4,12 @@ Mapper::Mapper()
 {   
     width = 0;
     height = 0;
-  //  queue <position> path;
 }
 
  Mapper::Mapper(unsigned int w, unsigned int h)
  {
     width = w;
     height = h;
-   // queue <position> path;
  }
 
 void Mapper::makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
@@ -19,16 +17,14 @@ void Mapper::makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
     position itemLoc = {xCoord, yCoord};
     stock.insert(pair<unsigned int, position>(ID,itemLoc));
 
-        //is shelf already in use?
-        if(shelf.find(itemLoc) != shelf.end()){
-            unsigned int counter = shelf.find(itemLoc)->second + 1;
-            shelf.insert(pair<position, unsigned int>(itemLoc,counter));	
-		//	printf("so far shelf %i : (%i,%i)\n",counter,itemLoc.x,itemLoc.y);
-        }
-    	else{
-        shelf.insert(pair<position, unsigned int>(itemLoc, 0));
-		//	printf("new shelf %i : (%i,%i)\n",shelf.find(itemLoc)->second,itemLoc.x,itemLoc.y);
-		}
+    //is shelf already in use?
+    if(shelf.find(itemLoc) != shelf.end()){
+		unsigned int counter = shelf.find(itemLoc)->second + 1;
+        shelf.insert(pair<position, unsigned int>(itemLoc,counter));	
+    } 
+	else{
+       	shelf.insert(pair<position, unsigned int>(itemLoc, 0));
+	}
 }
 
 position * Mapper::makeGrid()
@@ -85,50 +81,63 @@ void Mapper::nextPos(position cur, product item, position * grid)
 }
 */
 //BFS single weight
-void Mapper::nextPos(position cur, unsigned int item)
+void Mapper::nextPos(position cur, unsigned int ID)
 {
     map<unsigned int, position>::iterator it = stock.begin();
-	it = stock.find(item);
+	it = stock.find(ID);
     position dest = {it->second.x, it->second.y};
-	//for (it = stock.begin(); it != stock.end(); it++)
-	//	printf("stock %i : (%i,%i)\n",it->first,it->second.x,it->second.y);
-	
 
     bool found = false;
 	unsigned int hops = 0;
+
     map<position,unsigned int> visited;
-    visited.insert(pair<position,unsigned int>(cur,hops));
-
-	queue<position> active;
+    visited.insert(pair<position,unsigned int>(cur,hops++));
+	
+	map<position,position> path;//cur, prev
+	position curStatic = cur;
+	queue<position> active;	
 	active.push(cur);
+	position done = {0,0};
+    while(!active.empty()&&!found) {
 
-	bool notVisited = true;
-
-    while(!active.empty() && !found) {
-		position next = active.front();	
+		position next = active.front();					
 		found = isValidStop(dest,next);	
-		printf("(%i, %i, %d)\n",active.front().x, active.front().y, found);
-		active.pop();	
+		active.pop();
 
+		if(found){
+			printf("FOUND_-----------------------\n");
+		 	done = next;
+			printf("pos(%i,%i) visit hop = %i\n",done.x,done.y,visited.find(done)->second);
+	
+		//	found = false;		
+		}
 		//create new list of neighbors	
         validNeighbors(next);		
 
-	//	printf("Valid neighbors for (%i,%i)\n", next.x,next.y); 
        	while(!neighbors.empty()){
-            position temp = neighbors.front(); 
-		//	printf("are (%i %i)\n", temp.x,temp.y);		    
-
+            position temp = neighbors.front(); 		    
+			
 			if(visited.find(temp) == visited.end()){
-				visited.insert(pair<position,unsigned int>(temp,hops));
-			//	printf("pos(%i,%i) visit hop = %i\n",temp.x,temp.y,visited.find(temp)->second);
+				unsigned int prevHop = visited.find(next)->second;
+				visited.insert(pair<position,unsigned int>(temp,hops+prevHop));
+				//printf("temp pos(%i,%i) visit hop = %i\n",temp.x,temp.y,visited.find(temp)->second);
+
+				path.insert(pair<position,position>(temp,next));
+				
+				printf("pos(%i,%i) prev(%i,%i)\n", path.find(temp)->first.x,
+														path.find(temp)->first.y,
+														path.find(temp)->second.x,
+														path.find(temp)->second.y); 
 				active.push(temp);
-				path.push(next);
 			}	
 			neighbors.pop();
         }
-		hops++;
     }
-	path.push(dest);
+	/*printf("path begin: pos(%i,%i) prev(%i,%i)\n", path.begin()->first.x,
+														path.begin()->first.y,
+														path.begin()->second.x,
+														path.begin()->second.y); */
+	printPath(visited,  curStatic,  done);	
 }
 
 int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
@@ -146,14 +155,37 @@ int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
    return minIndx; */
 	return 0;
 } 
-void Mapper::printPath()
+void Mapper::printPath	(map<position,unsigned int> in, position  start, 
+						position  end)
 {
     printf("(x,y)\t\n");
-    for(int i = 0; i < path.size(); i++){
-        position out = path.front();
-        path.pop();
-        printf("(%i,%i)\n",out.x,out.y);
-    }
+	printf("start (%i,%i)\t\n",start.x, start.y);
+	printf("end (%i,%i)\t\n",end.x, end.y);	
+
+	map<position,unsigned int>::iterator it = in.begin();
+	map<position,unsigned int>::iterator itHolder = in.begin();
+	
+		position temp = end;
+/*	unsigned int min = in.find(temp)->second;//it->second;
+	printf("min1 %i\n", min);
+	//find min hop (not necessarily unique)
+	for(; it != in.end(); it++){
+		if(it->second < min){
+			min = it->second;
+			itHolder = it;
+		}
+	}
+	printf("min2 %i\n", min);
+	
+	//position temp = itHolder->first;
+*/
+	unsigned int counter = 5;
+	//can change to for loop if include counter; why doesn't operator !(==) work?
+	while(temp.x != start.x && temp.y != start.y || counter == 0){
+		printf("Here(%i,%i)\n", temp.x,temp.y);
+		temp = path.find(temp)->second;
+		counter--;
+	} 	
 }
 
 
@@ -196,15 +228,30 @@ void Mapper::validNeighbors(position cur)
     for(int i = 0; i < ADJ_SIZE; i++){
         if(isValid(arr[i])){
             neighbors.push(arr[i]);
-		//	printf("GOOD %i %i\n",arr[i].x,arr[i].y);
 		}
     }
  }
+/*
+bool Mapper::lessVal(const pair<position,unsigned int> & left,
+			 const pair<position,unsigned int> & right)
+{
+	return (left.second < right.second);
+}
+*/
+/*position Mapper::minVal(const map<position, unsigned int> & in)  
+{	
+	printf("%i", position(in.begin(),in.end(),& Mapper::lessVal).x);
+	position temp = {0,0};
+	return temp;
+}*/
 bool operator==(const position & left, const position & right)
 {
     return (left.x == right.x && left.y == right.y);
 }
 
-/*bool operator<(const position & l, const position & r) {
-	return ((l.y < right.y) || (l.y == right.y &&  l.x < right.x));
-}*/
+bool operator<(const position & left, const position & right) 
+{
+	return ((left.y < right.y) || (left.y == right.y &&  left.x < right.x));
+}
+
+

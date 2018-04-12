@@ -121,7 +121,7 @@ void Parser::readFile()
 				printf("Check with the 'modified' version of the file. Ending program.\n");
 				return;
 			}			
-            grid.printPath();
+          //  grid.printPath();
         }
         else  
             printf("%s could not be opened\n",inFile.c_str());
