@@ -18,7 +18,12 @@ struct position
 {
     unsigned int x;
     unsigned int y;
-  
+	
+	bool operator==(const position & right) const
+	{	
+		return (x == right.x && y == right.y);
+	}  
+	
 	/*bool operator < (const position & right) const
     {
         return ((y < right.y) || (y == right.y &&  x < right.x));
@@ -65,7 +70,7 @@ class Mapper
 	//position minVal(const map<position, unsigned int> &);  
     
     //friends
-    friend bool operator==(const position &, const position &);
+   // friend bool operator==(const position &, const position &);
 	friend bool operator<(const position & , const position & );
 
 };

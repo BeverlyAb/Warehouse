@@ -90,7 +90,7 @@ void Mapper::nextPos(position cur, unsigned int ID)
     bool found = false;
 	unsigned int hops = 0;
 
-    map<position,unsigned int> visited;
+    //map<position,unsigned int> visited;
     visited.insert(pair<position,unsigned int>(cur,hops++));
 	
 	map<position,position> path;//cur, prev
@@ -137,7 +137,7 @@ void Mapper::nextPos(position cur, unsigned int ID)
 														path.begin()->first.y,
 														path.begin()->second.x,
 														path.begin()->second.y); */
-	printPath(visited,  curStatic,  done);	
+	printPath( visited ,  curStatic,  done);	
 }
 
 int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
@@ -155,14 +155,14 @@ int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
    return minIndx; */
 	return 0;
 } 
-void Mapper::printPath	(map<position,unsigned int> in, position  start, 
+void Mapper::printPath( position  start, 
 						position  end)
 {
     printf("(x,y)\t\n");
 	printf("start (%i,%i)\t\n",start.x, start.y);
 	printf("end (%i,%i)\t\n",end.x, end.y);	
 
-	map<position,unsigned int>::iterator it = in.begin();
+	map<position,unsigned int>::iterator it = visited.begin();
 	map<position,unsigned int>::iterator itHolder = in.begin();
 	
 		position temp = end;
@@ -181,8 +181,8 @@ void Mapper::printPath	(map<position,unsigned int> in, position  start,
 */
 	unsigned int counter = 5;
 	//can change to for loop if include counter; why doesn't operator !(==) work?
-	while(temp.x != start.x && temp.y != start.y || counter == 0){
-		printf("(%i,%i)\n", temp.x,temp.y);
+	while(!(temp == start) && counter != 0){
+		printf("Here(%i,%i)\n", temp.x,temp.y);
 		temp = path.find(temp)->second;
 		counter--;
 	} 	
@@ -244,10 +244,10 @@ bool Mapper::lessVal(const pair<position,unsigned int> & left,
 	position temp = {0,0};
 	return temp;
 }*/
-bool operator==(const position & left, const position & right)
+/*bool operator==(const position & left, const position & right)
 {
     return (left.x == right.x && left.y == right.y);
-}
+}*/
 
 bool operator<(const position & left, const position & right) 
 {
