@@ -92,12 +92,6 @@ void Mapper::nextPos(position cur, unsigned int ID)
 
 	//cur, prev with hop
 	moveSpace prev = {cur,hops++};
-    //path.insert(pair<position,moveSpace>(cur,prev));
-	
-	printf("pos 1(%i,%i) prev(%i,%i)\n", path.find(cur)->first.x,
-														path.find(cur)->first.y,
-														path.find(cur)->second.loc.x,
-														path.find(cur)->second.loc.y);
 	
 	position curStatic = cur;
 	queue<position> active;	
@@ -112,18 +106,12 @@ void Mapper::nextPos(position cur, unsigned int ID)
 		active.pop();
 
 		if(found){
-			printf("FOUND_-----------------------\n");
 			finalDest = next;
 
 			unsigned int prevHop = path.find(next)->second.hop;
 			prev = {next, hops+prevHop};
 			path.insert(pair<position,moveSpace>(next,prev));
-		
-			printf("FOUND pos(%i,%i) prev(%i,%i)\n", path.find(next)->first.x,
-														path.find(next)->first.y,
-														path.find(next)->second.loc.x,
-														path.find(next)->second.loc.y); 		
-			
+					
 			printPath(cur,finalDest);
 		}
 		//create new list of neighbors	
@@ -136,21 +124,11 @@ void Mapper::nextPos(position cur, unsigned int ID)
 				unsigned int prevHop = path.find(next)->second.hop;
 				prev = {next, hops+prevHop};
 				path.insert(pair<position,moveSpace>(temp,prev));
-			//	printf("temp pos(%i,%i) visit hop = %i\n",temp.x,temp.y,path.find(temp)->second.hop);
-				printf("pos(%i,%i) prev(%i,%i)\n", path.find(temp)->first.x,
-														path.find(temp)->first.y,
-														path.find(temp)->second.loc.x,
-														path.find(temp)->second.loc.y);  
 				active.push(temp);
 			}	
 			neighbors.pop();
         }
     }
-	/*printf("path begin: pos(%i,%i) prev(%i,%i)\n", path.begin()->first.x,
-														path.begin()->first.y,
-														path.begin()->second.x,
-														path.begin()->second.y); */
-	
 }
 
 int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
@@ -170,23 +148,20 @@ int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
 } 
 void Mapper::printPath(position start, position end)
 {
-    printf("(x,y)\t\n");
-	printf("start (%i,%i)\t\n",start.x, start.y);
-	printf("end (%i,%i)\t\n",end.x, end.y);
 	unsigned int hop = path.find(end)->second.hop;
 
 	position reverse[hop];
 	position temp = path.find(end)->first;
 	reverse[hop] = end;
+	//OpenMP
 	for(unsigned int i = 1; i <= hop; i++){
 		temp = path.find(temp)->second.loc;
-		printf("path :(%i,%i)\n", temp.x, temp.y);
 		reverse[hop-i] = temp;
-	}	
+	}
 
 	//use OpenMP here	
 	for(unsigned int i = 0; i <= hop; i++)
-		printf("rvrs :(%i,%i)\n", reverse[i].x, reverse[i].y);
+		printf("(%i,%i)\n", reverse[i].x, reverse[i].y);
 
 }
 
