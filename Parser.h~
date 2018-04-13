@@ -32,7 +32,7 @@ class Parser
     Parser();
     void setUserParam();
     void readFile(int fileType);
-	void readOrder();
+	void readOrder()
     int getWidth();
     int getHeight();
 };

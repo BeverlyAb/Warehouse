@@ -7,6 +7,7 @@ int main()
     test.setUserParam();
     test.readFile(STOCK); 
 
-	//printf( "Choose a number.\n Do you want to name orders (1) or read all orders from a file (2).\n");
-	//test.readFile(ORDER_FILE);
+	string ans = "";
+	printf( "Choose a number.\n Do you want to name orders (1) or read all orders from a file (2).\n");
+	test.readFile(ORDER_FILE);
 }

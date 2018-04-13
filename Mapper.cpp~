@@ -12,7 +12,7 @@ Mapper::Mapper()
     height = h;
  }
 
-void Mapper::makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
+void Mapper::makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
 {
     position itemLoc = {xCoord, yCoord};
     stock.insert(pair<unsigned int, position>(ID,itemLoc));
@@ -25,6 +25,11 @@ void Mapper::makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
 	else{
        	shelf.insert(pair<position, unsigned int>(itemLoc, 0));
 	}
+}
+
+position Mapper::getPos(unsigned int ID)
+{
+	return stock.find(ID)->second.loc;
 }
 
 position * Mapper::makeGrid()
@@ -72,7 +77,8 @@ void Mapper::nextPos(position cur, unsigned int ID)
 			finalDest = next;
 
 			unsigned int prevHop = path.find(next)->second.hop;
-			prev = {next, hops + prevHop};
+			prev.loc = next;
+			prev.hop = hops + prevHop;
 			path.insert(pair<position,moveSpace>(next,prev));
 					
 			printPath(cur,finalDest);
@@ -85,7 +91,8 @@ void Mapper::nextPos(position cur, unsigned int ID)
 			
 			if(path.find(temp) == path.end()){
 				unsigned int prevHop = path.find(next)->second.hop;
-				prev = {next, hops+prevHop};
+				prev.loc = next;
+				prev.hop = hops + prevHop;
 				path.insert(pair<position,moveSpace>(temp,prev));
 				active.push(temp);
 			}	
@@ -101,6 +108,7 @@ void Mapper::printPath(position start, position end)
 	position temp = path.find(end)->first;
 	reverse[hop] = end;
 	
+	printf("Distance %i\n",hop);
 	//OpenMP
 	for(unsigned int i = 1; i <= hop; i++){
 		temp = path.find(temp)->second.loc;
@@ -154,27 +162,5 @@ void Mapper::validNeighbors(position cur)
 		}
     }
  }
-/*
-bool Mapper::lessVal(const pair<position,unsigned int> & left,
-			 const pair<position,unsigned int> & right)
-{
-	return (left.second < right.second);
-}
-*/
-/*position Mapper::minVal(const map<position, unsigned int> & in)  
-{	
-	printf("%i", position(in.begin(),in.end(),& Mapper::lessVal).x);
-	position temp = {0,0};
-	return temp;
-}*/
-bool operator==(const position & left, const position & right)
-{
-    return (left.x == right.x && left.y == right.y);
-}
-
-bool operator<(const position & left, const position & right) 
-{
-	return ((left.y < right.y) || (left.y == right.y &&  left.x < right.x));
-}
 
 

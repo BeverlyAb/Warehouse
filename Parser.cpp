@@ -1,6 +1,4 @@
 #include "Parser.h"
-#include "Mapper.h"
-
 #include <iostream>
 
 Parser::Parser()
@@ -15,6 +13,7 @@ Parser::Parser()
     ID = "";
     xCoord = "";
     yCoord = "";
+	grid = Mapper();
 }
 
 void Parser::setUserParam()
@@ -30,7 +29,9 @@ void Parser::setUserParam()
     cin >> mutator;
     warehouseHeight *= mutator;
     warehouseWidth *= mutator;
-
+	
+    grid = Mapper(warehouseWidth, warehouseHeight);
+	
 	printf("Does this file need calibration? Y or N?\n");
    	 	cin >> ans; 
 	if(ans == "Y") {
@@ -38,93 +39,58 @@ void Parser::setUserParam()
         printf("A file with these parameters has been created as %s\n",outFile.c_str());
     } 
     else if(ans == "N")
-        return;
+       outFile = inFile;
     else {   
         printf("Please answer with Y or N after retyping the file name.\n");
         setUserParam();
     }
 }
-void Parser::readFile()
+void Parser::readFile(int fileType)
 {
-    if (ans == "Y")
-    {
-        ifstream myFile;
-        ofstream newFile;
-		int x = 0, y = 0;
-        myFile.open(inFile.c_str());
-        newFile.open(outFile.c_str());
-        if(myFile.is_open() && newFile.is_open()){
-            
-            getline(myFile,ID,',');
-            while(myFile.good() && !ID.empty()){
-                getline(myFile,xCoord,',');
-                getline(myFile,yCoord,'\n');
-                
-                //change to stod
-                x = atoi(xCoord.c_str());
-                y = atoi(yCoord.c_str());
-				x *= mutator;
-				y *= mutator;
+    ifstream myFile;
+        
+    myFile.open(outFile.c_str());
 
-                //move to shelving platform of (0,0)
-                if(x == 0)
-                    x += 1; 
-                if(y == 0)   
-                    y += 1;
-
-                newFile << ID << ',' << x  << ',' << y  << '\n';
-                getline(myFile,ID,',');
-            }
-            myFile.close();
-            newFile.close();
+    if(myFile.is_open()){
+        getline(myFile,ID,',');
+        while(myFile.good()){
+            getline(myFile,xCoord,',');
+            getline(myFile,yCoord,'\n');
+			if(fileType == STOCK){
+            	grid.makeStock(atoi(ID.c_str()), atoi(xCoord.c_str()), atoi(yCoord.c_str()));
+				
+			}//else if(fileType == ORDER_LIST)
+			//	grid,
 			
-			inFile = outFile;					
-			ans = "N";
-			readFile();
-        }
-        else  
-            printf("Files could not be opened\n");
-    } else{ //file is ready to be mapped as is
-        ifstream myFile;
-        myFile.open(inFile.c_str());
-
-        Mapper grid = Mapper(warehouseWidth, warehouseHeight);
-
-        if(myFile.is_open()){
             getline(myFile,ID,',');
-            while(myFile.good()){
-                getline(myFile,xCoord,',');
-                getline(myFile,yCoord,'\n');
-                grid.makeMap(atoi(ID.c_str()), atoi(xCoord.c_str()), atoi(yCoord.c_str()));
-
-                getline(myFile,ID,',');
-            }
-            myFile.close();
-            
-            unsigned int x = 0;
-            unsigned int y = 0;
-            unsigned int ID = 0;
-
-            cout << "Starting x-coord?\n";
-            cin >> x;
-            cout << "Starting y-coord?\n";
-            cin >> y;
-            position start = {x,y};
-
-            cout << "Product ID?\n";
-            cin >> ID;
-			
-			if(grid.isValid(start)) 
-            	grid.nextPos(start, ID);
-			else{
-				printf("Starting position is either out of bounds or starts on a shelf.\n");
-				printf("Check with the 'modified' version of the file. Ending program.\n");
-				return;
-			}			
         }
-        else  
-            printf("%s could not be opened\n",inFile.c_str());
-    }
+        myFile.close();
+        
+        unsigned int x = 0;
+        unsigned int y = 0;
+        unsigned int ID = 0;
+
+        cout << "Starting x-coord?\n";
+        cin >> x;
+        cout << "Starting y-coord?\n";
+        cin >> y;
+        position start = {x,y};
+
+        cout << "Product ID?\n";
+        cin >> ID;
+        
+        if(grid.isValid(start)) {
+            grid.nextPos(start, ID);
+			printf("pos (%i,%i)\n",grid.getPos(ID).x,grid.getPos(ID).y);
+		}
+        else {
+            printf("Starting position is either out of bounds or starts on a shelf.\n");
+            return;
+        }		
+    } 
+    else  
+        printf("%s could not be opened\n",inFile.c_str());
+    
 }
 
 int Parser::getWidth()
@@ -135,4 +101,50 @@ int Parser::getHeight()
 {
     return warehouseHeight;
 }
+/*
+void Parser::readOrder()
+{
+	printf("What is the file name?\n");
+    cin >> inFile;
+  	ifstream myFile;
+        
+    myFile.open(inFile.c_str());
+
+    Mapper grid = Mapper(warehouseWidth, warehouseHeight);
+
+    if(myFile.is_open()){
+        getline(myFile,ID,',');
+        while(myFile.good()){
+            getline(myFile,xCoord,',');
+            getline(myFile,yCoord,'\n');
+            grid.makeMap(atoi(ID.c_str()), atoi(xCoord.c_str()), atoi(yCoord.c_str()));
+
+            getline(myFile,ID,',');
+        }
+        myFile.close();
+        
+        unsigned int x = 0;
+        unsigned int y = 0;
+        unsigned int ID = 0;
+
+        cout << "Starting x-coord?\n";
+        cin >> x;
+        cout << "Starting y-coord?\n";
+        cin >> y;
+        position start = {x,y};
+
+        cout << "Product ID?\n";
+        cin >> ID;
+        
+        if(grid.isValid(start)) 
+            grid.nextPos(start, ID);
+        else {
+            printf("Starting position is either out of bounds or starts on a shelf.\n");
+            return;
+        }		
+    }
+    else  
+        printf("%s could not be opened\n",inFile.c_str());
+    
+}*/
 

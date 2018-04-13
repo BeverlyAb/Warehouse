@@ -18,6 +18,15 @@ struct position
 {
     unsigned int x;
     unsigned int y;
+	bool operator==(const position & right) const
+	{	
+		return (x == right.x && y == right.y);
+	}  
+	
+	bool operator < (const position & right) const
+    {
+        return ((y < right.y) || (y == right.y &&  x < right.x));
+    }
 };
 
 typedef struct moveSpace moveSpace;
@@ -43,7 +52,8 @@ class Mapper
   public:
     Mapper();
     Mapper(unsigned int w, unsigned int h);
-    void makeMap(unsigned int ID, unsigned int xCoord, unsigned int yCoord);
+    void makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord);
+	position getPos(unsigned int);
 	//returns 2-D array 
     position* makeGrid();
     void nextPos(position cur, unsigned int item);
@@ -53,10 +63,5 @@ class Mapper
     void validNeighbors(position next);
     
     void printPath(position start, position end);  
-    
-    //friends
-    friend bool operator==(const position &, const position &);
-	friend bool operator<(const position & , const position & );
-
 };
 #endif
