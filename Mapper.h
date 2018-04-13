@@ -43,9 +43,9 @@ class Mapper
   private:
     unsigned int width;
     unsigned int height;
-    map <position,position> path;
+   
     queue <position> neighbors;
-	map<position,unsigned int> visited;
+	map<position,moveSpace> path;
   
     map<unsigned int, position> stock; //reads via ID
     map<position, unsigned int> shelf; //reads via position and # of items in shelf
@@ -64,7 +64,7 @@ class Mapper
     void validNeighbors(position next);
     
 	int shortest(int label[], bool visited[], position * grid, position cur);
-    void printPath( map<position,unsigned int> &, position start, position end);
+    void printPath(position start, position end);
 
 //	bool lessVal(	const pair<position,unsigned int> & left,
 //					const pair<position,unsigned int> & right);

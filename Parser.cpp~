@@ -114,14 +114,13 @@ void Parser::readFile()
             cout << "Product ID?\n";
             cin >> ID;
 			
-			if(grid.isValid(start))
-            	grid.nextPos(start, ID);
+			if(grid.isValid(start)) return;
+            //	grid.nextPos(start, ID);
 			else{
 				printf("Starting position is either out of bounds or starts on a shelf.\n");
 				printf("Check with the 'modified' version of the file. Ending program.\n");
 				return;
 			}			
-          //  grid.printPath();
         }
         else  
             printf("%s could not be opened\n",inFile.c_str());

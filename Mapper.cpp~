@@ -90,15 +90,22 @@ void Mapper::nextPos(position cur, unsigned int ID)
     bool found = false;
 	unsigned int hops = 0;
 
-    //map<position,unsigned int> visited;
-    visited.insert(pair<position,unsigned int>(cur,hops++));
+	//cur, prev with hop
+	moveSpace prev = {cur,hops++};
+    //path.insert(pair<position,moveSpace>(cur,prev));
 	
-	map<position,position> path;//cur, prev
+	printf("pos 1(%i,%i) prev(%i,%i)\n", path.find(cur)->first.x,
+														path.find(cur)->first.y,
+														path.find(cur)->second.loc.x,
+														path.find(cur)->second.loc.y);
+	
 	position curStatic = cur;
 	queue<position> active;	
 	active.push(cur);
-	position done = {0,0};
-    while(!active.empty()&&!found) {
+
+	position finalDest = {0,0};
+
+    while(!active.empty() && !found) {
 
 		position next = active.front();					
 		found = isValidStop(dest,next);	
@@ -106,28 +113,34 @@ void Mapper::nextPos(position cur, unsigned int ID)
 
 		if(found){
 			printf("FOUND_-----------------------\n");
-		 	done = next;
-			printf("pos(%i,%i) visit hop = %i\n",done.x,done.y,visited.find(done)->second);
-	
-		//	found = false;		
+			finalDest = next;
+
+			unsigned int prevHop = path.find(next)->second.hop;
+			prev = {next, hops+prevHop};
+			path.insert(pair<position,moveSpace>(next,prev));
+		
+			printf("FOUND pos(%i,%i) prev(%i,%i)\n", path.find(next)->first.x,
+														path.find(next)->first.y,
+														path.find(next)->second.loc.x,
+														path.find(next)->second.loc.y); 		
+			
+			printPath(cur,finalDest);
 		}
 		//create new list of neighbors	
         validNeighbors(next);		
-
+	
        	while(!neighbors.empty()){
             position temp = neighbors.front(); 		    
 			
-			if(visited.find(temp) == visited.end()){
-				unsigned int prevHop = visited.find(next)->second;
-				visited.insert(pair<position,unsigned int>(temp,hops+prevHop));
-				//printf("temp pos(%i,%i) visit hop = %i\n",temp.x,temp.y,visited.find(temp)->second);
-
-				path.insert(pair<position,position>(temp,next));
-				
+			if(path.find(temp) == path.end()){
+				unsigned int prevHop = path.find(next)->second.hop;
+				prev = {next, hops+prevHop};
+				path.insert(pair<position,moveSpace>(temp,prev));
+			//	printf("temp pos(%i,%i) visit hop = %i\n",temp.x,temp.y,path.find(temp)->second.hop);
 				printf("pos(%i,%i) prev(%i,%i)\n", path.find(temp)->first.x,
 														path.find(temp)->first.y,
-														path.find(temp)->second.x,
-														path.find(temp)->second.y); 
+														path.find(temp)->second.loc.x,
+														path.find(temp)->second.loc.y);  
 				active.push(temp);
 			}	
 			neighbors.pop();
@@ -137,7 +150,7 @@ void Mapper::nextPos(position cur, unsigned int ID)
 														path.begin()->first.y,
 														path.begin()->second.x,
 														path.begin()->second.y); */
-	printPath( visited ,  curStatic,  done);	
+	
 }
 
 int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
@@ -155,39 +168,27 @@ int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
    return minIndx; */
 	return 0;
 } 
-void Mapper::printPath( position  start, 
-						position  end)
+void Mapper::printPath(position start, position end)
 {
     printf("(x,y)\t\n");
 	printf("start (%i,%i)\t\n",start.x, start.y);
-	printf("end (%i,%i)\t\n",end.x, end.y);	
+	printf("end (%i,%i)\t\n",end.x, end.y);
+	unsigned int hop = path.find(end)->second.hop + 1;
 
-	map<position,unsigned int>::iterator it = visited.begin();
-	map<position,unsigned int>::iterator itHolder = in.begin();
-	
-		position temp = end;
-/*	unsigned int min = in.find(temp)->second;//it->second;
-	printf("min1 %i\n", min);
-	//find min hop (not necessarily unique)
-	for(; it != in.end(); it++){
-		if(it->second < min){
-			min = it->second;
-			itHolder = it;
-		}
-	}
-	printf("min2 %i\n", min);
-	
-	//position temp = itHolder->first;
-*/
-	unsigned int counter = 5;
-	//can change to for loop if include counter; why doesn't operator !(==) work?
-	while(!(temp == start) && counter != 0){
-		printf("Here(%i,%i)\n", temp.x,temp.y);
-		temp = path.find(temp)->second;
-		counter--;
-	} 	
+	position reverse[hop];
+	position temp = path.find(end)->first;
+	reverse[hop] = end;
+	for(unsigned int i = 1; i <= hop; i++){
+		temp = path.find(temp)->second.loc;
+		printf("path :(%i,%i)\n", temp.x, temp.y);
+		reverse[hop-i] = temp;
+	}	
+
+	//use OpenMP here	
+	for(unsigned int i = 0; i <= hop; i++)
+		printf("rvrs :(%i,%i)\n", reverse[i].x, reverse[i].y);
+
 }
-
 
 //stops at either left or right of shelf 
 bool Mapper::isValidStop(position ref, position stop)

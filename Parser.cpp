@@ -114,7 +114,7 @@ void Parser::readFile()
             cout << "Product ID?\n";
             cin >> ID;
 			
-			if(grid.isValid(start))
+			if(grid.isValid(start)) 
             	grid.nextPos(start, ID);
 			else{
 				printf("Starting position is either out of bounds or starts on a shelf.\n");
