@@ -43,43 +43,6 @@ position * Mapper::makeGrid()
     }
     return grid;
 }
-/*    //use Dijkstra 
-void Mapper::nextPos(position cur, product item, position * grid)
-{
-    //paths exclude shelves
-    unsigned int n = (width + 2) * (height + 2) - stock.size();
-    bool visited[n];
-    int label[n];
-    for (unsigned int i = 0; i < n; i++){
-        visited[i] = false;
-        label[i] = INF;
-    }
-    
-    //find where cur is in grid
-    unsigned int curIndx = 0;
-
-    position temp = grid[curIndx];
-    while(!(cur == temp)){
-        temp = grid[curIndx++];
-    }
-    
-    //start has 0 distance from itself
-    label[curIndx] = 0;
-
-    //iterate through vertices
-    for(unsigned int i = 0; i < n - 1; i++){
-        unsigned int next = shortest(label,visited,grid,grid[curIndx]);
-        visited[next] = true;
-
-        //iterate through neighbors
-        for(int j = 0; j < neighbors.size(); j++){
-            if  (!visited[j] && label[curIndx] != INF && 
-                label[curIndx] < label[j])
-                label[j] = label[next];
-        }
-    }
-}
-*/
 //BFS single weight
 void Mapper::nextPos(position cur, unsigned int ID)
 {
@@ -109,7 +72,7 @@ void Mapper::nextPos(position cur, unsigned int ID)
 			finalDest = next;
 
 			unsigned int prevHop = path.find(next)->second.hop;
-			prev = {next, hops+prevHop};
+			prev = {next, hops + prevHop};
 			path.insert(pair<position,moveSpace>(next,prev));
 					
 			printPath(cur,finalDest);
@@ -130,22 +93,6 @@ void Mapper::nextPos(position cur, unsigned int ID)
         }
     }
 }
-
-int Mapper::shortest(int label[], bool visited[], position * grid, position cur)
-{
- /*  unsigned int min = INF;
-   unsigned int minIndx; 
-   unsigned int n = (width + 2) * (height + 2) - stock.size();
-  
-   for (unsigned int i = 0; i < n; i++){
-     if (visited[i] == false && label[i] <= min && isValidNeighbor(grid[i]))
-        min = label[i];
-        minIndx = i;
-   }
-
-   return minIndx; */
-	return 0;
-} 
 void Mapper::printPath(position start, position end)
 {
 	unsigned int hop = path.find(end)->second.hop;
@@ -153,6 +100,7 @@ void Mapper::printPath(position start, position end)
 	position reverse[hop];
 	position temp = path.find(end)->first;
 	reverse[hop] = end;
+	
 	//OpenMP
 	for(unsigned int i = 1; i <= hop; i++){
 		temp = path.find(temp)->second.loc;
@@ -161,14 +109,13 @@ void Mapper::printPath(position start, position end)
 
 	//use OpenMP here	
 	for(unsigned int i = 0; i <= hop; i++)
-		printf("rvrs :(%i,%i)\n", reverse[i].x, reverse[i].y);
+		printf("(%i,%i)\n", reverse[i].x, reverse[i].y);
 
 }
 
 //stops at either left or right of shelf 
 bool Mapper::isValidStop(position ref, position stop)
 {
-	//printf("(Ref %i,%i Stop %i, %i )\n",ref.x,ref.y, stop.x, stop.y);
     if(	(stop.x == ref.x + 1 && stop.y == ref.y) ||
  		(stop.x == ref.x - 1 && stop.y == ref.y))
 		return true;
@@ -220,10 +167,10 @@ bool Mapper::lessVal(const pair<position,unsigned int> & left,
 	position temp = {0,0};
 	return temp;
 }*/
-/*bool operator==(const position & left, const position & right)
+bool operator==(const position & left, const position & right)
 {
     return (left.x == right.x && left.y == right.y);
-}*/
+}
 
 bool operator<(const position & left, const position & right) 
 {
