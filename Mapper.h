@@ -48,20 +48,23 @@ class Mapper
   
     map<unsigned int, position> stock; //reads via ID
     map<position, unsigned int> shelf; //reads via position and # of items in shelf
- 
+	map<position, unsigned int> cluster; 
+
+	position finalDest;
   public:
     Mapper();
     Mapper(unsigned int w, unsigned int h);
     void makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord);
 	position getPos(unsigned int);
-	//returns 2-D array 
-    position* makeGrid();
-    void nextPos(position cur, unsigned int item);
+	void makeCluster(unsigned int);    
+
+	void nextPos(position cur, position dest);
     
 	bool isValidStop(position ref, position stop);
 	bool isValid(position cur);
     void validNeighbors(position next);
     
-    void printPath(position start, position end);  
+    void printPath(position start, position end); 
+	position getFinalDest(); 
 };
 #endif

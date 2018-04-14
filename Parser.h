@@ -4,7 +4,7 @@
 #include <fstream>
 #include "Mapper.h"
 
-#define NAME_ORDER 1
+#define NAME_ITEM 1
 #define ORDER_FILE 2
 #define STOCK 3
 
@@ -14,26 +14,28 @@ class Parser
 {
   private:
     //input parameters
-    string inFile;
-    string outFile;
+    string inFile, outFile;
     string ans; 
-    unsigned int warehouseWidth;
-    unsigned int warehouseHeight;
-    unsigned int mutator;
-	unsigned int orderNum;
+    unsigned int warehouseWidth, warehouseHeight;
+   	unsigned int mutator;
 
     //data
-    string ID;
-    string xCoord;
-    string yCoord;
+    string ID, xCoord, yCoord;
 	Mapper grid;
-
+	position start,end;
+	queue<unsigned int> namedItems;
+	
   public:
     Parser();
     void setUserParam();
     void readFile(int fileType);
 	void readOrder();
-    int getWidth();
+	void getNameItem();
+	void getPath();
+
+	//accessors
+	int getWidth();
     int getHeight();
+	
 };
 #endif

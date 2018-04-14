@@ -4,20 +4,21 @@ Mapper::Mapper()
 {   
     width = 0;
     height = 0;
+	finalDest.x = 0; finalDest.y = 0;
 }
 
  Mapper::Mapper(unsigned int w, unsigned int h)
  {
     width = w;
     height = h;
+	finalDest.x = 0; finalDest.y = 0;
  }
 
 void Mapper::makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
 {
     position itemLoc = {xCoord, yCoord};
     stock.insert(pair<unsigned int, position>(ID,itemLoc));
-
-    //is shelf already in use?
+   //is shelf already in use?
     if(shelf.find(itemLoc) != shelf.end()){
 		unsigned int counter = shelf.find(itemLoc)->second + 1;
         shelf.insert(pair<position, unsigned int>(itemLoc,counter));	
@@ -32,29 +33,22 @@ position Mapper::getPos(unsigned int ID)
 	return stock.find(ID)->second;
 }
 
-position * Mapper::makeGrid()
+void Mapper::makeCluster(unsigned int ID)
 {
-    // +2 on to give walkable outer layer
-    unsigned int dimension = (width + 2) * (height + 2);
-    position *  grid  = (position *) malloc(dimension * sizeof(position));
-    
-    //populate grid row-wise first
-    int k = 0;
-    for(int i = 0; i < height + 2; i++){
-        for(int j = 0; j < width + 2; j++){
-            position temp = {j, i};
-            grid[k++] = temp;
-        }
-    }
-    return grid;
+	position itemLoc = getPos(ID);
+   //is shelf already in use?
+    if(cluster.find(itemLoc) != cluster.end()){
+		unsigned int counter = cluster.find(itemLoc)->second + 1;
+        cluster.insert(pair<position, unsigned int>(itemLoc,counter));	
+    } 
+	else{
+       	cluster.insert(pair<position, unsigned int>(itemLoc, 0));
+	}
 }
-//BFS single weight
-void Mapper::nextPos(position cur, unsigned int ID)
-{
-    map<unsigned int, position>::iterator it = stock.begin();
-	it = stock.find(ID);
-    position dest = {it->second.x, it->second.y};
 
+//BFS single weight
+void Mapper::nextPos(position cur, position dest)
+{
     bool found = false;
 	unsigned int hops = 0;
 
@@ -65,9 +59,7 @@ void Mapper::nextPos(position cur, unsigned int ID)
 	queue<position> active;	
 	active.push(cur);
 
-	position finalDest = {0,0};
-
-    while(!active.empty() && !found) {
+    while(!active.empty()) {
 
 		position next = active.front();					
 		found = isValidStop(dest,next);	
@@ -75,12 +67,25 @@ void Mapper::nextPos(position cur, unsigned int ID)
 
 		if(found){
 			finalDest = next;
-
+			map<position,moveSpace> onlyFound;
+			onlyFound.insert(pair<position,moveSpace>(next,prev));
+				
+		
 			unsigned int prevHop = path.find(next)->second.hop;
 			prev.loc = next;
 			prev.hop = hops + prevHop;
 			path.insert(pair<position,moveSpace>(next,prev));
-					
+			
+			map<position,moveSpace>::iterator it = onlyFound.begin();
+			map<position,moveSpace>::iterator itHolder = onlyFound.begin();
+			unsigned int min = path.begin()->second.hop;			
+			for(; it != onlyFound.end(); it++){
+				if(min > it->second.hop){
+					min = it->second.hop;
+					itHolder = it;
+				}
+			}
+			finalDest = itHolder->first; //or second?
 			printPath(cur,finalDest);
 		}
 		//create new list of neighbors	
@@ -114,8 +119,7 @@ void Mapper::printPath(position start, position end)
 		temp = path.find(temp)->second.loc;
 		reverse[hop-i] = temp;
 	}
-
-	//use OpenMP here	
+	
 	for(unsigned int i = 0; i <= hop; i++)
 		printf("(%i,%i)\n", reverse[i].x, reverse[i].y);
 
@@ -159,8 +163,14 @@ void Mapper::validNeighbors(position cur)
     for(int i = 0; i < ADJ_SIZE; i++){
         if(isValid(arr[i])){
             neighbors.push(arr[i]);
+		//	printf("neigh(%i,%i)\n",arr[i].x,arr[i].y);
 		}
     }
  }
+
+position Mapper::getFinalDest()
+{
+	return finalDest;
+}
 
 
