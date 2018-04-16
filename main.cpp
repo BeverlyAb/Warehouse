@@ -12,5 +12,6 @@ int main()
 	test.readFile(NAME_ITEM);
 	test.getPath();
 	test.opt();
-	//test.getPath();
+	printf("----------------------------OPT----------------------\n");
+	test.getPath();
 }
