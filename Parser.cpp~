@@ -131,7 +131,6 @@ void Parser::makeCluster(unsigned int ID)
 		unsigned int counter = cluster.find(itemLoc)->second + 1;
       	map<position,unsigned int>::iterator it = cluster.find(itemLoc);
 		it->second = counter;
-		printf("repeat\n");
     } 
 	else{
        	cluster.insert(pair<position, unsigned int>(itemLoc, 1));
@@ -152,9 +151,30 @@ void Parser::opt()
 	unsigned int yRangeEnd[4] = {warehouseHeight, warehouseHeight,
 								 warehouseHeight/2, warehouseHeight/2};
 
+	unsigned int quad[4] ={0};
+	//might be able to use OpenMP if do nested For Loop with i. Will it be worth it?
 	map<position,unsigned int>::iterator it = cluster.begin();
-	for(; it != cluster.end(); it++)
-		printf("(%i,%i),count = %i\n",it->first.x,it->first.y,it->second);
+	for(; it != cluster.end(); it++){
+		if(it->first.x >= xRangeStart[0] && it->first.x <= xRangeStart[0]
+		&& it->first.y >= yRangeStart[0] && it->first.y <= yRangeEnd[0])
+			quad[0] += it->second;
+		
+		else if(it->first.x >= xRangeStart[1] && it->first.x <= xRangeStart[1]
+		&& it->first.y >= yRangeStart[1] && it->first.y <= yRangeEnd[1])
+			quad[1] += it->second;
+
+		else if(it->first.x >= xRangeStart[1] && it->first.x <= xRangeStart[1]
+		&& it->first.y >= yRangeStart[1] && it->first.y <= yRangeEnd[1])
+			quad[1] += it->second;
+		
+		else if(it->first.x >= xRangeStart[1] && it->first.x <= xRangeStart[1]
+		&& it->first.y >= yRangeStart[1] && it->first.y <= yRangeEnd[1])
+			quad[1] += it->second;
+		else {
+			printf("Something wrong with opt()\n");	
+			return;
+		}
+	}
  	
 }//opt
 
