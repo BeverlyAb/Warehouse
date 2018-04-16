@@ -54,6 +54,7 @@ void Parser::readFile(int fileType)
 	
 	if(fileType == NAME_ITEM){
 		getNameItem();
+		//already updates cluster
 	}
 	else if(fileType == STOCK || fileType == ORDER_FILE){
 	
@@ -70,8 +71,7 @@ void Parser::readFile(int fileType)
 					if(x == 0) x++;
 					if(y == 0) y++;
 				
-		        	grid.makeStock(atoi(ID.c_str()), x, y);
-				//	printf("stock(%i,%i)\n",grid.getPos(atoi(ID.c_str())).x,grid.getPos(atoi(ID.c_str())).x);			
+		        	grid.makeStock(atoi(ID.c_str()), x, y);			
 					getline(myFile,ID,',');
 				}else if(fileType == ORDER_FILE){
 					return;//grid.getOrder(); make sure to form cluster here too
@@ -95,7 +95,7 @@ void Parser::getNameItem()
 	//not very robust
 	while(ans != "done"){
 		namedItems.push(atoi(ans.c_str()));
-		grid.makeCluster(atoi(ans.c_str()));
+		makeCluster(atoi(ans.c_str()));
 		cin >> ans;
 	}
 }
@@ -106,39 +106,56 @@ void Parser::getPath()
 		printf("Starting position is either out of bounds or starts on a shelf.\n");
 		return;
 	}else {	
-	/*	position zero = {0,0};
-		position one = {2,2};
-		position two = {4,2};
-		position three = {0,3};
-
-		grid.nextPos(zero,one);
-		//grid.printPath(zero,one);
-		//one.x = 1;
-		grid.nextPos(one,two);
-		//two.x = 3;
-		grid.nextPos(two,three); */
+	
 		unsigned int tempID = namedItems.front();
 		grid.nextPos(start, grid.getPos(tempID));
 		namedItems.pop();	
 
 		position next = grid.getFinalDest();
-	//	printf("final(%i,%i)\n",next.x,next.y);
 		int n = namedItems.size();		
 		for(int i = 0; i < n ; i++){
 			tempID = namedItems.front();
-		/*	printf("nameFront %i\n",namedItems.front());
-			printf("start (%i,%i)\n",next.x,next.y);
-			printf("dest(%i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
-			next.x = 1; next.y = 2;
-			position other = {4,2};
-			*/grid.nextPos(next,grid.getPos(tempID));
-		//	grid.nextPos(next,other);
+			grid.nextPos(next,grid.getPos(tempID));
 			namedItems.pop();
 			next = grid.getFinalDest();			
 		} 
-		grid.nextPos(next,end); 
+		grid.nextPos(next,end);
+		//last move, otherwise it ends at a neighbor of end
+		printf("(%i,%i)\n",end.x,end.y); //should hop++ 
 	}
 }
+void Parser::makeCluster(unsigned int ID)
+{
+	position itemLoc = grid.getPos(ID);
+    if(cluster.find(itemLoc) != cluster.end()){
+		unsigned int counter = cluster.find(itemLoc)->second + 1;
+      	map<position,unsigned int>::iterator it = cluster.find(itemLoc);
+		it->second = counter;
+    } 
+	else{
+       	cluster.insert(pair<position, unsigned int>(itemLoc, 1));
+	}
+}
+
+/*
+	So far only splits into 4 quadrants, but orders the request based on which quad.      
+	has the most requests.
+*/
+void Parser::opt()
+{
+	unsigned int xRangeStart[4] = {warehouseWidth/2 + 1, 0, 0, warehouseWidth/2 + 1};
+	unsigned int xRangeEnd[4] = {warehouseWidth, warehouseWidth/2,
+								 warehouseWidth/2, warehouseWidth};
+	
+	unsigned int yRangeStart[4] = {warehouseHeight/2 + 1, warehouseHeight/2 + 1, 0, 0};
+	unsigned int yRangeEnd[4] = {warehouseHeight, warehouseHeight,
+								 warehouseHeight/2, warehouseHeight/2};
+
+	map<position,unsigned int>::iterator it = cluster.begin();
+	for(; it != cluster.end(); it++)
+		printf("(%i,%i),count = %i\n",it->first.x,it->first.y,it->second);
+ 	
+}//opt
 
 int Parser::getWidth()
 {

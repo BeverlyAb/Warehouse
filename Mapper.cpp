@@ -21,10 +21,11 @@ void Mapper::makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord
    //is shelf already in use?
     if(shelf.find(itemLoc) != shelf.end()){
 		unsigned int counter = shelf.find(itemLoc)->second + 1;
-        shelf.insert(pair<position, unsigned int>(itemLoc,counter));	
+       	map<position,unsigned int>::iterator it = shelf.find(itemLoc);
+		it->second = counter;	
     } 
 	else{
-       	shelf.insert(pair<position, unsigned int>(itemLoc, 0));
+       	shelf.insert(pair<position, unsigned int>(itemLoc, 1));
 	}
 }
 
@@ -33,18 +34,7 @@ position Mapper::getPos(unsigned int ID)
 	return stock.find(ID)->second;
 }
 
-void Mapper::makeCluster(unsigned int ID)
-{
-	position itemLoc = getPos(ID);
-   //is shelf already in use?
-    if(cluster.find(itemLoc) != cluster.end()){
-		unsigned int counter = cluster.find(itemLoc)->second + 1;
-        cluster.insert(pair<position, unsigned int>(itemLoc,counter));	
-    } 
-	else{
-       	cluster.insert(pair<position, unsigned int>(itemLoc, 0));
-	}
-}
+
 
 //BFS single weight
 void Mapper::nextPos(position cur, position dest)
@@ -94,15 +84,15 @@ void Mapper::nextPos(position cur, position dest)
         }
     }
 	map<position,moveSpace>::iterator it = onlyFound.begin();
-			map<position,moveSpace>::iterator itHolder = onlyFound.begin();
-			unsigned int min = path.begin()->second.hop;			
-			for(; it != onlyFound.end(); it++){
-				if(min > it->second.hop){
-					min = it->second.hop;
-					itHolder = it;
-				}
-			}
-			finalDest = itHolder->first; //or second?
+	map<position,moveSpace>::iterator itHolder = onlyFound.begin();
+	unsigned int min = path.begin()->second.hop;			
+	for(; it != onlyFound.end(); it++){
+		if(min > it->second.hop){
+			min = it->second.hop;
+			itHolder = it;
+		}
+	}
+	finalDest = itHolder->first;
 	printPath(cur,finalDest);
 	path.clear();
 	while(!active.empty()) active.pop();
@@ -114,17 +104,17 @@ void Mapper::printPath(position start, position end)
 	position reverse[hop];
 	position temp = path.find(end)->first;
 	reverse[hop] = end;
-	
-	printf("Distance %i\n",hop);
+
 	//OpenMP
 	for(unsigned int i = 1; i <= hop; i++){
 		temp = path.find(temp)->second.loc;
 		reverse[hop-i] = temp;
 	}
-	
+		
+	printf("Distance %i\t",hop);
 	for(unsigned int i = 0; i <= hop; i++)
-		printf("(%i,%i)\n", reverse[i].x, reverse[i].y);
-
+		printf("(%i,%i)\t", reverse[i].x, reverse[i].y);
+    printf("\n");
 }
 
 //stops at either left or right of shelf 

@@ -11,4 +11,6 @@ int main()
 	//printf( "Choose a number.\n Do you want to name orders (1) or read all orders from a file (2).\n");
 	test.readFile(NAME_ITEM);
 	test.getPath();
+	test.opt();
+	//test.getPath();
 }

@@ -48,16 +48,12 @@ class Mapper
   
     map<unsigned int, position> stock; //reads via ID
     map<position, unsigned int> shelf; //reads via position and # of items in shelf
-	map<position, unsigned int> cluster; 
-
 	position finalDest;
   public:
     Mapper();
     Mapper(unsigned int w, unsigned int h);
     void makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord);
 	position getPos(unsigned int);
-	void makeCluster(unsigned int);    
-
 	void nextPos(position cur, position dest);
     
 	bool isValidStop(position ref, position stop);

@@ -24,6 +24,7 @@ class Parser
 	Mapper grid;
 	position start,end;
 	queue<unsigned int> namedItems;
+	map<position, unsigned int> cluster; 
 	
   public:
     Parser();
@@ -32,6 +33,8 @@ class Parser
 	void readOrder();
 	void getNameItem();
 	void getPath();
+	void makeCluster(unsigned int);    
+	void opt();
 
 	//accessors
 	int getWidth();
