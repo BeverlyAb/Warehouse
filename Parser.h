@@ -2,6 +2,7 @@
 #define PARSER_H
 #include <string>
 #include <fstream>
+#include <algorithm>
 #include "Mapper.h"
 
 #define NAME_ITEM 1
@@ -24,6 +25,7 @@ class Parser
 	Mapper grid;
 	position start,end;
 	queue<unsigned int> namedItems;
+	queue<unsigned int> optItems;
 	map<position, unsigned int> cluster; 
 	
   public:

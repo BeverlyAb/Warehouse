@@ -95,6 +95,7 @@ void Parser::getNameItem()
 	//not very robust
 	while(ans != "done"){
 		namedItems.push(atoi(ans.c_str()));
+		optItems.push(atoi(ans.c_str()));
 		makeCluster(atoi(ans.c_str()));
 		cin >> ans;
 	}
@@ -139,7 +140,7 @@ void Parser::makeCluster(unsigned int ID)
 
 /*
 	So far only splits into 4 quadrants, but orders the request based on which quad.      
-	has the most requests.
+	has the most requests. Don't need cluster anymore
 */
 void Parser::opt()
 {
@@ -150,29 +151,54 @@ void Parser::opt()
 	unsigned int yRangeStart[4] = {warehouseHeight/2 + 1, warehouseHeight/2 + 1, 0, 0};
 	unsigned int yRangeEnd[4] = {warehouseHeight, warehouseHeight,
 								 warehouseHeight/2, warehouseHeight/2};
-
-	unsigned int quad[4] ={0};
+	position temp = {0,0};
+	queue<position> * quad;// = {temp};
 	//might be able to use OpenMP if do nested For Loop with i. Will it be worth it?
-	map<position,unsigned int>::iterator it = cluster.begin();
-	for(; it != cluster.end(); it++){
-		if(it->first.x >= xRangeStart[0] && it->first.x <= xRangeStart[0]
-		&& it->first.y >= yRangeStart[0] && it->first.y <= yRangeEnd[0])
-			quad[0] += it->second;
-		
-		else if(it->first.x >= xRangeStart[1] && it->first.x <= xRangeStart[1]
-		&& it->first.y >= yRangeStart[1] && it->first.y <= yRangeEnd[1])
-			quad[1] += it->second;
-
-		else if(it->first.x >= xRangeStart[2] && it->first.x <= xRangeStart[2]
-		&& it->first.y >= yRangeStart[2] && it->first.y <= yRangeEnd[2])
-			quad[2] += it->second;
-		
-		else if(it->first.x >= xRangeStart[3] && it->first.x <= xRangeStart[3]
-		&& it->first.y >= yRangeStart[3] && it->first.y <= yRangeEnd[3])
-			quad[3] += it->second;
+	//map<position,unsigned int>::iterator it = cluster.begin();
+	printf("optItems %i\n",optItems.size());
+	for(int l = 0; l < optItems.size(); l++){
+		unsigned int tempID = optItems.front();
+		optItems.pop();
+		if(grid.getPos(tempID).x >= xRangeStart[0] && grid.getPos(tempID).x <= xRangeStart[0]
+		&& grid.getPos(tempID).y >= yRangeStart[0] && grid.getPos(tempID).y <= yRangeEnd[0]){
+			quad[0].push(grid.getPos(tempID));
+			printf("(q 0 %i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
+		}
+		else if(grid.getPos(tempID).x >= xRangeStart[1] && grid.getPos(tempID).x <= xRangeStart[1]
+		&& grid.getPos(tempID).y >= yRangeStart[1] && grid.getPos(tempID).y <= yRangeEnd[1]){
+			quad[1].push(grid.getPos(tempID));
+			printf("(q 1 %i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
+		}
+		else if(grid.getPos(tempID).x >= xRangeStart[2] && grid.getPos(tempID).x <= xRangeStart[2]
+		&& grid.getPos(tempID).y >= yRangeStart[2] && grid.getPos(tempID).y <= yRangeEnd[2]){
+			quad[2].push(grid.getPos(tempID));
+			printf("(q 3 %i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
+		}
+		else if(grid.getPos(tempID).x >= xRangeStart[3] && grid.getPos(tempID).x <= xRangeStart[3]
+		&& grid.getPos(tempID).y >= yRangeStart[3] && grid.getPos(tempID).y <= yRangeEnd[3]){
+			quad[3].push(grid.getPos(tempID));
+			printf("(q 3 %i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
+		}
 		else {
 			printf("Something wrong with opt()\n");	
 			return;
+		}
+	}
+	int count[4] = {0};
+	for(int i = 0; i < 4; i++){
+		count[i] = quad[i].size();
+		printf("count = %i, size for q[%i] = %i\n",count[i] ,i,quad[i].size());
+	}
+	sort(count,count + 4);	
+	
+	for(int i = 3; i >= 0; i--){
+		if(quad[0].size() == count[i]){
+			for(int j = 0; j < quad[0].size(); j++){
+				position tempPos = quad[0].front();
+				printf("temp(%i,%i)\n",tempPos.x,tempPos.y);
+				//namedItems.push(tempPos);
+				//quad[0].pop();
+			}
 		}
 	}
  	
