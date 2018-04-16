@@ -58,7 +58,7 @@ void Mapper::nextPos(position cur, position dest)
 	position curStatic = cur;
 	queue<position> active;	
 	active.push(cur);
-
+		map<position,moveSpace> onlyFound;
     while(!active.empty()) {
 
 		position next = active.front();					
@@ -67,26 +67,15 @@ void Mapper::nextPos(position cur, position dest)
 
 		if(found){
 			finalDest = next;
-			map<position,moveSpace> onlyFound;
+		
 			onlyFound.insert(pair<position,moveSpace>(next,prev));
-				
+			//printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y); 
 		
 			unsigned int prevHop = path.find(next)->second.hop;
 			prev.loc = next;
 			prev.hop = hops + prevHop;
 			path.insert(pair<position,moveSpace>(next,prev));
 			
-			map<position,moveSpace>::iterator it = onlyFound.begin();
-			map<position,moveSpace>::iterator itHolder = onlyFound.begin();
-			unsigned int min = path.begin()->second.hop;			
-			for(; it != path.end(); it++){
-				if(min > it->second.hop){
-					min = it->second.hop;
-					itHolder = it;
-				}
-			}
-			finalDest = itHolder->first; //or second?
-			printPath(cur,finalDest);
 		}
 		//create new list of neighbors	
         validNeighbors(next);		
@@ -104,6 +93,19 @@ void Mapper::nextPos(position cur, position dest)
 			neighbors.pop();
         }
     }
+	map<position,moveSpace>::iterator it = onlyFound.begin();
+			map<position,moveSpace>::iterator itHolder = onlyFound.begin();
+			unsigned int min = path.begin()->second.hop;			
+			for(; it != onlyFound.end(); it++){
+				if(min > it->second.hop){
+					min = it->second.hop;
+					itHolder = it;
+				}
+			}
+			finalDest = itHolder->first; //or second?
+	printPath(cur,finalDest);
+	path.clear();
+	neighbors.clear();
 }
 void Mapper::printPath(position start, position end)
 {

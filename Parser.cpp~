@@ -106,36 +106,37 @@ void Parser::getPath()
 		printf("Starting position is either out of bounds or starts on a shelf.\n");
 		return;
 	}else {	
-		position zero = {0,0};
+	/*	position zero = {0,0};
 		position one = {2,2};
 		position two = {4,2};
 		position three = {0,3};
 
-		grid.nextPos(start,one);
+		grid.nextPos(zero,one);
+		//grid.printPath(zero,one);
 		//one.x = 1;
-		//grid.nextPos(one,two);
+		grid.nextPos(one,two);
 		//two.x = 3;
-		//grid.nextPos(two,three);
-		/*unsigned int tempID = namedItems.front();
+		grid.nextPos(two,three); */
+		unsigned int tempID = namedItems.front();
 		grid.nextPos(start, grid.getPos(tempID));
 		namedItems.pop();	
 
-		//position next = grid.getFinalDest();
-		printf("final(%i,%i)\n",next.x,next.y);
+		position next = grid.getFinalDest();
+	//	printf("final(%i,%i)\n",next.x,next.y);
 		int n = namedItems.size();		
-		//for(int i = 0; i < n ; i++){
+		for(int i = 0; i < n ; i++){
 			tempID = namedItems.front();
-			printf("nameFront %i\n",namedItems.front());
+		/*	printf("nameFront %i\n",namedItems.front());
 			printf("start (%i,%i)\n",next.x,next.y);
 			printf("dest(%i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
 			next.x = 1; next.y = 2;
 			position other = {4,2};
-		//	grid.nextPos(next,grid.getPos(tempID));
+			*/grid.nextPos(next,grid.getPos(tempID));
 			grid.nextPos(next,other);
-		//	namedItems.pop();
-		//	next = grid.getFinalDest();			
-	//	} 
-	//	grid.nextPos(next,end); */
+			namedItems.pop();
+			next = grid.getFinalDest();			
+		} 
+		grid.nextPos(next,end); 
 	}
 }
 
