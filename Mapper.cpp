@@ -4,6 +4,7 @@ Mapper::Mapper()
 {   
     width = 0;
     height = 0;
+	dist = 0;
 	finalDest.x = 0; finalDest.y = 0;
 }
 
@@ -11,6 +12,7 @@ Mapper::Mapper()
  {
     width = w;
     height = h;
+	dist = 0;
 	finalDest.x = 0; finalDest.y = 0;
  }
 
@@ -100,7 +102,7 @@ void Mapper::nextPos(position cur, position dest)
 void Mapper::printPath(position start, position end)
 {
 	unsigned int hop = path.find(end)->second.hop;
-
+	dist = hop;
 	position reverse[hop];
 	position temp = path.find(end)->first;
 	reverse[hop] = end;
@@ -112,6 +114,7 @@ void Mapper::printPath(position start, position end)
 	}
 		
 	printf("\t%i\t",hop);
+	dist += hop;
 	for(unsigned int i = 0; i <= hop; i++)
 		printf("(%i,%i)\t", reverse[i].x, reverse[i].y);
     printf("\n");
@@ -163,6 +166,11 @@ void Mapper::validNeighbors(position cur)
 position Mapper::getFinalDest()
 {
 	return finalDest;
+}
+
+int Mapper::getDist()
+{
+	return dist;
 }
 
 

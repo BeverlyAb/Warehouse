@@ -36,7 +36,7 @@ class Parser
 	void getNameItem();
 	void getPath();
 	void makeCluster(unsigned int);    
-	void opt();
+	void opt(unsigned int);
 
 	//accessors
 	int getWidth();

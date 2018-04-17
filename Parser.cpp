@@ -125,6 +125,7 @@ void Parser::getPath()
 		//last move, otherwise it ends at a neighbor of end
 		//printf("(%i,%i)\n",end.x,end.y); //should hop++ 
 	}
+	printf("Total Distance : %i\n", grid.getDist());
 }
 void Parser::makeCluster(unsigned int ID)
 {
@@ -143,23 +144,20 @@ void Parser::makeCluster(unsigned int ID)
 	So far only splits into 4 quadrants, but orders the request based on which quad.      
 	has the most requests. Don't need cluster anymore. Only works for even width and height so far
 */
-void Parser::opt()
+void Parser::opt(unsigned int granularity)
 {
 	//can try recursive call for granularity 
-	unsigned int xRangeStart[4] = {warehouseWidth/2 + 1, 0, 0, warehouseWidth/2 + 1};
-	unsigned int xRangeEnd[4] = {warehouseWidth, warehouseWidth/2,
-								 warehouseWidth/2, warehouseWidth};
+	unsigned int in = granularity;
+	unsigned int quadNum = 4*in;
+	unsigned int xRangeStart[quadNum];// = {warehouseWidth/(2*in) + 1, 0, 0, warehouseWidth/(2*in) + 1};
+	unsigned int xRangeEnd[quadNum];// = {warehouseWidth, warehouseWidth/(2*in),
+								// warehouseWidth/(2*in), warehouseWidth};
 	
-	unsigned int yRangeStart[4] = {warehouseHeight/2 + 1, warehouseHeight/2 + 1, 0, 0};
-	unsigned int yRangeEnd[4] = {warehouseHeight, warehouseHeight,
-								 warehouseHeight/2, warehouseHeight/2};
+	unsigned int yRangeStart[quadNum];// = {warehouseHeight/(2*in) + 1, warehouseHeight/(2*in) + 1, 0, 0};
+	unsigned int yRangeEnd[quadNum];// = {warehouseHeight, warehouseHeight,
+								// warehouseHeight/(2*in), warehouseHeight/(2*in)};
 
-	queue<unsigned int> quad0;
-	queue<unsigned int> quad1;
-	queue<unsigned int> quad2;
-	queue<unsigned int> quad3;
-
-	queue<unsigned int> quad[4]= {quad0, quad1, quad2, quad3}; 
+	queue<unsigned int>  quad[quadNum];
 
 	int n = optItems.size();
 	//separate order positions into their quad	
@@ -210,11 +208,12 @@ void Parser::opt()
 		}		
 	}
 	//need to reverse order, do'h!
-	n = optItems.size();
+	namedItems = optItems;
+	/*n = optItems.size();
 	for(int i = 0; i < n; i++){
 		namedItems.push(optItems.front());
 		optItems.pop();
-	}
+	}*/
 }//opt
 
 int Parser::getWidth()

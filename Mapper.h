@@ -42,6 +42,7 @@ class Mapper
   private:
     unsigned int width;
     unsigned int height;
+	unsigned int dist;
    
     queue <position> neighbors;
 	map<position,moveSpace> path;
@@ -61,6 +62,7 @@ class Mapper
     void validNeighbors(position next);
     
     void printPath(position start, position end); 
-	position getFinalDest(); 
+	position getFinalDest();
+	int getDist(); 
 };
 #endif
