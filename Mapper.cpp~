@@ -21,7 +21,7 @@ void Mapper::makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord
    //is shelf already in use?
     if(shelf.find(itemLoc) != shelf.end()){
 		unsigned int counter = shelf.find(itemLoc)->second + 1;
-       	map<position,unsigned int>::iterator it = cluster.find(itemLoc);
+       	map<position,unsigned int>::iterator it = shelf.find(itemLoc);
 		it->second = counter;	
     } 
 	else{
@@ -111,10 +111,9 @@ void Mapper::printPath(position start, position end)
 		reverse[hop-i] = temp;
 	}
 		
-	printf("Distance %i\t",hop);
+	printf(" %i\t\t",hop);
 	for(unsigned int i = 0; i <= hop; i++)
 		printf("(%i,%i)\t", reverse[i].x, reverse[i].y);
-    printf("\n");
 }
 
 //stops at either left or right of shelf 

@@ -107,8 +107,9 @@ void Parser::getPath()
 		printf("Starting position is either out of bounds or starts on a shelf.\n");
 		return;
 	}else {	
-	
+		printf("Order\t\t Distance\t Path\n");
 		unsigned int tempID = namedItems.front();
+		printf("%i\t\t",tempID);
 		grid.nextPos(start, grid.getPos(tempID));
 		namedItems.pop();	
 
@@ -116,13 +117,15 @@ void Parser::getPath()
 		int n = namedItems.size();		
 		for(int i = 0; i < n ; i++){
 			tempID = namedItems.front();
+			printf("%i\t\t",tempID);
 			grid.nextPos(next,grid.getPos(tempID));
 			namedItems.pop();
 			next = grid.getFinalDest();			
 		} 
+		printf("end\t\t");
 		grid.nextPos(next,end);
 		//last move, otherwise it ends at a neighbor of end
-		printf("(%i,%i)\n",end.x,end.y); //should hop++ 
+		//printf("(%i,%i)\n",end.x,end.y); //should hop++ 
 	}
 }
 void Parser::makeCluster(unsigned int ID)
@@ -144,6 +147,7 @@ void Parser::makeCluster(unsigned int ID)
 */
 void Parser::opt()
 {
+	//can try recursive call for granularity 
 	unsigned int xRangeStart[4] = {warehouseWidth/2 + 1, 0, 0, warehouseWidth/2 + 1};
 	unsigned int xRangeEnd[4] = {warehouseWidth, warehouseWidth/2,
 								 warehouseWidth/2, warehouseWidth};
@@ -151,90 +155,45 @@ void Parser::opt()
 	unsigned int yRangeStart[4] = {warehouseHeight/2 + 1, warehouseHeight/2 + 1, 0, 0};
 	unsigned int yRangeEnd[4] = {warehouseHeight, warehouseHeight,
 								 warehouseHeight/2, warehouseHeight/2};
-	
-	//tried doing array of queues, but push doesn't work. fix later
 
 	queue<unsigned int> quad0;
 	queue<unsigned int> quad1;
 	queue<unsigned int> quad2;
 	queue<unsigned int> quad3;
-	//printf("optItems %i\n",optItems.size());
-	/*for(int i = 0; i < 4; i++){
-		printf("x(%i,%i) y(%i,%i)\n",xRangeStart[i],xRangeEnd[i],yRangeStart[i],yRangeEnd[i]);
-	}*/
-	for(int l = 0; l < optItems.size(); l++){
+
+	queue<unsigned int> quad[4]= {quad0, quad1, quad2, quad3}; 
+
+	int n = optItems.size();
+	for(int l = 0; l < n; l++){
+
 		unsigned int tempID = optItems.front();
-		if(grid.getPos(tempID).x >= xRangeStart[0] && grid.getPos(tempID).x <= xRangeEnd[0]
-		&& grid.getPos(tempID).y >= yRangeStart[0] && grid.getPos(tempID).y <= yRangeEnd[0]) {
-			quad0.push(tempID);
-			//printf("(q 0 %i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
-		}
-		else if(grid.getPos(tempID).x >= xRangeStart[1] && grid.getPos(tempID).x <= xRangeEnd[1]
-		&& grid.getPos(tempID).y >= yRangeStart[1] && grid.getPos(tempID).y <= yRangeEnd[1]){
-			quad1.push(tempID);
-			//printf("sizzze %i",quad1.size());
-			//printf("(q 1 %i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
-		}
-		else if(grid.getPos(tempID).x >= xRangeStart[2] && grid.getPos(tempID).x <= xRangeEnd[2]
-		&& grid.getPos(tempID).y >= yRangeStart[2] && grid.getPos(tempID).y <= yRangeEnd[2]){
-			quad2.push(tempID);
-			//printf("(q 2 %i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
-		}
-		else if(grid.getPos(tempID).x >= xRangeStart[3] && grid.getPos(tempID).x <= xRangeEnd[3]
-		&& grid.getPos(tempID).y >= yRangeStart[3] && grid.getPos(tempID).y <= yRangeEnd[3]){
-			quad3.push(tempID);
-			//printf("(q 3 %i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
-		} 
-		else {
-			printf("Something wrong with opt()\n");	
-			//printf("(OUT %i,%i)\n",grid.getPos(tempID).x,grid.getPos(tempID).y);
-			return;
-		}
-		optItems.pop();
-	}	
 
-	while(!quad0.empty() || !quad1.empty() || !quad2.empty() || !quad3.empty()){
-		int max = quad0.size();
-		if(max < quad1.size()) {max = quad1.size();} //printf("q1 %i\n",quad1.size());	}
-		if(max < quad2.size()) {max = quad2.size();}	//printf("q2 %i\n",quad2.size());}
-		if(max < quad3.size()) {max = quad3.size(); }//printf("q3 %i\n",quad3.size());}
-		
-		
-		//printf("count sorted %i , at %i\b", count[i], i);
-		if(quad0.size() == max){
-			for(int j = 0; j < quad0.size(); j++){
-				optItems.push(quad0.front());
+		for(int j = 0; j < 4; j++){
+
+			if(grid.getPos(tempID).x >= xRangeStart[j] && grid.getPos(tempID).x <= xRangeEnd[j]
+			&& grid.getPos(tempID).y >= yRangeStart[j] && grid.getPos(tempID).y <= yRangeEnd[j]) {
 				
-				quad0.pop();
+				quad[j].push(tempID);
+				break;
 			}
-		}
-		else if(quad1.size() == max){
-			for(int j = 0; j < quad1.size(); j++){
-				//printf("HERE AGAIN %i,\n",quad1.front());
-				optItems.push(quad1.front());
-				quad1.pop();
+		}	
+		optItems.pop();	
+	}
+	while(!quad[0].empty() || !quad[1].empty() || !quad[2].empty()|| !quad[3].empty()) {
+		int max = quad[0].size(); 
+	
+		for(int i = 0; i < 4; i++){
+			if(quad[i].size() > max){
+				max = quad[i].size();	
 			}
-		}
-		else if(quad2.size() == max){
-			for(int j = 0; j < quad2.size(); j++){
-				//printf("temp(%i,%i)\n",tempPos.x,tempPos.y);
-				optItems.push(quad2.front());
-				quad2.pop();
-			}
-		}
-		else if(quad3.size() == max){
-			for(int j = 0; j < quad3.size(); j++){
-				//printf("temp(%i,%i)\n",tempPos.x,tempPos.y);
-				optItems.push(quad3.front());
-				quad3.pop();
-			}
-		}
-		else {
-			printf("count sucks\n"); 
-			return;
-		} 
-			
 
+			if(quad[i].size() == max){
+				for(int j = 0; j < quad[i].size(); j++){
+					optItems.push(quad[i].front());
+					quad[i].pop();
+				}
+			}
+		}		
 	}
 	/*
 
