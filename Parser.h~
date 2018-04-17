@@ -17,14 +17,15 @@ class Parser
     //input parameters
     string inFile, outFile;
     string ans; 
-    unsigned int warehouseWidth, warehouseHeight;
-   	unsigned int mutator;
+    unsigned int warehouseWidth;
+   	unsigned int warehouseHeight;
 
     //data
     string ID, xCoord, yCoord;
 	Mapper grid;
 	position start,end;
 	queue<unsigned int> namedItems;
+	queue<unsigned int> optItems;
 	map<position, unsigned int> cluster; 
 	
   public:

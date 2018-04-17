@@ -4,6 +4,7 @@ Mapper::Mapper()
 {   
     width = 0;
     height = 0;
+	dist = 0;
 	finalDest.x = 0; finalDest.y = 0;
 }
 
@@ -11,6 +12,7 @@ Mapper::Mapper()
  {
     width = w;
     height = h;
+	dist = 0;
 	finalDest.x = 0; finalDest.y = 0;
  }
 
@@ -99,7 +101,7 @@ void Mapper::nextPos(position cur, position dest)
 }
 void Mapper::printPath(position start, position end)
 {
-	unsigned int hop = path.find(end)->second.hop;
+	unsigned int hop = path.find(end)->second.hop;	
 
 	position reverse[hop];
 	position temp = path.find(end)->first;
@@ -109,11 +111,14 @@ void Mapper::printPath(position start, position end)
 	for(unsigned int i = 1; i <= hop; i++){
 		temp = path.find(temp)->second.loc;
 		reverse[hop-i] = temp;
+		//dist += path.find(temp)->second.hop;
 	}
 		
 	printf(" %i\t\t",hop);
-	for(unsigned int i = 0; i <= hop; i++)
+	for(unsigned int i = 0; i <= hop; i++){
 		printf("(%i,%i)\t", reverse[i].x, reverse[i].y);
+	}    
+	printf("\n");
 }
 
 //stops at either left or right of shelf 
@@ -163,5 +168,9 @@ position Mapper::getFinalDest()
 {
 	return finalDest;
 }
-
+/*
+unsigned int Mapper::getDist()
+{
+	return dist;
+}*/
 

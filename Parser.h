@@ -17,8 +17,8 @@ class Parser
     //input parameters
     string inFile, outFile;
     string ans; 
-    unsigned int warehouseWidth, warehouseHeight;
-   	unsigned int mutator;
+    unsigned int warehouseWidth;
+   	unsigned int warehouseHeight;
 
     //data
     string ID, xCoord, yCoord;

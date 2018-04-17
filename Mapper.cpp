@@ -111,7 +111,7 @@ void Mapper::printPath(position start, position end)
 		reverse[hop-i] = temp;
 	}
 		
-	printf(" %i\t\t",hop);
+	printf("\t%i\t",hop);
 	for(unsigned int i = 0; i <= hop; i++)
 		printf("(%i,%i)\t", reverse[i].x, reverse[i].y);
     printf("\n");

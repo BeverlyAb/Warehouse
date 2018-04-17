@@ -8,7 +8,6 @@ Parser::Parser()
     warehouseWidth = 0;
     warehouseHeight = 0;
     ans = "";
-    mutator = 1;
 
     ID = "";
     xCoord = "";
@@ -25,10 +24,9 @@ void Parser::setUserParam()
     cin >> warehouseWidth;
    	printf("What is the max warehouse height?\n");
     cin >> warehouseHeight;
-    printf("By what factor should we scale the map?\n");
-    cin >> mutator;
-    warehouseHeight *= mutator;
-    warehouseWidth *= mutator;
+ 
+    warehouseHeight *= 2;
+    warehouseWidth *= 2;
 	
     grid = Mapper(warehouseWidth, warehouseHeight);
 	
@@ -66,7 +64,7 @@ void Parser::readFile(int fileType)
 				
 				if(fileType == STOCK){
 					x = atoi(xCoord.c_str()); y = atoi(yCoord.c_str());
-					x *= mutator; y *= mutator;
+					x *= 2; y *= 2;
 				
 					if(x == 0) x++;
 					if(y == 0) y++;
@@ -124,6 +122,7 @@ void Parser::getPath()
 		} 
 		printf("end\t\t");
 		grid.nextPos(next,end);
+		//printf("Total traveled %i\n",grid.getDist());
 		//last move, otherwise it ends at a neighbor of end
 		//printf("(%i,%i)\n",end.x,end.y); //should hop++ 
 	}
@@ -164,20 +163,37 @@ void Parser::opt()
 	queue<unsigned int> quad[4]= {quad0, quad1, quad2, quad3}; 
 
 	int n = optItems.size();
+	//separate order positions into their quad	
 	for(int l = 0; l < n; l++){
-
 		unsigned int tempID = optItems.front();
 
 		for(int j = 0; j < 4; j++){
 
 			if(grid.getPos(tempID).x >= xRangeStart[j] && grid.getPos(tempID).x <= xRangeEnd[j]
 			&& grid.getPos(tempID).y >= yRangeStart[j] && grid.getPos(tempID).y <= yRangeEnd[j]) {
+				
 				quad[j].push(tempID);
 				break;
 			}
 		}	
 		optItems.pop();	
 	}
+	//get orders in the same quad as start first
+	unsigned int startQuad = 0;
+	for(int j = 0; j < 4; j++){
+		if(start.x >= xRangeStart[j] && start.x <= xRangeEnd[j]
+			&& start.y >= yRangeStart[j] && start.y <= yRangeEnd[j]) {
+			startQuad = j;
+			break;		
+		}
+	}
+
+	for(int i = 0; i < quad[startQuad].size(); i++){
+		optItems.push(quad[startQuad].front());
+		quad[startQuad].pop();
+	}
+	
+
 	while(!quad[0].empty() || !quad[1].empty() || !quad[2].empty()|| !quad[3].empty()) {
 		int max = quad[0].size(); 
 	
@@ -194,20 +210,12 @@ void Parser::opt()
 			}
 		}		
 	}
-	/*
-
-	printf("AFTER--------------\n");
-	printf("q0 %i\n",quad0.size());
-	printf("q1 %i\n",quad1.size());	
-	printf("q2 %i\n",quad2.size());
-	printf("q3 %i\n",quad3.size());
-	//printf("temp(%i,%i)\n",grid.getPos(quad[0].front()).x,grid.getPos(quad[0].front()).y);
-	printf("HERE %i,",quad1.front());			
-	//could possibly use OpenMP if nested for loop
-	*/
-	namedItems = optItems;
-//	printf("got anything? %i\n", namedItems.size());
- 	
+	//need to reverse order, do'h!
+	n = optItems.size();
+	for(int i = 0; i < n; i++){
+		namedItems.push(optItems.front());
+		optItems.pop();
+	}
 }//opt
 
 int Parser::getWidth()

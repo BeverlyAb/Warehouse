@@ -42,6 +42,7 @@ class Mapper
   private:
     unsigned int width;
     unsigned int height;
+//	unsigned int dist;
    
     queue <position> neighbors;
 	map<position,moveSpace> path;
@@ -54,8 +55,6 @@ class Mapper
     Mapper(unsigned int w, unsigned int h);
     void makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord);
 	position getPos(unsigned int);
-	void makeCluster(unsigned int);    
-
 	void nextPos(position cur, position dest);
     
 	bool isValidStop(position ref, position stop);
@@ -64,5 +63,6 @@ class Mapper
     
     void printPath(position start, position end); 
 	position getFinalDest(); 
+//	unsigned int getDist();
 };
 #endif
