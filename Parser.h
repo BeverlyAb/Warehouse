@@ -21,7 +21,7 @@ class Parser
    	unsigned int warehouseHeight;
 
     //data
-    string ID, xCoord, yCoord;
+	string ID, xCoord, yCoord;
 	Mapper grid;
 	position start,end;
 	queue<unsigned int> namedItems;
@@ -30,13 +30,16 @@ class Parser
 	
   public:
     Parser();
-    void setUserParam();
+    void setUserParam(	string inFile, unsigned int warehouseWidth, 
+						unsigned int warehouseHeight, int xCoord,
+						int yCoord, int xEnd, int yEnd);
+
     void readFile(int fileType);
 	void readOrder();
 	void getNameItem();
 	void getPath();
 	void makeCluster(unsigned int);    
-	void opt(unsigned int);
+	void opt();
 
 	//accessors
 	int getWidth();
