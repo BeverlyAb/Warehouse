@@ -1,14 +1,14 @@
+CC = g++
+CFLAGS =   -std=c++99
+COPTFLAGS = -O3 -g -pg  #-fopenmp
+LDFLAGS =
+
+
 main: main.o Parser.o Mapper.o
-	g++ main.o Parser.o Mapper.o -o main 
+	$(CC) $(COPTFLAGS) -o $@ $^
 
-main.o: main.cpp
-	g++ -c main.cpp
-
-Parser.o: Parser.cpp
-	g++ -c Parser.cpp
-
-Mapper.o: Mapper.cpp
-	g++ -c Mapper.cpp
+%.o: %.cc
+	$(CC) $(CFLAGS) $(COPTFLAGS) -o $@ -c $<
 
 clean:
 	rm *.o

@@ -1,7 +1,7 @@
 #include "Mapper.h"
 
 Mapper::Mapper()
-{   
+{
     width = 0;
     height = 0;
 	finalDest.x = 0; finalDest.y = 0;
@@ -22,8 +22,8 @@ void Mapper::makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord
     if(shelf.find(itemLoc) != shelf.end()){
 		unsigned int counter = shelf.find(itemLoc)->second + 1;
        	map<position,unsigned int>::iterator it = shelf.find(itemLoc);
-		it->second = counter;	
-    } 
+		it->second = counter;
+    }
 	else{
        	shelf.insert(pair<position, unsigned int>(itemLoc, 1));
 	}
@@ -39,59 +39,72 @@ position Mapper::getPos(unsigned int ID)
 //BFS single weight
 void Mapper::nextPos(position cur, position dest)
 {
-    bool found = false;
-	unsigned int hops = 0;
+  bool found = false;
+  unsigned int hops = 0;
+  unsigned int prevHop = 0;
 
-	//cur, prev with hop
+  if(isValidStop(dest,cur)){
+    moveSpace prev = {cur,hops};
+    path.insert(pair<position,moveSpace>(cur,prev));
+    printPath(cur,finalDest);
+    path.clear();
+    return;
+  }
+
+  //cur, prev with hop
 	moveSpace prev = {cur,hops++};
-	
-	position curStatic = cur;
-	queue<position> active;	
-	active.push(cur);
-		map<position,moveSpace> onlyFound;
-    while(!active.empty()) {
 
-		position next = active.front();					
-		found = isValidStop(dest,next);	
+  queue<position> active;
+  map<position,moveSpace> onlyFound;
+	active.push(cur);
+
+  while(!active.empty()) {
+
+		position next = active.front();
+		found = isValidStop(dest,next);
 		active.pop();
 
 		if(found){
 			finalDest = next;
-		
+
 			onlyFound.insert(pair<position,moveSpace>(next,prev));
-			//printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y); 
-		
-			unsigned int prevHop = path.find(next)->second.hop;
+	//		printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
+
+			prevHop = path.find(next)->second.hop;
 			prev.loc = next;
 			prev.hop = hops + prevHop;
 			path.insert(pair<position,moveSpace>(next,prev));
-			
 		}
-		//create new list of neighbors	
-        validNeighbors(next);		
-	
-       	while(!neighbors.empty()){
-            position temp = neighbors.front(); 		    
-			
+
+		//create new list of neighbors
+    validNeighbors(next);
+    int n = neighbors.size();
+    for(int i = 0; i < n; i++){
+      position temp = neighbors.front();
+
 			if(path.find(temp) == path.end()){
-				unsigned int prevHop = path.find(next)->second.hop;
+				prevHop = path.find(next)->second.hop;
+        if(prevHop > 30000) //debug issue
+          prevHop = 0;
 				prev.loc = next;
 				prev.hop = hops + prevHop;
+        //printf("hop = %i, prev(%i,%i)\n",prevHop,prev.loc.x,prev.loc.y);
 				path.insert(pair<position,moveSpace>(temp,prev));
 				active.push(temp);
-			}	
+			}
 			neighbors.pop();
-        }
     }
+  }
 	map<position,moveSpace>::iterator it = onlyFound.begin();
 	map<position,moveSpace>::iterator itHolder = onlyFound.begin();
-	unsigned int min = path.begin()->second.hop;			
+	unsigned int min = path.begin()->second.hop;
 	for(; it != onlyFound.end(); it++){
 		if(min > it->second.hop){
 			min = it->second.hop;
 			itHolder = it;
 		}
 	}
+
 	finalDest = itHolder->first;
 	printPath(cur,finalDest);
 	path.clear();
@@ -101,7 +114,7 @@ void Mapper::printPath(position start, position end)
 {
 	unsigned int hop = path.find(end)->second.hop;
 
-	position reverse[hop];
+  position reverse[hop];
 	position temp = path.find(end)->first;
 	reverse[hop] = end;
 
@@ -110,33 +123,33 @@ void Mapper::printPath(position start, position end)
 		temp = path.find(temp)->second.loc;
 		reverse[hop-i] = temp;
 	}
-		
-	printf("\t%i\t",hop);
+
+  printf(" %i\t\t",hop);
 	for(unsigned int i = 0; i <= hop; i++)
 		printf("(%i,%i)\t", reverse[i].x, reverse[i].y);
-    printf("\n");
+
+  printf("\n");
 }
 
-//stops at either left or right of shelf 
+//stops at either left or right of shelf
 bool Mapper::isValidStop(position ref, position stop)
 {
     if(	(stop.x == ref.x + 1 && stop.y == ref.y) ||
  		(stop.x == ref.x - 1 && stop.y == ref.y))
 		return true;
-	else 
+	else
 		return false;
 }
 //no diagonals allowed!
  bool Mapper::isValid(position cur)
  {
 	//out of bounds check
-    if(cur.x < 0 || cur.x > width + 1 ||
-        cur.y < 0 || cur. y > height + 1  ||
-    //obstruction check 
+    if(cur.x > width + 1 || cur. y > height + 1  ||
+    //obstruction check
     shelf.find(cur) != shelf.end()) {
         return false;
 	}
-    else 
+    else
     	return true;
  }
 
@@ -150,7 +163,7 @@ void Mapper::validNeighbors(position cur)
     position arr[ADJ_SIZE] = {right, left, up, down};
 	//clear just in case
 	for(int i = 0; i < neighbors.size(); i++)
-		neighbors.pop();	
+		neighbors.pop();
 
     for(int i = 0; i < ADJ_SIZE; i++){
         if(isValid(arr[i])){
@@ -164,5 +177,3 @@ position Mapper::getFinalDest()
 {
 	return finalDest;
 }
-
-

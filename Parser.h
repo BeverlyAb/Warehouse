@@ -16,18 +16,18 @@ class Parser
   private:
     //input parameters
     string inFile, outFile;
-    string ans; 
+    string ans;
     unsigned int warehouseWidth;
    	unsigned int warehouseHeight;
 
     //data
     string ID, xCoord, yCoord;
-	Mapper grid;
-	position start,end;
-	queue<unsigned int> namedItems;
-	queue<unsigned int> optItems;
-	map<position, unsigned int> cluster; 
-	
+  	Mapper grid;
+  	position start,end;
+  	queue<unsigned int> namedItems;
+  	queue<unsigned int> optItems;
+  	map<position, unsigned int> cluster;
+
   public:
     Parser();
     void setUserParam();
@@ -35,12 +35,12 @@ class Parser
 	void readOrder();
 	void getNameItem();
 	void getPath();
-	void makeCluster(unsigned int);    
+	void makeCluster(unsigned int);
 	void opt();
 
 	//accessors
 	int getWidth();
     int getHeight();
-	
+
 };
 #endif
