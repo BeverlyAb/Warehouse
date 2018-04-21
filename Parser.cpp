@@ -16,13 +16,6 @@ Parser::Parser()
     start.x = 0; start.y = 0;
     end.x = 0; end.y = 0;
 
-	/*vector<unsigned int> row;
-	for(int j = 0; j < ROW; j++){
-		for(int i = 0; i < MAX_COL; i++)
-			row.push_back(0);
-
-		orderFile.push_back(row);
-	}*/
 	orderFile.resize(ROW*MAX_COL);
 
 }
@@ -128,35 +121,31 @@ void Parser::getOrder(string file, int index)
     myFile.open(file.c_str());
 	if(myFile.is_open()){
 		myFile >> ID;
-		//getline(myFile,ID,' ');
-		//printf("%s\n" ,ID.c_str()); 
 
        while(myFile.good() && !ID.empty()){
-		   if(ID[ID.length()-1] == '"'){
+		   	if(ID[ID.length()-1] == '"'){
 			   i++;
-			  //printf(" %s ", ID.c_str());
-			//	ID.erase(ID.end() -1);
-			//	printf("%s\n", ID.c_str());
-		   }
+			   myFile >> ID;
+		   	} else {
+			//remove trailing front ' " '
+		   	if(ID[0]== '"'){
+				ID.erase(ID.begin());
+		   	}
 			
-				   //remove trailing front ' " '
-		   		if(ID[0]== '"'){
-					ID.erase(ID.begin());
-		   		}
-				orderFile[i].push_back(atoi(ID.c_str()));
-		
+			orderFile[i].push_back(atoi(ID.c_str()));
 			myFile >> ID;
-			printf("%i %i \n", i, orderFile[i][i]);
+			}
         }  
 		
 		myFile.close(); 
 	}
 	else
 	    printf("%s could not be opened\n",file.c_str()); 
-/*
+		
 	//read entire order list if not in range
-	if(n < 0 || n > orderFile.size() ) {
+	if(n < 0 || n > orderFile.size() || n == 101) {
 		n = orderFile.size();
+		printf("hi\n");
 		for(int j = 0; j < n; j++){
 
 			for(int k = 0; k < orderFile[j].size(); k++){
@@ -165,11 +154,19 @@ void Parser::getOrder(string file, int index)
 			}
 		}
 	}
-*/	//transfer only a line
+	//transfer only a line
 	for(int j = 0; j < orderFile[n].size(); j++){
 		namedItems.push(orderFile[n][j]);  
 		optItems.push(orderFile[n][j]);
-	} 
+	}  
+
+	/*// keep for debugging
+ 	n = orderFile.size();
+	for(int j = 0; j < n; j++){
+		for(int k = 0; k < orderFile[j].size(); k++){
+			printf("%i\n", orderFile[j][k]);
+		}
+	}*/
 }
 
 void Parser::getPath()
