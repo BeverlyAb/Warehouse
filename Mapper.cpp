@@ -34,8 +34,6 @@ position Mapper::getPos(unsigned int ID)
 	return stock.find(ID)->second;
 }
 
-
-
 //BFS single weight
 void Mapper::nextPos(position cur, position dest)
 {
@@ -95,6 +93,7 @@ void Mapper::nextPos(position cur, position dest)
 			neighbors.pop();
     }
   }
+	
 	map<position,moveSpace>::iterator it = onlyFound.begin();
 	map<position,moveSpace>::iterator itHolder = onlyFound.begin();
 	unsigned int min = path.begin()->second.hop;

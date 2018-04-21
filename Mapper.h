@@ -49,6 +49,7 @@ class Mapper
     map<unsigned int, position> stock; //reads via ID
     map<position, unsigned int> shelf; //reads via position and # of items in shelf
 	position finalDest;
+  
   public:
     Mapper();
     Mapper(unsigned int w, unsigned int h);

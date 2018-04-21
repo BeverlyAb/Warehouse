@@ -12,23 +12,34 @@ Parser::Parser()
     ID = "";
     xCoord = "";
     yCoord = "";
-	  grid = Mapper();
+	grid = Mapper();
     start.x = 0; start.y = 0;
     end.x = 0; end.y = 0;
+
+	/*vector<unsigned int> row;
+	for(int j = 0; j < ROW; j++){
+		for(int i = 0; i < MAX_COL; i++)
+			row.push_back(0);
+
+		orderFile.push_back(row);
+	}*/
+	orderFile.resize(ROW*MAX_COL);
+
 }
 
 void Parser::setUserParam()
+
 {
     printf("What is the file name?\n");
-    cin >> inFile;
+    cin >> this->inFile;
 
     printf("What is the max warehouse width?\n");
-    cin >> warehouseWidth;
+    cin >> this->warehouseWidth;
    	printf("What is the max warehouse height?\n");
-    cin >> warehouseHeight;
+    cin >> this->warehouseHeight;
 
-    warehouseHeight *= 2;
-    warehouseWidth *= 2;
+    this->warehouseHeight *= 2;
+    this->warehouseWidth *= 2;
 
     grid = Mapper(warehouseWidth, warehouseHeight);
 
@@ -44,6 +55,7 @@ void Parser::setUserParam()
     cin >> yCoord;
     end.x = atoi(xCoord.c_str()); end.y = atoi(yCoord.c_str());
 }
+
 void Parser::readFile(int fileType)
 {
 	unsigned int x = 0;
@@ -55,36 +67,41 @@ void Parser::readFile(int fileType)
 	if(fileType == NAME_ITEM){
 		getNameItem();
 		//already updates cluster
+	} 
+	else if(fileType == ORDER_FILE){ 
+		int indx;
+		printf("Name of warehouse order file?\n");
+		cin >> inFile;
+		printf("Give an order list number or type '101' to read the entire file\n");
+		cin >> indx;
+		getOrder(inFile,indx); //make sure to form cluster here too		
 	}
-	else if(fileType == STOCK || fileType == ORDER_FILE){
-
+	else if(fileType == STOCK){
+		
 		if(myFile.is_open()){
+		   
 		    getline(myFile,ID,',');
 		    while(myFile.good() && !ID.empty()){
 		        getline(myFile,xCoord,',');
 		        getline(myFile,yCoord,'\n');
 
-				if(fileType == STOCK){
-					x = atoi(xCoord.c_str()); y = atoi(yCoord.c_str());
-					x *= 2; y *= 2;
+				x = atoi(xCoord.c_str()); y = atoi(yCoord.c_str());
+				x *= 2; y *= 2;
 
-					if(x == 0) x++;
-					if(y == 0) y++;
+				if(x == 0) x++;
+				if(y == 0) y++;
 
-		        	grid.makeStock(atoi(ID.c_str()), x, y);
-					getline(myFile,ID,',');
-				}else if(fileType == ORDER_FILE){
-					return;//grid.getOrder(); make sure to form cluster here too
-				}
-
-		    }
-		    myFile.close();
+		        grid.makeStock(atoi(ID.c_str()), x, y);
+				getline(myFile,ID,',');
+			}
+		    
+			myFile.close();
 		}
 		else
 		    printf("%s could not be opened\n",inFile.c_str());
 	}
-	else{
-		printf("Something went wrong with fileType\n");
+	else {
+		printf("Invalid choice between STOCK, NAMEITEM, and ORDER_FILE\n");
 	}
 }
 
@@ -92,6 +109,7 @@ void Parser::getNameItem()
 {
 	printf("Name an item ID or type 'done'\n");
 	cin >> ans;
+	int i = 0;
 	//not very robust
 	while(ans != "done"){
 		namedItems.push(atoi(ans.c_str()));
@@ -101,6 +119,50 @@ void Parser::getNameItem()
 	}
 }
 
+void Parser::getOrder(string file, int index)
+{
+	int n = index;
+	ifstream myFile;
+    myFile.open(file.c_str());
+	if(myFile.is_open()){
+		   
+		getline(myFile,ID,'\t');
+		int i = 0;
+		while(myFile.good() && !ID.empty()){
+			
+			orderFile[i].push_back(atoi(ID.c_str()));
+			printf("%i %i\n", i, atoi(ID.c_str()));
+			
+			if(ID.at(ID.length()-1) == '\n'){
+				i++;
+				getline(myFile,ID,'\n');
+			} 
+			else
+				getline(myFile,ID,'\t');
+		}
+		myFile.close(); 
+	}
+	else
+	    printf("%s could not be opened\n",file.c_str()); 
+/*
+	//read entire order list if not in range
+	if(n < 0 || n > orderFile.size() ) {
+		n = orderFile.size();
+		for(int j = 0; j < n; j++){
+
+			for(int k = 0; k < orderFile[j].size(); k++){
+				namedItems.push(orderFile[j][k]);
+				optItems.push(orderFile[j][k]);
+			}
+		}
+	}
+*/	//transfer only a line
+/*	for(int j = 0; j < orderFile[n].size(); j++){
+		namedItems.push(orderFile[n][j]);  
+		optItems.push(orderFile[n][j]);
+	} */
+}
+
 void Parser::getPath()
 {
 	if(!grid.isValid(start)) {
@@ -108,24 +170,26 @@ void Parser::getPath()
 		return;
 	}else {
 		printf("Order\t\t Distance\t Path\n");
-		unsigned int tempID = namedItems.front();
-		printf("%i\t\t",tempID);
-		grid.nextPos(start, grid.getPos(tempID));
-		namedItems.pop();
-
-		position next = grid.getFinalDest();
-		int n = namedItems.size();
-		for(int i = 0; i < n ; i++){
-			tempID = namedItems.front();
+		if(!namedItems.empty()){
+			unsigned int tempID = namedItems.front();
 			printf("%i\t\t",tempID);
-			grid.nextPos(next,grid.getPos(tempID));
+			grid.nextPos(start, grid.getPos(tempID));
 			namedItems.pop();
-			next = grid.getFinalDest();
+
+			position next = grid.getFinalDest();
+			int n = namedItems.size();
+			for(int i = 0; i < n ; i++){
+				tempID = namedItems.front();
+				printf("%i\t\t",tempID);
+				grid.nextPos(next,grid.getPos(tempID));
+				namedItems.pop();
+				next = grid.getFinalDest();
+			}
+			printf("end\t\t");
+			grid.nextPos(next,end);
+			//last move, otherwise it ends at a neighbor of end
+			//printf("(%i,%i)\n",end.x,end.y); //should hop++
 		}
-		printf("end\t\t");
-		grid.nextPos(next,end);
-		//last move, otherwise it ends at a neighbor of end
-		//printf("(%i,%i)\n",end.x,end.y); //should hop++
 	}
 }
 void Parser::makeCluster(unsigned int ID)

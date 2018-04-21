@@ -3,11 +3,15 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
+#include <vector>
 #include "Mapper.h"
 
 #define NAME_ITEM 1
 #define ORDER_FILE 2
 #define STOCK 3
+#define ROW 1
+#define MAX_COL 5
+#define MAX_SIZE 2
 
 using namespace std;
 
@@ -27,6 +31,7 @@ class Parser
   	queue<unsigned int> namedItems;
   	queue<unsigned int> optItems;
   	map<position, unsigned int> cluster;
+	vector<vector<unsigned int> >orderFile;
 
   public:
     Parser();
@@ -34,6 +39,7 @@ class Parser
     void readFile(int fileType);
 	void readOrder();
 	void getNameItem();
+	void getOrder(string file, int index);
 	void getPath();
 	void makeCluster(unsigned int);
 	void opt();
