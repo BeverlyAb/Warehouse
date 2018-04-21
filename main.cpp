@@ -12,10 +12,13 @@ int main()
 	printf( "Choose a number.\n Do you want to name orders (1) or read all orders from a file (2).\n");
 	cin >> ans;
 	
-	if(ans == NAME_ITEM || ans == ORDER_FILE){
+	if(ans == NAME_ITEM){
 		test.readFile(ans);
 		test.getPath();
-	} else {
+	} else if(ans == ORDER_FILE){
+		test.readFile(ans);
+	} 
+	else {
 		printf("Invalid choice. Ending Program\n");
 		return 1;
 	}

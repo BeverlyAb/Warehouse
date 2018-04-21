@@ -141,17 +141,20 @@ void Parser::getOrder(string file, int index)
 	}
 	else
 	    printf("%s could not be opened\n",file.c_str()); 
-		
+
 	//read entire order list if not in range
-	if(n < 0 || n > orderFile.size() || n == 101) {
-		n = orderFile.size();
-		printf("hi\n");
+	if(n < 0 || n > ROW || n == 101) {
+		n = ROW;
+
 		for(int j = 0; j < n; j++){
 
 			for(int k = 0; k < orderFile[j].size(); k++){
 				namedItems.push(orderFile[j][k]);
 				optItems.push(orderFile[j][k]);
 			}
+			getPath();
+			opt();
+			getPath();
 		}
 	}
 	//transfer only a line
@@ -161,7 +164,7 @@ void Parser::getOrder(string file, int index)
 	}  
 
 	/*// keep for debugging
- 	n = orderFile.size();
+ 	n = ROW;
 	for(int j = 0; j < n; j++){
 		for(int k = 0; k < orderFile[j].size(); k++){
 			printf("%i\n", orderFile[j][k]);
@@ -175,6 +178,7 @@ void Parser::getPath()
 		printf("Starting position is either out of bounds or starts on a shelf.\n");
 		return;
 	}else {
+		printf("---------------------------------------------------------------------\n");
 		printf("Order\t\t Distance\t Path\n");
 		if(!namedItems.empty()){
 			unsigned int tempID = namedItems.front();
