@@ -9,8 +9,8 @@
 #define NAME_ITEM 1
 #define ORDER_FILE 2
 #define STOCK 3
-#define ROW 1
-#define MAX_COL 5
+#define ROW 100
+#define MAX_COL 50
 #define MAX_SIZE 2
 
 using namespace std;

@@ -127,52 +127,27 @@ void Parser::getOrder(string file, int index)
 	ifstream myFile;
     myFile.open(file.c_str());
 	if(myFile.is_open()){
-		getline(myFile,ID,' ');
-		printf("%s",ID.c_str()); 
+		myFile >> ID;
+		//getline(myFile,ID,' ');
+		//printf("%s\n" ,ID.c_str()); 
 
-       while(myFile.good()){
-	
-		/*	int pos = ID.find(' ');
-			i++;
-			while(pos != string::npos){
-				string sub = ID.substr(start,pos);
-				orderFile[i].push_back(atoi(sub.c_str()));
-
-				getline(myFile,ID,' ');
-				//printf("%i %i\n",i, orderFile[0][i]); 
-				start = pos;
-				ID = ID.substr(pos);
-				pos = ID.find(' ');
-			}
-        }  */
-			getline(myFile,ID,' ');
-			printf("%s", ID.c_str());
-        } 
-
-/*		getline(myFile,ID);
-		int i = 0;
-		int stop = 0;
-		while(myFile.good() && !ID.empty()){
-			int pos = ID.find("\t");
-			int start = 1;
-			i++;
-			int n = ID.length() -1;
-			while(pos < ID.length() && stop < 10){
-				stop++;
-				string sub = ID.substr(start,pos);
-				ID = ID.substr(start, n);
-
-				orderFile[i].push_back(atoi(sub.c_str()));
-				printf("%i %s\n", i, ID.substr(start,pos).c_str());
-				start = pos;
-				pos = ID.find("\t"); */
-				
-			/*	if(getline(myFile,ID,'\n')) {
-					i++;
-					getline(myFile,ID,'\n');
-				} 
-				else
-					getline(myFile,ID,'\t'); */
+       while(myFile.good() && !ID.empty()){
+		   if(ID[ID.length()-1] == '"'){
+			   i++;
+			  //printf(" %s ", ID.c_str());
+			//	ID.erase(ID.end() -1);
+			//	printf("%s\n", ID.c_str());
+		   }
+			
+				   //remove trailing front ' " '
+		   		if(ID[0]== '"'){
+					ID.erase(ID.begin());
+		   		}
+				orderFile[i].push_back(atoi(ID.c_str()));
+		
+			myFile >> ID;
+			printf("%i %i \n", i, orderFile[i][i]);
+        }  
 		
 		myFile.close(); 
 	}
@@ -191,10 +166,10 @@ void Parser::getOrder(string file, int index)
 		}
 	}
 */	//transfer only a line
-/*	for(int j = 0; j < orderFile[n].size(); j++){
+	for(int j = 0; j < orderFile[n].size(); j++){
 		namedItems.push(orderFile[n][j]);  
 		optItems.push(orderFile[n][j]);
-	} */
+	} 
 }
 
 void Parser::getPath()
@@ -219,7 +194,7 @@ void Parser::getPath()
 				namedItems.pop();
 				next = grid.getFinalDest();
 			}
-			printf("end\t\t");
+			printf("end\t\t\t");
 			grid.nextPos(next,end);
 			//last move, otherwise it ends at a neighbor of end
 			//printf("(%i,%i)\n",end.x,end.y); //should hop++
