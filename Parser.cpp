@@ -156,13 +156,16 @@ void Parser::getOrder(string file, int index)
 			opt();
 			getPath();
 		}
+	} else{
+		//transfer only a line
+		for(int j = 0; j < orderFile[n].size(); j++){
+			namedItems.push(orderFile[n][j]);  
+			optItems.push(orderFile[n][j]);
+		}  
+		getPath();
+		opt();
+		getPath();
 	}
-	//transfer only a line
-	for(int j = 0; j < orderFile[n].size(); j++){
-		namedItems.push(orderFile[n][j]);  
-		optItems.push(orderFile[n][j]);
-	}  
-
 	/*// keep for debugging
  	n = ROW;
 	for(int j = 0; j < n; j++){
@@ -174,6 +177,12 @@ void Parser::getOrder(string file, int index)
 
 void Parser::getPath()
 {
+		/* //do later
+		time_t startTime, endTime;
+		time(&startTime);
+		time(&endTime);
+		time_t seconds = difftime(endTime, startTime);
+		printf("Min Time %ld\n",seconds); */
 	if(!grid.isValid(start)) {
 		printf("Starting position is either out of bounds or starts on a shelf.\n");
 		return;
@@ -181,9 +190,11 @@ void Parser::getPath()
 		printf("---------------------------------------------------------------------\n");
 		printf("Order\t\t Distance\t Path\n");
 		if(!namedItems.empty()){
+
 			unsigned int tempID = namedItems.front();
 			printf("%i\t\t",tempID);
 			grid.nextPos(start, grid.getPos(tempID));
+			int totalDist = grid.getTotalDist();
 			namedItems.pop();
 
 			position next = grid.getFinalDest();
@@ -192,11 +203,15 @@ void Parser::getPath()
 				tempID = namedItems.front();
 				printf("%i\t\t",tempID);
 				grid.nextPos(next,grid.getPos(tempID));
+				totalDist += grid.getTotalDist();
+				
 				namedItems.pop();
 				next = grid.getFinalDest();
 			}
 			printf("end\t\t\t");
 			grid.nextPos(next,end);
+			totalDist += grid.getTotalDist();
+			printf("Total Distance = %i\n",totalDist);
 			//last move, otherwise it ends at a neighbor of end
 			//printf("(%i,%i)\n",end.x,end.y); //should hop++
 		}

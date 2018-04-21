@@ -1,5 +1,6 @@
 #include "Parser.h"
 #include "Mapper.h"
+#include <ctime>
 #include <iostream>
 
 int main()

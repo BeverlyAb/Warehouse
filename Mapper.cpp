@@ -4,14 +4,16 @@ Mapper::Mapper()
 {
     width = 0;
     height = 0;
-	finalDest.x = 0; finalDest.y = 0;
+		totalDist = 0;
+		finalDest.x = 0; finalDest.y = 0;
 }
 
  Mapper::Mapper(unsigned int w, unsigned int h)
  {
     width = w;
     height = h;
-	finalDest.x = 0; finalDest.y = 0;
+		totalDist = 0;
+		finalDest.x = 0; finalDest.y = 0;
  }
 
 void Mapper::makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
@@ -112,6 +114,7 @@ void Mapper::nextPos(position cur, position dest)
 void Mapper::printPath(position start, position end)
 {
 	unsigned int hop = path.find(end)->second.hop;
+	totalDist = 0;
 
   position reverse[hop];
 	position temp = path.find(end)->first;
@@ -120,9 +123,11 @@ void Mapper::printPath(position start, position end)
 	//OpenMP
 	for(unsigned int i = 1; i <= hop; i++){
 		temp = path.find(temp)->second.loc;
+
 		reverse[hop-i] = temp;
 	}
-
+	
+	totalDist += hop;
   printf(" %i\t\t",hop);
 	for(unsigned int i = 0; i <= hop; i++)
 		printf("(%i,%i)\t", reverse[i].x, reverse[i].y);
@@ -175,4 +180,9 @@ void Mapper::validNeighbors(position cur)
 position Mapper::getFinalDest()
 {
 	return finalDest;
+}
+
+int Mapper::getTotalDist()
+{
+	return totalDist;
 }
