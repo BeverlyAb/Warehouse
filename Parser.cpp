@@ -245,12 +245,13 @@ void Parser::opt()
 	unsigned int yRangeEnd[4] = {warehouseHeight, warehouseHeight,
 								 warehouseHeight/2, warehouseHeight/2};
 
-	queue<unsigned int> quad0;
-	queue<unsigned int> quad1;
-	queue<unsigned int> quad2;
-	queue<unsigned int> quad3;
+	list<unsigned int> quad0;
+	list<unsigned int> quad1;
+	list<unsigned int> quad2;
+	list<unsigned int> quad3;
+	bool dup = false;
 
-	queue<unsigned int> quad[4]= {quad0, quad1, quad2, quad3};
+	list<unsigned int> quad[4]= {quad0, quad1, quad2, quad3};
 
 	int n = optItems.size();
 	//separate order positions into their quad
@@ -261,8 +262,23 @@ void Parser::opt()
 
 			if(grid.getPos(tempID).x >= xRangeStart[j] && grid.getPos(tempID).x <= xRangeEnd[j]
 			&& grid.getPos(tempID).y >= yRangeStart[j] && grid.getPos(tempID).y <= yRangeEnd[j]) {
+				//check for duplicate dest. make sure they are one after the other
+				if(!quad[j].empty()){
+					list<unsigned int>::iterator it = quad[j].begin();
+					for(; it != quad[j].end(); it++){
+						if(	grid.getPos(*it).x == grid.getPos(tempID).x &&
+							grid.getPos(*it).y == grid.getPos(tempID).y){
+							dup = true;
+							quad[j].insert(it,tempID);
+						}
+					}
+					
+				} 
+				if(!dup){
+					quad[j].push_front(tempID);
+				}else
+					dup = false;
 
-				quad[j].push(tempID);
 				break;
 			}
 		}
@@ -280,7 +296,7 @@ void Parser::opt()
 
 	for(int i = 0; i < quad[startQuad].size(); i++){
 		optItems.push(quad[startQuad].front());
-		quad[startQuad].pop();
+		quad[startQuad].pop_front();
 	}
 
 
@@ -295,7 +311,7 @@ void Parser::opt()
 			if(quad[i].size() == max){
 				for(int j = 0; j < quad[i].size(); j++){
 					optItems.push(quad[i].front());
-					quad[i].pop();
+					quad[i].pop_front();
 				}
 			}
 		}
