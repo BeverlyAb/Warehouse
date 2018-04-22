@@ -150,6 +150,7 @@ void Parser::getOrder(string file, int index)
 
 			for(int k = 0; k < orderFile[j].size(); k++){
 				namedItems.push(orderFile[j][k]);
+				makeCluster(orderFile[j][k]);
 				optItems.push(orderFile[j][k]);
 			}
 			getPath();
@@ -160,13 +161,23 @@ void Parser::getOrder(string file, int index)
 		//transfer only a line
 		for(int j = 0; j < orderFile[n].size(); j++){
 			namedItems.push(orderFile[n][j]);  
+			makeCluster(orderFile[n][j]);
 			optItems.push(orderFile[n][j]);
-		}  
-		getPath();
+		} 
+		getPath(); 
 		opt();
 		getPath();
 	}
-	/*// keep for debugging
+
+/*	//keep for debugging cluster
+	map<position, vector<unsigned int> >::iterator it = cluster.begin();
+	for(; it != cluster.end(); it++){
+		for(int i = 0; i < it->second.size(); i++){
+			printf("HERE I AM %i \n", it->second[i]);
+		}
+	}*/
+
+	/*// keep for debugging parsing orderFile
  	n = ROW;
 	for(int j = 0; j < n; j++){
 		for(int k = 0; k < orderFile[j].size(); k++){
@@ -221,12 +232,14 @@ void Parser::makeCluster(unsigned int ID)
 {
 	position itemLoc = grid.getPos(ID);
     if(cluster.find(itemLoc) != cluster.end()){
-		unsigned int counter = cluster.find(itemLoc)->second + 1;
-      	map<position,unsigned int>::iterator it = cluster.find(itemLoc);
-		it->second = counter;
+		vector<unsigned int> v = cluster.find(itemLoc)->second;
+		v.push_back(ID);
+		cluster.find(itemLoc)->second = v;
     }
 	else{
-       	cluster.insert(pair<position, unsigned int>(itemLoc, 1));
+		vector<unsigned int> v;
+		v.push_back(ID);
+       	cluster.insert(pair<position, vector<unsigned int> >(itemLoc, v));
 	}
 }
 
@@ -245,15 +258,14 @@ void Parser::opt()
 	unsigned int yRangeEnd[4] = {warehouseHeight, warehouseHeight,
 								 warehouseHeight/2, warehouseHeight/2};
 
-	list<unsigned int> quad0;
-	list<unsigned int> quad1;
-	list<unsigned int> quad2;
-	list<unsigned int> quad3;
-	bool dup = false;
+	queue<unsigned int> quad0;
+	queue<unsigned int>  quad1;
+	queue<unsigned int> quad2;
+	queue<unsigned int> quad3;
 
-	list<unsigned int> quad[4]= {quad0, quad1, quad2, quad3};
+	queue<unsigned int> quad[4]= {quad0, quad1, quad2, quad3};
 
-	int n = optItems.size();
+int n = optItems.size();
 	//separate order positions into their quad
 	for(int l = 0; l < n; l++){
 		unsigned int tempID = optItems.front();
@@ -262,28 +274,33 @@ void Parser::opt()
 
 			if(grid.getPos(tempID).x >= xRangeStart[j] && grid.getPos(tempID).x <= xRangeEnd[j]
 			&& grid.getPos(tempID).y >= yRangeStart[j] && grid.getPos(tempID).y <= yRangeEnd[j]) {
-				//check for duplicate dest. make sure they are one after the other
-				if(!quad[j].empty()){
-					list<unsigned int>::iterator it = quad[j].begin();
-					for(; it != quad[j].end(); it++){
-						if(	grid.getPos(*it).x == grid.getPos(tempID).x &&
-							grid.getPos(*it).y == grid.getPos(tempID).y){
-							dup = true;
-							quad[j].insert(it,tempID);
-						}
-					}
-					
-				} 
-				if(!dup){
-					quad[j].push_front(tempID);
-				}else
-					dup = false;
 
+				quad[j].push(tempID);
 				break;
 			}
 		}
 		optItems.pop();
 	}
+
+/*	unsigned int tempID;
+	map<position, vector<unsigned int> >::iterator it = cluster.begin();
+	for(; it != cluster.end(); it++){
+		for(int i = 0; i < it->second.size(); i++){
+			tempID = it->second[i];
+			for(int j = 0; j < 4; j++){
+				//printf("tempID = %i\n", tempID);
+				if(grid.getPos(tempID).x >= xRangeStart[j] && grid.getPos(tempID).x <= xRangeEnd[j]
+					&& grid.getPos(tempID).y >= yRangeStart[j] && grid.getPos(tempID).y <= yRangeEnd[j]) {
+					
+					//printf("%i = %i (%i,%i)\n", i, it->second[i], grid.getPos(tempID).x, grid.getPos(tempID).y);
+					quad[j].push(tempID);
+					break;
+				}
+			}
+		}
+	} */
+
+
 	//get orders in the same quad as start first
 	unsigned int startQuad = 0;
 	for(int j = 0; j < 4; j++){
@@ -296,7 +313,7 @@ void Parser::opt()
 
 	for(int i = 0; i < quad[startQuad].size(); i++){
 		optItems.push(quad[startQuad].front());
-		quad[startQuad].pop_front();
+		quad[startQuad].pop();
 	}
 
 
@@ -311,13 +328,13 @@ void Parser::opt()
 			if(quad[i].size() == max){
 				for(int j = 0; j < quad[i].size(); j++){
 					optItems.push(quad[i].front());
-					quad[i].pop_front();
+					quad[i].pop();
 				}
 			}
 		}
 	}
 	//need to reverse order, do'h!
-	n = optItems.size();
+	 n = optItems.size();
 	for(int i = 0; i < n; i++){
 		namedItems.push(optItems.front());
 		optItems.pop();

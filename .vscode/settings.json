@@ -1,6 +1,12 @@
 {
     "files.associations": {
         "istream": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "iosfwd": "cpp",
+        "iterator": "cpp",
+        "vector": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "list": "cpp"
     }
 }

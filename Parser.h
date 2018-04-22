@@ -30,7 +30,7 @@ class Parser
   	position start,end;
   	queue<unsigned int> namedItems;
   	queue<unsigned int> optItems;
-  	map<position, unsigned int> cluster;
+  	map<position, vector<unsigned int> > cluster;
 	vector<vector<unsigned int> >orderFile;
 
   public:
