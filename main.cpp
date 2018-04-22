@@ -13,6 +13,9 @@ int main()
 	printf( "Choose a number.\n Do you want to name orders (1) or read all orders from a file (2).\n");
 	cin >> ans;
 	
+	clock_t startTime, endTime;
+	startTime = clock();
+	
 	if(ans == NAME_ITEM){
 		test.readFile(ans);
 		test.getPath();
@@ -24,7 +27,10 @@ int main()
 		return 1;
 	}
 
-  test.opt();
-	printf("----------------------------OPT----------------------\n");
+  	test.opt();
 	test.getPath();
+	
+	endTime =  clock();
+	float seconds = difftime(endTime, startTime);
+	printf("Min Time %f\n",seconds/1000.0); 
 }

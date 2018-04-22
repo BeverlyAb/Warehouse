@@ -101,15 +101,18 @@ void Parser::readFile(int fileType)
 void Parser::getNameItem()
 {
 	printf("Name an item ID or type 'done'\n");
-	cin >> ans;
-	int i = 0;
+	//cin >> ans;
 	//not very robust
-	while(ans != "done"){
-		namedItems.push(atoi(ans.c_str()));
+	//while(ans != "done"){
+		/*namedItems.push(atoi(ans.c_str()));
+		namedItems.push(46071);
 		optItems.push(atoi(ans.c_str()));
-		makeCluster(atoi(ans.c_str()));
-		cin >> ans;
-	}
+		makeCluster(atoi(ans.c_str()));*/
+		namedItems.push(2620261);
+		optItems.push(2620261);
+		makeCluster(2620261);
+	//	cin >> ans;
+	//}
 }
 
 void Parser::getOrder(string file, int index)
@@ -150,7 +153,7 @@ void Parser::getOrder(string file, int index)
 
 			for(int k = 0; k < orderFile[j].size(); k++){
 				namedItems.push(orderFile[j][k]);
-				makeCluster(orderFile[j][k]);
+			//	makeCluster(orderFile[j][k]);
 				optItems.push(orderFile[j][k]);
 			}
 			getPath();
@@ -161,7 +164,7 @@ void Parser::getOrder(string file, int index)
 		//transfer only a line
 		for(int j = 0; j < orderFile[n].size(); j++){
 			namedItems.push(orderFile[n][j]);  
-			makeCluster(orderFile[n][j]);
+			//makeCluster(orderFile[n][j]);
 			optItems.push(orderFile[n][j]);
 		} 
 		getPath(); 
@@ -175,7 +178,7 @@ void Parser::getOrder(string file, int index)
 		for(int i = 0; i < it->second.size(); i++){
 			printf("HERE I AM %i \n", it->second[i]);
 		}
-	}*/
+	} */
 
 	/*// keep for debugging parsing orderFile
  	n = ROW;
@@ -188,12 +191,6 @@ void Parser::getOrder(string file, int index)
 
 void Parser::getPath()
 {
-		/* //do later
-		time_t startTime, endTime;
-		time(&startTime);
-		time(&endTime);
-		time_t seconds = difftime(endTime, startTime);
-		printf("Min Time %ld\n",seconds); */
 	if(!grid.isValid(start)) {
 		printf("Starting position is either out of bounds or starts on a shelf.\n");
 		return;
@@ -265,7 +262,7 @@ void Parser::opt()
 
 	queue<unsigned int> quad[4]= {quad0, quad1, quad2, quad3};
 
-int n = optItems.size();
+	int n = optItems.size();
 	//separate order positions into their quad
 	for(int l = 0; l < n; l++){
 		unsigned int tempID = optItems.front();
@@ -281,25 +278,25 @@ int n = optItems.size();
 		}
 		optItems.pop();
 	}
-
-/*	unsigned int tempID;
+/*
 	map<position, vector<unsigned int> >::iterator it = cluster.begin();
 	for(; it != cluster.end(); it++){
-		for(int i = 0; i < it->second.size(); i++){
-			tempID = it->second[i];
+		int size = it->second.size();
+		for(int i = 0; i < size; i++){
 			for(int j = 0; j < 4; j++){
+				unsigned int tempID = it->second[i];
 				//printf("tempID = %i\n", tempID);
+
+					printf("%i = %i (%i,%i)\n", i, it->second[i], grid.getPos(tempID).x, grid.getPos(tempID).y);
 				if(grid.getPos(tempID).x >= xRangeStart[j] && grid.getPos(tempID).x <= xRangeEnd[j]
 					&& grid.getPos(tempID).y >= yRangeStart[j] && grid.getPos(tempID).y <= yRangeEnd[j]) {
-					
-					//printf("%i = %i (%i,%i)\n", i, it->second[i], grid.getPos(tempID).x, grid.getPos(tempID).y);
 					quad[j].push(tempID);
 					break;
 				}
 			}
 		}
-	} */
-
+	} 
+*/
 
 	//get orders in the same quad as start first
 	unsigned int startQuad = 0;
