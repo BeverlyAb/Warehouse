@@ -113,8 +113,8 @@ void Parser::getNameItem()
 
 void Parser::getOrder(string file, int index)
 {
-	clock_t startTime, end;
-	startTime = clock();
+//	clock_t startTime, end;
+//	startTime = clock();
 	int n = index;
 	int  i = 0;
 	int start = 0;
@@ -185,9 +185,9 @@ void Parser::getOrder(string file, int index)
 			printf("%i\n", orderFile[j][k]);
 		}
 	}*/
-	end = clock();
-	int t = difftime(end, startTime);
-	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
+//	end = clock();
+//	int t = difftime(end, startTime);
+//	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
 }
 
 void Parser::getPath()

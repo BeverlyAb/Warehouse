@@ -186,7 +186,7 @@ void Parser::getOrder(string file, int index)
 		}
 	}*/
 	end = clock();
-	int t = difftime(end, start);
+	int t = difftime(end, startTime);
 	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
 }
 
