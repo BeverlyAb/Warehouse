@@ -101,22 +101,20 @@ void Parser::readFile(int fileType)
 void Parser::getNameItem()
 {
 	printf("Name an item ID or type 'done'\n");
-	//cin >> ans;
+	cin >> ans;
 	//not very robust
-	//while(ans != "done"){
-		/*namedItems.push(atoi(ans.c_str()));
-		namedItems.push(46071);
+	while(ans != "done"){
+		namedItems.push(atoi(ans.c_str()));
 		optItems.push(atoi(ans.c_str()));
-		makeCluster(atoi(ans.c_str()));*/
-		namedItems.push(2620261);
-		optItems.push(2620261);
-		makeCluster(2620261);
-	//	cin >> ans;
-	//}
+		//makeCluster(atoi(ans.c_str()));
+		cin >> ans;
+	}
 }
 
 void Parser::getOrder(string file, int index)
 {
+	clock_t startTime, end;
+	startTime = clock();
 	int n = index;
 	int  i = 0;
 	int start = 0;
@@ -187,6 +185,9 @@ void Parser::getOrder(string file, int index)
 			printf("%i\n", orderFile[j][k]);
 		}
 	}*/
+	end = clock();
+	int t = difftime(end, startTime);
+	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
 }
 
 void Parser::getPath()
