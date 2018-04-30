@@ -1,0 +1,11 @@
+What is the file name?
+What is the max warehouse width?
+What is the max warehouse height?
+Starting x-coord?
+Starting y-coord?
+Ending x-coord?
+Ending y-coord?
+Choose a number.
+ Do you want to name orders (1) or read all orders from a file (2).
+Name of warehouse order file?
+Give an order list number or type '101' to read the entire file

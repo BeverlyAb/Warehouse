@@ -31,8 +31,8 @@ int main()
 		return 1;
 	}
 
-  	test.opt();
-	test.getPath();
+  /*	test.opt();
+	test.getPath(); */
 /*	
 	endTime =  clock();
 	int t = difftime(endTime, startTime);

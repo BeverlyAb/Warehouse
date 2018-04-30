@@ -7,6 +7,9 @@
         "vector": "cpp",
         "__tree": "cpp",
         "map": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "memory": "cpp",
+        "utility": "cpp",
+        "algorithm": "cpp"
     }
 }
