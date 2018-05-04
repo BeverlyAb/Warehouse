@@ -1,0 +1,5 @@
+What is the file name?
+What is the max warehouse width?
+What is the max warehouse height?
+Starting x-coord?
+Starting y-coord?

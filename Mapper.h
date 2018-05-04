@@ -12,6 +12,7 @@
 
 #define ADJ_SIZE 4
 #define INF 99999999999
+#define MAX 150
 
 typedef struct position position;
 struct position
@@ -50,6 +51,9 @@ class Mapper
     map<unsigned int, position> stock; //reads via ID
     map<position, unsigned int> shelf; //reads via position and # of items in shelf
 	position finalDest;
+    int dp[MAX][MAX];
+    int dpIndx;
+    map<position, int> dpMap;
   
   public:
     Mapper();

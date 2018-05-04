@@ -6,6 +6,13 @@ Mapper::Mapper()
     height = 0;
 		totalDist = 0;
 		finalDest.x = 0; finalDest.y = 0;
+		dpIndx = 0;
+		for(int i = 0; i < MAX; i++){
+			for(int j = 0; j < MAX; j++){
+				dp[i][j] = -1;
+			//	printf("%i ", dp[i][j]);
+			}
+		}
 }
 
  Mapper::Mapper(unsigned int w, unsigned int h)
@@ -14,12 +21,23 @@ Mapper::Mapper()
     height = h;
 		totalDist = 0;
 		finalDest.x = 0; finalDest.y = 0;
+		dpIndx = 0;
+		for(int i = 0; i < MAX; i++){
+			for(int j = 0; j < MAX; j++){
+				dp[i][j] = -1;
+			}
+		}
  }
 
 void Mapper::makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord)
 {
     position itemLoc = {xCoord, yCoord};
     stock.insert(pair<unsigned int, position>(ID,itemLoc));
+
+		if(dpMap.find(itemLoc) == dpMap.end()){
+			dpMap.insert(pair<position, int>(itemLoc, dpIndx++));
+		}
+
    //is shelf already in use?
     if(shelf.find(itemLoc) != shelf.end()){
 		unsigned int counter = shelf.find(itemLoc)->second + 1;
@@ -43,8 +61,26 @@ void Mapper::nextPos(position cur, position dest)
   unsigned int hops = 0;
   unsigned int prevHop = 0;
 
-  if(isValidStop(dest,cur)){
-    moveSpace prev = {cur,hops};
+	//if start or end was not part of stock, include them to dpMap
+	if(dpMap.find(cur) == dpMap.end()){
+			dpMap.insert(pair<position, int>(cur, dpIndx++));
+			printf("cur pos (%i,%i)\n",dpMap.find(cur)->first.x, dpMap.find(cur)->first.y);
+	}
+	if(dpMap.find(dest) == dpMap.end()){
+			dpMap.insert(pair<position, int>(dest, dpIndx++));
+	}
+
+	int startIndx = dpMap.find(cur)->second;
+	int endIndx = dpMap.find(dest)->second;
+	printf("start %i end %i\n", startIndx, endIndx);
+	//printf("start %i end %i\n", startIndx, endIndx);
+  
+	if(isValidStop(dest,cur)){
+	/*	if(dp[startIndx][endIndx] == -1){
+			dp[startIndx][endIndx] = 0;
+			dp[endIndx][startIndx] = 0;
+		}
+ */		moveSpace prev = {cur,hops};
     path.insert(pair<position,moveSpace>(cur,prev));
     printPath(cur,finalDest);
     path.clear();
@@ -105,6 +141,13 @@ void Mapper::nextPos(position cur, position dest)
 			itHolder = it;
 		}
 	}
+	//distance not updated
+	if(dp[startIndx][endIndx] == -1){
+		dp[startIndx][endIndx] = itHolder->second.hop - 1;
+		dp[endIndx][startIndx] = itHolder->second.hop - 1;
+		//printf("dp[][] %i, but hop is %i\n", dp[startIndx][endIndx], itHolder->second.hop - 1);
+	}
+	
 
 	finalDest = itHolder->first;
 	printPath(cur,finalDest);
