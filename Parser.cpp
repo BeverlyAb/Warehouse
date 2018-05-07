@@ -17,7 +17,15 @@ Parser::Parser()
     end.x = 0; end.y = 0;
 
 	orderFile.resize(ROW*MAX_COL);
-
+	dpIndx = 0;
+	/*	for(int i = 0; i < MAX; i++){
+			for(int j = 0; j < MAX; j++){
+				dp[i][j] = -1;
+			//	printf("%i ", dp[i][j]);
+			}
+		} */
+	all = false;
+	boundCheck = false;
 }
 
 void Parser::setUserParam()
@@ -47,6 +55,14 @@ void Parser::setUserParam()
    	cout << "Ending y-coord?\n";
     cin >> yCoord;
     end.x = atoi(xCoord.c_str()); end.y = atoi(yCoord.c_str());
+	dpIndx = 0;
+	/*for(int i = 0; i < MAX; i++){
+		for(int j = 0; j < MAX; j++){
+			dp[i][j] = -1;
+		}
+	}*/
+	all = false;
+	boundCheck = false;
 }
 
 void Parser::readFile(int fileType)
@@ -61,14 +77,14 @@ void Parser::readFile(int fileType)
 		getNameItem();
 		//already updates cluster
 	} 
-	else if(fileType == ORDER_FILE){ 
+	else if(fileType == ORDER_FILE || fileType == BOUND){ 
 		int indx = 0;
 		printf("Name of warehouse order file?\n");
 		cin >> inFile;
 		printf("Give an order list number or type '101' to read the entire file\n");
 		cin >> indx;
-		getOrder(inFile,indx); //make sure to form cluster here too		
-	}
+		getOrder(inFile,indx, fileType); //make sure to form cluster here too		
+	} 
 	else if(fileType == STOCK){
 		
 		if(myFile.is_open()){
@@ -109,12 +125,9 @@ void Parser::getNameItem()
 		//makeCluster(atoi(ans.c_str()));
 		cin >> ans;
 	}
-	getPath();
-	opt();
-	getPath();
 }
 
-void Parser::getOrder(string file, int index)
+void Parser::getOrder(string file, int index, int fileType)
 {
 //	clock_t startTime, end;
 //	startTime = clock();
@@ -149,28 +162,33 @@ void Parser::getOrder(string file, int index)
 	//read entire order list if not in range
 	if(n < 0 || n > ROW || n == 101) {
 		n = ROW;
+		all = true;
 
 		for(int j = 0; j < n; j++){
 
 			for(int k = 0; k < orderFile[j].size(); k++){
 				namedItems.push(orderFile[j][k]);
-			//	makeCluster(orderFile[j][k]);
 				optItems.push(orderFile[j][k]);
 			}
-			getPath();
-			opt();
-			getPath();
+			if(fileType == ORDER_FILE) {
+				getPath();
+				opt();
+				getPath();
+			} else{
+				branchBound();
+			}
 		}
 	} else{
 		//transfer only a line
 		for(int j = 0; j < orderFile[n].size(); j++){
 			namedItems.push(orderFile[n][j]);  
-			//makeCluster(orderFile[n][j]);
 			optItems.push(orderFile[n][j]);
 		} 
-		getPath(); 
-		opt();
-		getPath();
+		if(fileType == BOUND){
+			getPath();
+			branchBound();
+			getPath();
+		}
 	}
 
 /*	//keep for debugging cluster
@@ -204,12 +222,16 @@ void Parser::getPath()
 		if(!namedItems.empty()){
 
 			unsigned int tempID = namedItems.front();
+			int totalDist = 0;
+			position next = {0,0};
+			
 			printf("%i\t\t",tempID);
 			grid.nextPos(start, grid.getPos(tempID));
-			int totalDist = grid.getTotalDist();
+			totalDist = grid.getTotalDist();
 			namedItems.pop();
 
-			position next = grid.getFinalDest();
+			next = grid.getFinalDest();
+		
 			int n = namedItems.size();
 			for(int i = 0; i < n ; i++){
 				tempID = namedItems.front();
@@ -226,6 +248,7 @@ void Parser::getPath()
 			printf("Total Distance = %i\n",totalDist);
 			//last move, otherwise it ends at a neighbor of end
 			//printf("(%i,%i)\n",end.x,end.y); //should hop++
+			boundCheck = false;
 		}
 	}
 }
@@ -342,6 +365,169 @@ void Parser::opt()
 	}
 }//opt
 
+void Parser::branchBound()
+{
+	dpIndx = 0;
+	boundCheck = true; // add checker for duplicates!
+	dpMap.insert(pair<int, position>(dpIndx++,start));
+	dpMap.insert(pair<int, position>(dpIndx++,end));
+	int n = optItems.size();
+
+	for(int i = 0; i < n; i++){
+		position loc = grid.getPos(optItems.front());
+		optItems.pop();
+	//	dpMap.insert(pair<position, int>(loc, dpIndx++));
+
+		position loc_l = {loc.x - 1, loc.y};
+		position loc_r = {loc.x + 1, loc.y};
+
+		//printf("L (%i,%i)\n", loc_l.x, loc_l.y);
+		//printf("R (%i,%i)\n", loc_r.x, loc_r.y);
+	//	if(dpMap.find(loc_l) == dpMap.end()){
+			dpMap.insert(pair<int, position>(dpIndx++,loc));
+	//	}
+//		if(dpMap.find(loc_r) == dpMap.end()){
+		//	dpMap.insert(pair<int, position>(dpIndx++,loc_r));
+//		}
+
+	}
+/*  //for debugging dpMap
+	map<position, int>:: iterator it = dpMap.begin();
+	for(; it != dpMap.end(); it++){
+		printf("(%i,%i) %i\n", it->second.x, it->second.y, it->first);
+	}
+*/
+	for(int i = 0; i < dpIndx; i++){
+		for(int j = 0; j < dpIndx; j++){
+			dp[i][j] = -1;
+		}
+	}
+	//grid.nextPosBound(dpMap.find(0)->second,dpMap.find(2)->second);
+	//printf("min %i\n", grid.nextPosBound(dpMap.find(0)->second,dpMap.find(2)->second));
+
+	for(int i = 0; i < dpIndx; i++){
+		position cur = dpMap.find(i)->second;
+		for(int j = 0; j < dpIndx; j++){
+			position dest = dpMap.find(j)->second;
+			
+		//	printf("cur(%i,%i) at %i %i : ", cur.x, cur.y,i,j);
+		//	printf("dest(%i,%i) at %i %i\n", dest.x, dest.y,i,j); 
+			dp[i][j] = grid.nextPosBound(cur, dest); // 
+		}
+	} 
+	 //for dbg dp
+	for(int i = 0; i < dpIndx; i++){
+		for(int j = 0; j < dpIndx; j++){
+			printf("[%i][%i] = %i ", i,j,dp[i][j]);
+		}
+		printf("\n");
+	}  
+	int scr = -1;
+	int dest = -1;
+	int dist = reduce(scr, dest, true);
+	//excludes final destination
+	printf("lower bound = %i\n", dist);
+
+	for(int i = 0; i < dpIndx; i++){
+		for(int j = 0; j < dpIndx; j++){
+			printf("[%i][%i] = %i ", i,j,dp[i][j]);
+		}
+		printf("\n");
+	}   
+	scr = 0;
+	dest = 0;
+
+	int minCost[dpIndx];
+	for(int i = 0; i < dpIndx; i++)
+		minCost[i] = 100000;
+
+	for(int s = 0; s < dpIndx; s++){
+		scr = dest;
+		
+		for(int i = 0; i < dpIndx; i++){
+			minCost[i] = reduce(scr, i, false);
+			printf("minCost %i\n", reduce(scr, i, false));
+		}
+		
+		//find path with least cost at this level
+		for(int i = 0; i < dpIndx; i++){
+			int min = 10000;
+	
+			if(minCost[i] < min) {
+				min = minCost[i];
+				dest = i;
+			}
+		}
+		dist += reduce(scr, dest, true) + dp[scr][dest];  
+	}
+	for(int i = 0; i < dpIndx; i++){
+		for(int j = 0; j < dpIndx; j++){
+			printf("[%i][%i] = %i ", i,j,dp[i][j]);
+		}
+		printf("\n");
+	}  
+	printf("upper bound = %i\n", dist);
+}
+int Parser::reduce(int src, int dest, bool update)
+{
+	int cost= 0;
+
+	//copy dp
+	int temp[MAX][MAX];
+	for(int i = 0; i < dpIndx; i++){
+		for(int j = 0; j < dpIndx; j++){
+			temp[i][j] = dp[i][j];
+		}
+	}
+
+	//scr row == INF
+	if(src != -1){
+		for(int i = 0; i < dpIndx; i++)
+			temp[src][i] = INF;		
+	}
+	//dest col == INF
+	if(dest!= -1){
+		for(int i = 0; i < dpIndx; i++)
+			temp[i][dest] = INF;		
+	}
+
+	//reduce along row
+	int min = INF;
+	for(int i = 0; i < dpIndx; i++){
+		min = INF;
+		for(int j = 0; j < dpIndx; j++){
+			if(temp[i][j] < min)
+				min = temp[i][j];
+		}
+		cost += min;
+		for(int j = 0; j < dpIndx; j++){
+			temp[i][j] -= min;
+		}
+	}
+
+	//reduce along col
+	for(int i = 0; i < dpIndx; i++){
+		min = INF;
+		for(int j = 0; j < dpIndx; j++){
+			if(temp[j][i] < min)
+				min = temp[j][i];
+		}
+		cost += min;
+		for(int j = 0; j < dpIndx; j++){
+			temp[j][i] -= min;
+		}
+	}
+
+	if(update){
+		for(int i = 0; i < dpIndx; i++){
+			for(int j = 0; j < dpIndx; j++){
+				dp[i][j] = temp[i][j];
+			}
+		}
+	}
+	return cost;
+}
+
 int Parser::getWidth()
 {
     return warehouseWidth;
@@ -349,4 +535,12 @@ int Parser::getWidth()
 int Parser::getHeight()
 {
     return warehouseHeight;
+}
+bool Parser::getAll()
+{
+	return all;
+}
+bool Parser::getBoundCheck()
+{
+	return boundCheck;
 }

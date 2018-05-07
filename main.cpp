@@ -11,11 +11,16 @@ int main()
     test.setUserParam();
 	//startTime = clock();
     test.readFile(STOCK);
-	printf( "Choose a number.\n Do you want to name orders (1) or read all orders from a file (2).\n");
+	printf( "Choose a number.\n Do you want to name orders (1), read all orders from a file (2), or check bounds (3)?\n");
 	cin >> ans;
 	
-	if(ans > 0 && ans <=2){
+	if(ans > 0 && ans <=3){
 		test.readFile(ans);
+		if (!test.getAll() && !test.getBoundCheck()){
+			test.getPath();
+			test.opt();
+			test.getPath();
+		}
 	}
 	else {
 		printf("Invalid choice. Ending Program\n");
