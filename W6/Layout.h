@@ -1,14 +1,10 @@
-#ifndef MAPPER_H
-#define MAPPER_H
+#ifndef LAYOUT_H
+#define LAYOUT_H
 
+#include <map>
 #include <map>
 #include <queue>
 #include <list>
-#include <cstdlib>
-#include <stdio.h>
-
-//#include "Position.h"
-//#include "Product.h"
 
 #define ADJ_SIZE 4
 #define INF 999999
@@ -16,8 +12,8 @@
 typedef struct position position;
 struct position
 {
-    unsigned int x;
-    unsigned int y;
+  unsigned int x;
+  unsigned int y;
 	bool operator==(const position & right) const
 	{
 		return (x == right.x && y == right.y);
@@ -36,8 +32,7 @@ struct moveSpace
   unsigned int hop;
 };
 
-using namespace std;
-class Mapper
+class Layout
 {
   private:
     unsigned int width;
@@ -45,28 +40,26 @@ class Mapper
     int totalDist;
 
     queue <position> neighbors;
-	map<position,moveSpace> path;
+	  map<position,moveSpace> path;
 
-    map<unsigned int, position> stock; //reads via ID
+    vector<position> stock; //reads via ID
     map<position, unsigned int> shelf; //reads via position and # of items in shelf
-	position finalDest;
- 
+	  position finalDest;
   
   public:
-    Mapper();
-    Mapper(unsigned int w, unsigned int h);
+    Layout();
+    Layout(unsigned int, unsigned int);
     void makeStock(unsigned int ID, unsigned int xCoord, unsigned int yCoord);
-	position getPos(unsigned int);
-	void nextPos(position cur, position dest);
+	  position getPos(unsigned int);
+	  void nextPos(position cur, position dest);
     int nextPosBound(position cur, position dest);
 
-
-	bool isValidStop(position ref, position stop);
-	bool isValid(position cur);
+	  bool isValidStop(position ref, position stop);
+	  bool isValid(position cur);
     void validNeighbors(position next);
 
     void printPath(position start, position end);
-	position getFinalDest();
+	  position getFinalDest();
     int getTotalDist();
     map<position,moveSpace> getPath();
 };

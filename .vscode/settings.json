@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "istream": "cpp",
+        "queue": "cpp",
+        "iosfwd": "cpp",
+        "iterator": "cpp",
+        "vector": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "list": "cpp",
+        "ios": "cpp",
+        "memory": "cpp",
+        "utility": "cpp",
+        "__bit_reference": "cpp",
+        "__string": "cpp",
+        "algorithm": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp",
+        "ratio": "cpp",
+        "deque": "cpp"
+    }
+}

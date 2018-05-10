@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -std=c++99
-COPTFLAGS = -O3 -g -pg -Wall  #-fopenmp
+COPTFLAGS = -O3 -g -pg  #-fopenmp
 LDFLAGS =
 
 

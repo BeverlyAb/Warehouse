@@ -4,7 +4,7 @@ COPTFLAGS = -O3 -g -pg -Wall  #-fopenmp
 LDFLAGS =
 
 
-main: main.o Parser.o Mapper.o
+main: main.o Layout.o 
 	$(CC) $(COPTFLAGS) -o $@ $^
 
 %.o: %.cc
