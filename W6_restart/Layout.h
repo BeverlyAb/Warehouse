@@ -10,7 +10,6 @@
 #include <string>
 #include <map>
 #include <queue>
-#include <iostream>
 #include <fstream>
 
 using namespace std;
@@ -33,7 +32,7 @@ struct position
 
 class Layout
 {
-  private:
+  protected:
     string infile;
     unsigned int width, height;
     map<unsigned int, position> stock; //reads via ID

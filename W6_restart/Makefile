@@ -4,7 +4,10 @@ COPTFLAGS = -O3 -g -pg -Wall  #-fopenmp
 LDFLAGS =
 
 
-main: main.o Layout.o 
+LayoutMain: LayoutMain.o Layout.o 
+	$(CC) $(COPTFLAGS) -o $@ $^
+
+DFSMain:	DFSMain.o Layout.o DFS.o 
 	$(CC) $(COPTFLAGS) -o $@ $^
 
 %.o: %.cc
@@ -13,6 +16,8 @@ main: main.o Layout.o
 clean:
 	rm *.o
 
-make:
-	make clean
-	make main
+makeL:
+	make LayoutMain
+
+makeD:
+	make DFSMain

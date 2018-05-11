@@ -1,0 +1,16 @@
+#ifndef DFS_H
+#define DFS_H
+
+typedef struct moveSpace moveSpace;
+struct moveSpace
+{
+  position loc;
+  unsigned int hop;
+};
+
+class DFS : public Layout
+{
+
+
+};
+#endif

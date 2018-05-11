@@ -1,4 +1,5 @@
 #include "Layout.h"
+#include <iostream>
  /*  
     string infile;
     unsigned int width, height;

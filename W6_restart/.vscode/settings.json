@@ -1,6 +1,8 @@
 {
   "files.associations": {
     "__tree": "cpp",
-    "map": "cpp"
+    "map": "cpp",
+    "__locale": "cpp",
+    "ios": "cpp"
   }
 }
