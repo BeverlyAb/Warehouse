@@ -11,6 +11,13 @@
     "iterator": "cpp",
     "string": "cpp",
     "string_view": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "queue": "cpp",
+    "stack": "cpp",
+    "bitset": "cpp",
+    "algorithm": "cpp",
+    "chrono": "cpp",
+    "limits": "cpp",
+    "ratio": "cpp"
   }
 }

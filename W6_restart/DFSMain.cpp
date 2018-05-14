@@ -27,13 +27,18 @@ int main(int argc, char *argv[])
   string act = "";
   printf("Pick a number: name items (1) or read from list(2)?\n");
   cin >> act;
-  if(atoi(act.c_str()) == NAME_ITEM)
+  
+  //should be after readFile
+  test.preProcess();
+
+  /*if(atoi(act.c_str()) == NAME_ITEM)
     test.readFile(NAME_ITEM, infile); //infile is dummy
   else if(atoi(act.c_str()) == ORDER_FILE){
-   /* printf("Name order file\n");
+    printf("Name order file\n");
     cin >> infile;
-    test.readFile(ORDER_FILE, infile);*/
+    test.readFile(ORDER_FILE, infile);
     test.readFile(ORDER_FILE, "warehouse-orders.csv");//change from hardcode later 
+
   }
   else{
     printf("Invalid choice. Ending program\n");
@@ -41,6 +46,6 @@ int main(int argc, char *argv[])
   }
 
   test.getPath();
-
+*/
 }
 

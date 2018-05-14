@@ -92,7 +92,6 @@ void Layout::stockSingleItem(unsigned int ID, unsigned int xCoord, unsigned int 
     unsigned int counter = shelf.find(itemLoc)->second + 1;
     map<position,unsigned int>::iterator it = shelf.find(itemLoc);
 		it->second = counter;
-    
   }
 	else
     shelf.insert(pair<position, unsigned int>(itemLoc, 1));
@@ -166,9 +165,14 @@ void Layout::processSingleOrder(int indx)
 }
 void Layout::printStock()
 {
-  map<unsigned int, position> ::iterator it = stock.begin();
+ /* map<unsigned int, position> ::iterator it = stock.begin();
   for(; it != stock.end(); it++)
     printf("%i\n", it->first);
 
-  printf("size %lu\n", stock.size());
+  printf("size %lu\n", stock.size()); */
+  map<position, unsigned int> ::iterator it = shelf.begin();
+  for(; it != shelf.end(); it++)
+    printf("shelf(%i, %i)\n", it->first.x, it->first.y);
+
+  printf("size %lu\n", shelf.size());
 }

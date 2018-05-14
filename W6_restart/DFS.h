@@ -5,6 +5,10 @@
 #include <stack>
 #define ADJ_SIZE 4
 
+#define MAX_ROW 105//183 //91*2 + 1
+#define MAX_COL 105 //count 
+#define INF 99999999
+
 typedef struct moveSpace moveSpace;
 struct moveSpace
 {
@@ -20,12 +24,20 @@ class DFS : public Layout
 	  map<position,moveSpace> path;
     int totalDist;
     position finalDest;
+   
+    map<position, int> dpRef;
+    int dp[MAX_ROW][MAX_COL];
 
   public:
     DFS() : Layout()
     {
       totalDist = 0;
       finalDest.x = 0; finalDest.y = 0;
+      for(int i = 0; i < MAX_ROW; i++){
+        for(int j = 0; j < MAX_COL; j++){
+          dp[i][j] = 0;
+        }
+      }
     };
     
     DFS(unsigned int width, unsigned int height, string infile, position start, position end)
@@ -33,6 +45,12 @@ class DFS : public Layout
     {
       totalDist = 0;
       finalDest.x = 0; finalDest.y = 0;
+
+      for(int i = 0; i < MAX_ROW; i++){
+        for(int j = 0; j < MAX_COL; j++){
+          dp[i][j] = 0;
+        }
+      }
     };
     
     void nextPos(position cur, position dest);
@@ -49,5 +67,7 @@ class DFS : public Layout
     virtual void processSingleOrder(int);
     //accessor
     int getTotalDist();
+    unsigned int pathOnly(position cur, position dest);
+    void preProcess();
 };
 #endif

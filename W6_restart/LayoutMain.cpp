@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
     cin >> infile;
     test.readFile(ORDER_FILE, infile);*/
     test.readFile(ORDER_FILE, "warehouse-orders.csv");//change from hardcode later 
+    test.printStock();
   }
   else{
     printf("Invalid choice. Ending program\n");
