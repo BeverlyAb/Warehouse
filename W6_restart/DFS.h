@@ -2,6 +2,7 @@
 #define DFS_H
 
 #include "Layout.h"
+#include <stack>
 #define ADJ_SIZE 4
 
 typedef struct moveSpace moveSpace;
@@ -38,11 +39,14 @@ class DFS : public Layout
     bool isValidStop(position ref, position stop);
     bool isValid(position cur);
     void validNeighbors(position next);
-    void printPath(position start, position end);
+    void printSinglePath(position start, position end);
     void getPath();
     position getPos(unsigned int);
     position getFinalDest();
 
+   // virtual void getListItems(string in, int index);
+    //virtual readFile();
+    virtual void processSingleOrder(int);
     //accessor
     int getTotalDist();
 };

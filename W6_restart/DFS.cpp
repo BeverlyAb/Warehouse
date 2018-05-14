@@ -1,23 +1,4 @@
 #include "DFS.h"
-/*DFS::DFS()
-{
-
-  totalDist = 0;
-  finalDest. x = 0; finalDest.y = 0;
-}
-
-DFS::DFS(unsigned int w, unsigned int h, string in, position s, position e)
-{
-  width = w;
-  height = h;
-  infile = in;
-  start = s;
-  end = e;
-  
-  totalDist = 0;
-  finalDest. x = 0; finalDest.y = 0;
-}*/
-   
 void DFS::nextPos(position cur, position dest)
 {
   bool found = false;
@@ -27,7 +8,7 @@ void DFS::nextPos(position cur, position dest)
   if(isValidStop(dest,cur)){
     moveSpace prev = {cur,hops};
     path.insert(pair<position,moveSpace>(cur,prev));
-    printPath(cur,finalDest);
+    printSinglePath(cur,finalDest);
     path.clear();
     return;
   }
@@ -56,13 +37,13 @@ void DFS::nextPos(position cur, position dest)
 			prev.hop = hops + prevHop;
 			path.insert(pair<position,moveSpace>(next,prev));
 		}
-
 		//create new list of neighbors
     validNeighbors(next);
     int n = neighbors.size();
     for(int i = 0; i < n; i++){
       position temp = neighbors.front();
 
+      //add to path only if unvisited
 			if(path.find(temp) == path.end()){
 				prevHop = path.find(next)->second.hop;
         if(prevHop > 30000) //debug issue
@@ -88,7 +69,7 @@ void DFS::nextPos(position cur, position dest)
 	}
 
 	finalDest = itHolder->first;
-	printPath(cur,finalDest);
+	printSinglePath(cur,finalDest);
 	path.clear(); 
 	while(!active.empty()) active.pop();
 }
@@ -134,7 +115,7 @@ void DFS::validNeighbors(position cur)
     }
 }
 
-void DFS::printPath(position start, position end)
+void DFS::printSinglePath(position start, position end)
 {
 	unsigned int hop = path.find(end)->second.hop;
 	totalDist = 0;
@@ -203,7 +184,16 @@ if(!isValid(start)) {
 		}
 	}
 }
-
+     
+void DFS::processSingleOrder(int indx)
+{
+  int n = indx;
+  for(int j = 0; j < orderFile[n].size(); j++){
+    orgItems.push(orderFile[n][j]);  
+    optItems.push(orderFile[n][j]);
+	} 
+  getPath();
+}
 
 int DFS::getTotalDist()
 {
@@ -214,3 +204,9 @@ position DFS::getFinalDest()
 {
   return finalDest;
 }
+
+/*
+void DFS::preProcess()
+{
+
+}*/

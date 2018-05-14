@@ -145,8 +145,9 @@ void Layout::getListItems(string in, int index)
   
   if(n < 0 || n > ROW || n == 101) {
 		n = ROW;
-		for(int j = 0; j < n; j++)
+		for(int j = 0; j < n; j++){
       processSingleOrder(j);
+    }
   } else
     processSingleOrder(n); 
 } 
@@ -160,8 +161,8 @@ void Layout::processSingleOrder(int indx)
   /*call 
   printPath();
   algorithm(), which sorts the order
-  printPath();
-  */
+  printPath();*/
+  
 }
 void Layout::printStock()
 {
