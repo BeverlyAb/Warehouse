@@ -2,10 +2,18 @@
 #define COL 5
 #define INF 999999
 
+#include <map>
+#include <queue>
 #include <stdio.h>
+
+using namespace std;
 int main()
 {
-  int order[ROW];
+    map<int, int> order;//ID, index
+    for(int i = 0; i < ROW; i++){
+      order.insert(pair<int,int>(i,i));
+    }
+  queue<int> out;
 
   int dp[ROW][COL] = 
   { {INF, 12, 7, 8, 9}, 
@@ -65,8 +73,13 @@ int main()
   }
   printf("LB %i\n", cost); // should be 26
   
+    for(int j = 0; j < ROW; j++){
+        dp[j][0] = INF;
+    }
+    
   int temp[ROW][COL];
   int tempCost[ROW] = {0};
+
   for(int i = 0; i < ROW; i++){
     for(int j = 0; j < COL; j++){
       temp[i][j] = dp[i][j];
@@ -76,30 +89,126 @@ int main()
   int dest = 0;
   int index = 0;
   int src = 0;
-  //iterate along COL and find lowest cost. Skipping COL 0. Continue down that branch
-  for(int l = 1; l < ROW; l++){
-    dest = l;
-    order[index++] = dest;
+  int oldCost = 0;
+  int f = 2;
+  
+    map<int,int>::iterator outer = order.begin();
+    outer = order.find(dest);
+    order.erase(outer);
+    int n = order.size();
+    printf("size = %i", n);
 
+    //iterate along COL and find lowest cost. Skipping COL 0. Continue down that branch
+   n = order.size();
+  while(/*oldCost != cost && */n > 0){
+    map<int,int>::iterator outer = order.begin();
+    for(; outer != order.end(); outer++){
+      dest = outer->second;
+
+      //null row of source, by default ROW 0 = start
+      map<int,int>::iterator inner = order.begin();
+      for(; inner != order.end(); inner++)
+      {
+        temp[src][inner->second] = INF;
+      }
+      //nullify COL of destination
+      inner = order.begin();
+      for(; inner != order.end(); inner++){
+        temp[inner->second][dest] = INF;
+      }
+    
+      int c = 0;
+      //reduce along ROW
+      inner = order.begin();
+      for(; inner != order.end(); inner++){
+      
+        int min = INF;
+        for(int j = 0; j < COL; j++){
+          if(temp[inner->second][j] < min){
+            min = temp[inner->second][j];
+          }
+        }
+        if(min < INF -1000)//error correction
+          c += min;
+        else 
+          min = 0;
+        
+        for(int j = 0; j < COL; j++){
+          temp[inner->second][j] -= min;
+        }
+      }
+
+      //this might be costly, because COLUMN miss
+      inner = order.begin();
+      for(; inner != order.end(); inner++){
+      
+        int min = INF;
+        for(int j = 0; j < ROW; j++){
+          if(temp[j][inner->second] < min)
+            min = temp[j][inner->second];
+        }
+        
+        if(min < INF-1000)
+        {
+          c += min;
+        }
+        else 
+          min = 0;
+        
+        for(int j = 0; j < ROW; j++){
+          temp[j][inner->second] -= min;
+        }
+      }
+  
+      tempCost[outer->second] = c + dp[src][dest] + cost;
+     printf("\nR2 of %i\n", outer->second);
+      for(int i = 0; i < ROW; i++){
+        for(int j = 0; j < COL; j++)
+          printf("%i ", temp[i][j]);
+        printf("\n");
+      }
+      printf("Cost for %i =  %i\n", outer->second, tempCost[outer->second]); 
+  
+      //reset temp
+      for(int i = 0; i < ROW; i++){
+        for(int j = 0; j < COL; j++){
+          temp[i][j] = dp[i][j];
+        }
+      }
+    }
+
+  int m = INF;
+  for(int i = 0; i < COL; i++){
+    if(m > tempCost[i] && i != src){
+      m = tempCost[i];
+      dest = i;
+    }
+  }
+  //-------------------------------------------------
+    //update dp as reduced matrix with lowest cost
+    cost += tempCost[dest];
+    out.push(dest);
     //null row of source, by default ROW 0 = start
-   
-    for(int i = 0; i < COL; i++)
+    outer = order.begin();
+    for(; outer != order.end(); outer++)
     {
-      temp[src][i] = INF;
+      temp[src][outer->second] = INF;
     }
     //nullify COL of destination
-    for(int j = 0; j < ROW; j++){
-      temp[j][dest] = INF;
+    outer = order.begin();
+    for(; outer != order.end(); outer++){
+      temp[outer->second][dest] = INF;
     }
-  
+
     int c = 0;
     //reduce along ROW
-    for(int i = 0; i < ROW; i++){
+    outer = order.begin();
+    for(; outer != order.end(); outer++){
     
       int min = INF;
       for(int j = 0; j < COL; j++){
-        if(temp[i][j] < min){
-          min = temp[i][j];
+        if(temp[outer->second][j] < min){
+          min = temp[outer->second][j];
         }
       }
       if(min < INF -1000)//error correction
@@ -108,17 +217,19 @@ int main()
         min = 0;
       
       for(int j = 0; j < COL; j++){
-        temp[i][j] -= min;
+        temp[outer->second][j] -= min;
       }
     }
 
     //this might be costly, because COLUMN miss
-    for(int i = 0; i < COL; i++){
+    outer = order.begin();
+    for(; outer != order.end(); outer++){
     
       int min = INF;
-      for(int j = 0; j < ROW; j++){
-        if(temp[j][i] < min)
-          min = temp[j][i];
+      map<int,int>::iterator inner = order.begin();
+      for(; inner != order.end(); inner++){
+        if(temp[inner->second][outer->second] < min)
+          min = temp[inner->second][outer->second];
       }
       
       if(min < INF-1000)
@@ -128,102 +239,46 @@ int main()
       else 
         min = 0;
       
-      for(int j = 0; j < ROW; j++){
-        temp[j][i] -= min;
+      inner = order.begin();
+      for(; inner != order.end(); inner++){
+        temp[inner->second][outer->second] -= min;
       }
     }
-    tempCost[l] = c + dp[src][dest] + cost;
-   /* printf("\nR2 of %i\n", l);
+
+    outer  = order.begin();
+    map<int,int>::iterator inner = order.begin();
+    for(; outer != order.end(); outer++){
+        for(; inner != order.end(); inner++){
+          dp[outer->second][inner->second] = temp[outer->second][inner->second];
+        }
+    }
+
+    printf("\nR%i\n",f);
     for(int i = 0; i < ROW; i++){
       for(int j = 0; j < COL; j++)
-        printf("%i ", temp[i][j]);
+        printf("%i ", dp[i][j]);
       printf("\n");
     }
-    printf("Cost for %i =  %i\n", l, tempCost[l]); 
-*/
-    //reset temp
-    for(int i = 0; i < ROW; i++){
-      for(int j = 0; j < COL; j++){
-        temp[i][j] = dp[i][j];
-      }
-    }
-  }
+  
+    printf("Cost at R%i = %i\n",f, cost);
 
- int m = INF;
- for(int i = 0; i < COL; i++){
-   if(m > tempCost[i] && i != src){
-    m = tempCost[i];
-    dest = i;
-   }
- }
- //-------------------------------------------------
-  //update dp as reduced matrix with lowest cost
-  cost += tempCost[dest];
+    src = dest;
+    oldCost = cost;
+    f++;
+
+    outer = order.begin();
+    outer = order.find(dest);
+    order.erase(outer);
+    n = order.size();
+    printf("size = %i", n);
+  }
  
-  //null row of source, by default ROW 0 = start
-  
-  for(int i = 0; i < COL; i++)
-  {
-    temp[src][i] = INF;
-  }
-  //nullify COL of destination
-  for(int j = 0; j < ROW; j++){
-    temp[j][dest] = INF;
-  }
 
-  int c = 0;
-  //reduce along ROW
-  for(int i = 0; i < ROW; i++){
-  
-    int min = INF;
-    for(int j = 0; j < COL; j++){
-      if(temp[i][j] < min){
-        min = temp[i][j];
-      }
-    }
-    if(min < INF -1000)//error correction
-      c += min;
-    else 
-      min = 0;
-    
-    for(int j = 0; j < COL; j++){
-      temp[i][j] -= min;
-    }
+  printf("\nOrder ");
+  int m = out.size();
+  for(int i = 0; i < m; i++){
+    printf("%i->",out.front());
+    out.pop();
   }
-
-  //this might be costly, because COLUMN miss
-  for(int i = 0; i < COL; i++){
-  
-    int min = INF;
-    for(int j = 0; j < ROW; j++){
-      if(temp[j][i] < min)
-        min = temp[j][i];
-    }
-    
-    if(min < INF-1000)
-    {
-      c += min;
-    }
-    else 
-      min = 0;
-    
-    for(int j = 0; j < ROW; j++){
-      temp[j][i] -= min;
-    }
-  }
-
-
-  for(int i = 0; i < ROW; i++){
-      for(int j = 0; j < COL; j++){
-        dp[i][j] = temp[i][j];
-      }
-  }
-
-  printf("\nR2\n");
-  for(int i = 0; i < ROW; i++){
-    for(int j = 0; j < COL; j++)
-      printf("%i ", dp[i][j]);
-    printf("\n");
-  }
-  printf("Cost at R2 = %i\n", cost);
+  printf("\n");
 }
