@@ -52,7 +52,6 @@ void nullDest(map<int, int> & order, int (& temp)[ROW][COL], const int & src, co
 { 
   map<int, int>::iterator inner = order.begin();
   //null col of dest
-  inner = order.begin();
   //still decide what dest is; that's why use temp
   for(; inner != order.end(); inner++){
     temp[inner->second][dest] = INF;
@@ -71,17 +70,16 @@ void nullDest(map<int, int> & order, int (& temp)[ROW][COL], const int & src, co
 
 void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost)
 {
-  map<int, int>::iterator outer = order.begin();
-  map<int, int>::iterator inner = order.begin();
+ // map<int, int>::iterator outer = order.begin();
+ // map<int, int>::iterator inner = order.begin();
 
   //reduce row first
-  for(; outer != order.end(); outer++){
+  for(int i = 0; i < ROW; i++){
 
     int min = INF;
-    inner = order.begin();
-    for(; inner != order.end(); inner++){
-      if(temp[outer->second][inner->second] < min){
-        min = temp[outer->second][inner->second];
+    for(int j = 0; j < COL; j++){
+      if(temp[i][j] < min){
+        min = temp[i][j];
        
       }
     }
@@ -90,20 +88,19 @@ void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost)
     else 
       min = 0;
 
-    inner = order.begin();
-    for(; inner != order.end(); inner++){
-      temp[outer->second][inner->second] -= min;
+    for(int j = 0; j < COL; j++){
+      temp[i][j] -= min;
     }
   }
   //this might be costly, because COLUMN miss
-  outer = order.begin();
-  for(; outer != order.end(); outer++){
+ // outer = order.begin();
+  for(int i = 0; i < COL; i++){
    
     int min = INF;
-    inner = order.begin();
-    for(; inner != order.end(); inner++){
-      if(temp[inner->second][outer->second] < min)
-        min = temp[inner->second][outer->second];
+
+    for(int j = 0; j < COL; j++){
+      if(temp[j][i] < min)
+        min = temp[j][i];
     }
     
     if(min < INF -1000)//error correction
@@ -111,9 +108,8 @@ void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost)
     else 
       min = 0;
     
-    inner = order.begin();
-    for(; inner != order.end(); inner++){
-      temp[inner->second][outer->second] -= min;
+    for(int j = 0; j < COL; j++){
+      temp[j][i] -= min;
     }
   }
 }
@@ -128,12 +124,14 @@ int findLeastCost(int(&storeCost)[ROW], map<int, int> & order)
 {
   int m = INF;
   int tempDest = 0;
+  //only check modified values
   map<int, int>::iterator inner = order.begin();
-    for(; inner != order.end(); inner++){
+  for(; inner != order.end(); inner++){
     if(m > storeCost[inner->second]){
       m = storeCost[inner->second];
       tempDest = inner->second;
     }
+  //  printf("min = %i, dest = %i\n", m, tempDest);
   }
   return tempDest;
 }
@@ -170,8 +168,8 @@ int main()
 
   int cost = 0;
   int temp[ROW][COL];
-  int storeCost[ROW];
-
+  int storeCost[ROW];  
+  
   updateTemp(order, dp, temp);
   red(order, temp, cost);
   
@@ -193,8 +191,6 @@ int main()
   print(temp,1);
 
   map<int, int>::iterator outer = order.begin();
-  //index for storeCost
-  int i = 0;
   for(; outer != order.end(); outer++){
     
     //reduce along dest
@@ -205,15 +201,16 @@ int main()
     printf("\nNull dest for %i", outer->first);
     print(temp,1);
     printf("Cost %i\n", tempCost);
+    
+    storeCost[outer->second] = tempCost;
 
-    tempCost = cost;
-    storeCost[i++] = tempCost;
     //reset temp and null src
+    tempCost = cost;
     updateTemp(order, dp, temp); 
     nullSrc(order, temp, src, out, index, true);
   }
   
- /* dest = findLeastCost(storeCost, order);
+  dest = findLeastCost(storeCost, order);
   //evaluate the matrix with least cost again and update original matrix
   nullSrc(order, temp, src, out, index, true);
   nullDest(order, temp, src, dest, out);
@@ -221,6 +218,6 @@ int main()
   updateOrig(order, dp, temp);
   print(dp, 1);
   printf("Cost %i\n", cost);
-*/
+
 
 }
