@@ -18,6 +18,8 @@
     "algorithm": "cpp",
     "chrono": "cpp",
     "limits": "cpp",
-    "ratio": "cpp"
+    "ratio": "cpp",
+    "memory": "cpp",
+    "utility": "cpp"
   }
 }
