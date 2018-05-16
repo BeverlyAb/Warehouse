@@ -35,7 +35,6 @@ void nullSrc(map<int, int> & order, int (& dp)[ROW][COL], const int & src, int (
   map<int, int>::iterator inner = order.begin();
   //null row of source
   inner = order.begin();
-  //only null source if confirmed path; that's why use dp
   for(; inner != order.end(); inner++){
     dp[src][inner->second] = INF;
   }
@@ -169,6 +168,11 @@ int main()
   int cost = 0;
   int temp[ROW][COL];
   int storeCost[ROW];  
+
+  int src = 0;
+  int dest = 0;
+  int tempCost = cost;
+  int index = 0;
   
   updateTemp(order, dp, temp);
   red(order, temp, cost);
@@ -178,11 +182,6 @@ int main()
   printf("LB %i\n", cost); 
   
   updateOrig(order, dp, temp);
-
-  int src = 0;
-  int dest = 0;
-  int tempCost = cost;
-  int index = 0;
 
   nullSrc(order, temp, src, out, index, false);
   //updateTemp(order, dp, temp);
@@ -199,7 +198,7 @@ int main()
     totalCost(dp, tempCost, src, outer->second);
     
     printf("\nNull dest for %i", outer->first);
-    print(temp,1);
+    print(temp, 2);
     printf("Cost %i\n", tempCost);
     
     storeCost[outer->second] = tempCost;
@@ -216,8 +215,10 @@ int main()
   nullDest(order, temp, src, dest, out);
   red(order, temp, cost);
   updateOrig(order, dp, temp);
-  print(dp, 1);
+  print(dp, 2);
   printf("Cost %i\n", cost);
 
-
+  src = dest;
+  nullSrc(order, temp, src, out, index, false);
+  print(temp,3);
 }
