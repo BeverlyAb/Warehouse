@@ -1,5 +1,5 @@
-#include "DFS.h"
-void DFS::nextPos(position cur, position dest)
+#include "BFS.h"
+void BFS::nextPos(position cur, position dest)
 {
   bool found = false;
   unsigned int hops = 0;
@@ -74,7 +74,7 @@ void DFS::nextPos(position cur, position dest)
 	while(!active.empty()) active.pop();
 }
 
-bool DFS::isValidStop(position ref, position stop)
+bool BFS::isValidStop(position ref, position stop)
 {
   if(	(stop.x == ref.x + 1 && stop.y == ref.y) ||
  		(stop.x == ref.x - 1 && stop.y == ref.y))
@@ -83,7 +83,7 @@ bool DFS::isValidStop(position ref, position stop)
 		return false;
 }
 
-bool DFS::isValid(position cur)
+bool BFS::isValid(position cur)
 {
   //out of bounds check
     if(cur.x > width + 1 || cur. y > height + 1  ||
@@ -95,9 +95,9 @@ bool DFS::isValid(position cur)
     	return true;
 }
 
-void DFS::validNeighbors(position cur)
+void BFS::validNeighbors(position cur)
 {
-  position right = {cur.x + 1, cur.y};
+    position right = {cur.x + 1, cur.y};
     position left = {cur.x - 1, cur.y};
     position up = {cur.x, cur.y + 1};
     position down = {cur.x, cur.y - 1};
@@ -115,7 +115,7 @@ void DFS::validNeighbors(position cur)
     }
 }
 
-void DFS::printSinglePath(position start, position end)
+void BFS::printSinglePath(position start, position end)
 {
 	unsigned int hop = path.find(end)->second.hop;
 	totalDist = 0;
@@ -139,12 +139,12 @@ void DFS::printSinglePath(position start, position end)
   printf("\n"); // bound
 }
 
-position DFS::getPos(unsigned int ID)
+position BFS::getPos(unsigned int ID)
 {
 	return stock.find(ID)->second;
 }
 
-void DFS::getPath()
+void BFS::getPath()
 {
 if(!isValid(start)) {
 		printf("Starting position is either out of bounds or starts on a shelf.\n");
@@ -185,7 +185,7 @@ if(!isValid(start)) {
 	}
 }
      
-void DFS::processSingleOrder(int indx)
+void BFS::processSingleOrder(int indx)
 {
   int n = indx;
   for(int j = 0; j < orderFile[n].size(); j++){
@@ -195,49 +195,49 @@ void DFS::processSingleOrder(int indx)
   getPath();
 }
 
-int DFS::getTotalDist()
+int BFS::getTotalDist()
 {
   return totalDist;
 }
 
-position DFS::getFinalDest()
+position BFS::getFinalDest()
 {
   return finalDest;
 }
 
-unsigned int DFS::pathOnly(position cur, position dest)
+unsigned int BFS::hopOnly(position cur, position dest)
 {
-	bool found = false;
+  bool found = false;
   unsigned int hops = 0;
   unsigned int prevHop = 0;
 
-  if(dest == cur){
-    return INF;
-  }
+	if(cur == dest)
+		return INF;
 
   //cur, prev with hop
 	moveSpace prev = {cur,hops++};
 
   queue<position> active;
-  map<position,moveSpace> onlyFound;
 	active.push(cur);
+	
+	path.insert(pair<position,moveSpace>(prev.loc,prev));
+	moveSpace filler = {prev.loc, INF};
 
   while(!active.empty()) {
 
 		position next = active.front();
-		found = isValidStop(dest,next);
+		
+		if(dest == next)
+			found = true;
+		
 		active.pop();
 
 		if(found){
 			finalDest = next;
-
-			onlyFound.insert(pair<position,moveSpace>(next,prev));
-	//		printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
-
+		//	printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
 			prevHop = path.find(next)->second.hop;
-			prev.loc = next;
-			prev.hop = hops + prevHop;
-			path.insert(pair<position,moveSpace>(next,prev));
+			path.clear();
+			return prevHop;
 		}
 		//create new list of neighbors
     validNeighbors(next);
@@ -248,8 +248,9 @@ unsigned int DFS::pathOnly(position cur, position dest)
       //add to path only if unvisited
 			if(path.find(temp) == path.end()){
 				prevHop = path.find(next)->second.hop;
-        if(prevHop > 30000) //debug issue
-          prevHop = 0;
+				
+			//	printf("prevHop = %i\n", path.find(next)->second.hop);
+				
 				prev.loc = next;
 				prev.hop = hops + prevHop;
         //printf("hop = %i, prev(%i,%i)\n",prevHop,prev.loc.x,prev.loc.y);
@@ -259,26 +260,11 @@ unsigned int DFS::pathOnly(position cur, position dest)
 			neighbors.pop();
     }
   }
-	
-	map<position,moveSpace>::iterator it = onlyFound.begin();
-	map<position,moveSpace>::iterator itHolder = onlyFound.begin();
-	unsigned int min = path.begin()->second.hop;
-	for(; it != onlyFound.end(); it++){
-		if(min > it->second.hop){
-			min = it->second.hop;
-			itHolder = it;
-		}
-	}
-
-	finalDest = itHolder->first;
-	//printSinglePath(cur,finalDest);
-	path.clear(); 
-	while(!active.empty()) active.pop();
-	return itHolder->second.hop;
+	return INF;
 }
 
-
-void DFS::preProcess()// fix later
+//maps positions with index
+void BFS::makeRefDP()
 {
 	int count = 0;
 	map<position, unsigned int> ::iterator it2 = shelf.begin();
@@ -294,16 +280,21 @@ void DFS::preProcess()// fix later
 			dpRef.insert(pair<position, int>(left,count++));
 		}
 
-		if(dpRef.find(right) == dpRef.end() && right.x < width && shelf.find(left) == shelf.end()){
+		if(dpRef.find(right) == dpRef.end() && right.x < width && shelf.find(right) == shelf.end()){
 			dpRef.insert(pair<position, int>(right,count++));
 		}
 	}
-	printf("COUNT %i", count);
-	position t1 = {0,0};
-	position t2 = {10,1};
-/*	printf("WHYYY %i\n", pathOnly(t1, t2)); 
-	printf("width %i, height %i\n", width, height);
-	int i = 0; 	
+
+	map<position, int> ::iterator it3 = dpRef.begin();
+	for(; it3 != dpRef.end(); it3++){
+//		printf("(%i,%i)\n", it3->first.x, it3->first.y);
+	}
+}
+
+
+void BFS::preProcess(bool readFromFile, string file)
+{
+ int i = 0; 	
 	map<position, int> ::iterator it3 = dpRef.begin();
 	for(; it3 != dpRef.end(); it3++){
 		int j = 0;
@@ -314,17 +305,21 @@ void DFS::preProcess()// fix later
 			if(i == j)
 				dp[i][j++] = INF;
 			else{
-			//	dp[i][j++] = pathOnly(it3->first, it4->first);
-			//	printf("left (%i,%i) right (%i,%i)\n", it3->first.x, it3->first.y, it4->first.x, it4->first.y);
-			//	printf("here %i\n", pathOnly(it3->first, it4->first));
+				dp[i][j++] = hopOnly(it3->first, it4->first);
+			//	printf("start (%i,%i) dest (%i,%i)\n", it3->first.x, it3->first.y, it4->first.x, it4->first.y);
+			//	printf("here %i\n", hopOnly(it3->first, it4->first));
 			}
 		}
-	}*/
-/*	i =0; int k = 0;
-	int n = MAX_ROW * MAX_COL;
+		i++;
+	}
+
+
+	i = 0; 
+	int n = shelf.size();
 	for(; i < n; i++){
-		for(; k < n; k++){
-			printf("why %i\n", dp[i][k]);
+		for(int k = 0; k < n; k++){
+			printf("%i, ", dp[i][k]);
 		}
-	}*/
+		printf("\n");
+	}
 }

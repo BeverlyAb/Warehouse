@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <math.h>
 
+
 using namespace std;
 void updateTemp(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][COL])
 {
@@ -162,13 +163,14 @@ int main()
   for(int i = 0; i < ROW; i++)
     out[i] = -1;
 
-  int dp[ROW][COL] = 
+  int dp[ROW][COL] =   
   { {INF, 20, 30, 10, 11}, 
     {15, INF, 16, 4, 2}, 
     {3, 5, INF, 2, 4},
     {19, 6, 18, INF, 3},
     {16, 4, 7, 16, INF}
   };
+
   printf("\nOriginal");
   print(dp, 0);
 

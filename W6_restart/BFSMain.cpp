@@ -1,4 +1,4 @@
-#include "DFS.h"
+#include "BFS.h"
 #include <string>
 #include <iostream>
 
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
   y = atoi(argv[7]);
   position end = {x,y};
 
-  DFS test = DFS(width, height, infile, start, end);
+  BFS test = BFS(width, height, infile, start, end);
   test.readFile(STOCK, infile);
 
   string act = "";
@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
   cin >> act;
   
   //should be after readFile
+  test.makeRefDP();
   test.preProcess();
 
   /*if(atoi(act.c_str()) == NAME_ITEM)

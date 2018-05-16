@@ -1,12 +1,12 @@
-#ifndef DFS_H
-#define DFS_H
+#ifndef BFS_H
+#define BFS_H
 
 #include "Layout.h"
 #include <stack>
 #define ADJ_SIZE 4
 
-#define MAX_ROW 105//183 //91*2 + 1
-#define MAX_COL 105 //count 
+#define MAX_ROW 103//183 //91*2 + 1
+#define MAX_COL 103 //count based on shelf from t2.txt
 #define INF 99999999
 
 typedef struct moveSpace moveSpace;
@@ -17,7 +17,7 @@ struct moveSpace
   unsigned int weight;
 };
 
-class DFS : public Layout
+class BFS : public Layout
 {
   private:
     queue <position> neighbors;
@@ -25,11 +25,11 @@ class DFS : public Layout
     int totalDist;
     position finalDest;
    
-    map<position, int> dpRef;
-    int dp[MAX_ROW][MAX_COL];
+    map<position, int> dpRef; //position, ID
+    int dp[MAX_ROW][MAX_COL]; //hops, where indices are ID
 
   public:
-    DFS() : Layout()
+    BFS() : Layout()
     {
       totalDist = 0;
       finalDest.x = 0; finalDest.y = 0;
@@ -40,7 +40,7 @@ class DFS : public Layout
       }
     };
     
-    DFS(unsigned int width, unsigned int height, string infile, position start, position end)
+    BFS(unsigned int width, unsigned int height, string infile, position start, position end)
     :Layout(width, height, infile, start, end)
     {
       totalDist = 0;
@@ -64,10 +64,11 @@ class DFS : public Layout
 
    // virtual void getListItems(string in, int index);
     //virtual readFile();
+    void makeRefDP();
     virtual void processSingleOrder(int);
     //accessor
     int getTotalDist();
-    unsigned int pathOnly(position cur, position dest);
-    void preProcess();
+    unsigned int hopOnly(position cur, position dest);
+    void preProcess(bool readFromFile, string file)
 };
 #endif

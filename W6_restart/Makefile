@@ -7,7 +7,7 @@ LDFLAGS =
 LayoutMain: LayoutMain.o Layout.o 
 	$(CC) $(COPTFLAGS) -o $@ $^
 
-DFSMain:	DFSMain.o Layout.o DFS.o 
+BFSMain:	BFSMain.o Layout.o BFS.o 
 	$(CC) $(COPTFLAGS) -o $@ $^
 
 %.o: %.cc
@@ -19,5 +19,5 @@ clean:
 makeL:
 	make LayoutMain
 
-makeD:
-	make DFSMain
+makeB:
+	make BFSMain
