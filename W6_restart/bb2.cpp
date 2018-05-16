@@ -4,6 +4,7 @@
 
 #include <map>
 #include <stdio.h>
+#include <math.h>
 
 using namespace std;
 void updateTemp(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][COL])
@@ -82,8 +83,9 @@ void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost)
        
       }
     }
-    if(min < INF -1000)//error correction
+    if(min < INF -10000){//error correction
       cost += min;
+    }
     else 
       min = 0;
 
@@ -91,6 +93,7 @@ void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost)
       temp[i][j] -= min;
     }
   }
+ 
   //this might be costly, because COLUMN miss
  // outer = order.begin();
   for(int i = 0; i < COL; i++){
@@ -102,8 +105,9 @@ void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost)
         min = temp[j][i];
     }
     
-    if(min < INF -1000)//error correction
+    if(min < INF -10000){//error correction
       cost += min;
+    }
     else 
       min = 0;
     
@@ -111,15 +115,17 @@ void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost)
       temp[j][i] -= min;
     }
   }
+
 }
 void totalCost(int(&dp)[ROW][COL], int & cost, const int & src, const int & dest)
 {
   cost += dp[src][dest];
+ // printf("back link %i \n",dp[src][dest]);
 }
 
 
 //returns index of the node with least cost
-int findLeastCost(int(&storeCost)[ROW], map<int, int> & order)
+int findLeastCost(int(&storeCost)[ROW], map<int, int> & order, int & cost)
 {
   int m = INF;
   int tempDest = 0;
@@ -133,6 +139,7 @@ int findLeastCost(int(&storeCost)[ROW], map<int, int> & order)
   //  printf("min = %i, dest = %i\n", m, tempDest);
   }
   return tempDest;
+
 }
 
 void print(int(&arr)[ROW][COL], int index)
@@ -167,13 +174,8 @@ int main()
 
   int cost = 0;
   int temp[ROW][COL];
-  int storeCost[ROW];  
+  int storeCost[ROW];
 
-  int src = 0;
-  int dest = 0;
-  int tempCost = cost;
-  int index = 0;
-  
   updateTemp(order, dp, temp);
   red(order, temp, cost);
   
@@ -183,6 +185,11 @@ int main()
   
   updateOrig(order, dp, temp);
 
+  int src = 0;
+  int dest = 0;
+  int tempCost = cost;
+  int index = 0;
+
   nullSrc(order, temp, src, out, index, false);
   //updateTemp(order, dp, temp);
   
@@ -190,35 +197,53 @@ int main()
   print(temp,1);
 
   map<int, int>::iterator outer = order.begin();
-  for(; outer != order.end(); outer++){
-    
-    //reduce along dest
-    nullDest(order, temp, src, outer->second, out);
-    red(order, temp, tempCost);
-    totalCost(dp, tempCost, src, outer->second);
-    
-    printf("\nNull dest for %i", outer->first);
-    print(temp, 2);
-    printf("Cost %i\n", tempCost);
-    
-    storeCost[outer->second] = tempCost;
+  //offset to 2 to reflect the n-th reductions
+  for(int i = 2; i < 6; i++){
+    outer = order.begin();
+    for(; outer != order.end(); outer++){
+      
+      //reduce along dest
+      dest = outer->second;
+      nullDest(order, temp, src, dest, out);
+      red(order, temp, tempCost);
+      //printf("Cost1 %i\n", tempCost);
+      totalCost(dp, tempCost, src, dest);
+      
+      //printf("Cost2 %i\n", tempCost);
+      
+      printf("\nNull dest for %i", outer->first);
+      print(temp, i);
+      printf("Cost %i\n", tempCost);
+      
+      storeCost[dest] = tempCost;
 
-    //reset temp and null src
-    tempCost = cost;
-    updateTemp(order, dp, temp); 
+      //reset temp and null src
+      tempCost = cost;
+      updateTemp(order, dp, temp); 
+      nullSrc(order, temp, src, out, index, true);
+    }
+    
+    dest = findLeastCost(storeCost, order, cost);
+    totalCost(dp, tempCost, src, dest);
+    cost = storeCost[dest];
+    //evaluate the matrix with least cost again and update original matrix
     nullSrc(order, temp, src, out, index, true);
-  }
-  
-  dest = findLeastCost(storeCost, order);
-  //evaluate the matrix with least cost again and update original matrix
-  nullSrc(order, temp, src, out, index, true);
-  nullDest(order, temp, src, dest, out);
-  red(order, temp, cost);
-  updateOrig(order, dp, temp);
-  print(dp, 2);
-  printf("Cost %i\n", cost);
+    nullDest(order, temp, src, dest, out);
+    red(order, temp, cost);
+    updateOrig(order, dp, temp);
+    print(dp, i);
+    printf("Cost %i\n", cost);
 
-  src = dest;
-  nullSrc(order, temp, src, out, index, false);
-  print(temp,3);
+    src = dest;
+    nullSrc(order, temp, src, out, index, false);
+    //print(temp,i);
+    //printf("Cost %i\n", cost);
+
+    map<int,int>::iterator it = order.begin();
+    for(; it!= order.end(); it++){
+      printf("left%i over %i\n", i,it->second);
+    }
+  }
+  for(int i = 0; i < ROW; i++)
+    printf("order %i\n", out[i]);
 }
