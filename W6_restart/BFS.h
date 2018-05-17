@@ -3,6 +3,8 @@
 
 #include "Layout.h"
 #include <stack>
+#include <omp.h>
+
 #define ADJ_SIZE 4
 
 #define MAX_ROW 103//183 //91*2 + 1
@@ -68,7 +70,7 @@ class BFS : public Layout
     virtual void processSingleOrder(int);
     //accessor
     int getTotalDist();
-    unsigned int hopOnly(position cur, position dest);
-    void preProcess(bool readFromFile, string file)
+    void hopOnly(position cur, position dest, bool clear);
+    void preProcess(bool readFromFile, string file);
 };
 #endif

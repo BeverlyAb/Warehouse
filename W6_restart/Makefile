@@ -1,6 +1,7 @@
-CC = g++
-CFLAGS = -std=c++99
-COPTFLAGS = -O3 -g -pg -Wall  #-fopenmp
+CC = g++-7 -fopenmp -lc++ #MAC
+#CC = g++ -fopenmp #server 
+CFLAGS = #-std=c++99
+COPTFLAGS = -O3 -g -pg -Wall 
 LDFLAGS =
 
 

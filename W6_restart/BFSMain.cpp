@@ -1,6 +1,7 @@
 #include "BFS.h"
 #include <string>
 #include <iostream>
+#include <ctime>
 
 int main(int argc, char *argv[])
 {
@@ -29,8 +30,16 @@ int main(int argc, char *argv[])
   cin >> act;
   
   //should be after readFile
+  clock_t startTime, endTime;
+  
   test.makeRefDP();
-  test.preProcess();
+  
+  startTime = clock();
+  test.preProcess(false, "fake");
+  endTime =  clock();
+
+  int t = difftime(endTime, startTime);
+	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
 
   /*if(atoi(act.c_str()) == NAME_ITEM)
     test.readFile(NAME_ITEM, infile); //infile is dummy

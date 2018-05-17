@@ -1,4 +1,6 @@
 #include "BFS.h"
+#define THREADS 1
+
 void BFS::nextPos(position cur, position dest)
 {
   bool found = false;
@@ -205,15 +207,18 @@ position BFS::getFinalDest()
   return finalDest;
 }
 
-unsigned int BFS::hopOnly(position cur, position dest)
+void BFS::hopOnly(position cur, position dest, bool clear)
 {
   bool found = false;
   unsigned int hops = 0;
   unsigned int prevHop = 0;
+	
+	int srcID = dpRef.find(cur)->second;
+	int destID = dpRef.find(dest)->second;
 
-	if(cur == dest)
-		return INF;
-
+	if(cur == dest){
+		dp[srcID][destID] = INF;
+	}
   //cur, prev with hop
 	moveSpace prev = {cur,hops++};
 
@@ -236,8 +241,10 @@ unsigned int BFS::hopOnly(position cur, position dest)
 			finalDest = next;
 		//	printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
 			prevHop = path.find(next)->second.hop;
-			path.clear();
-			return prevHop;
+			dp[srcID][destID] = prevHop;
+
+			if(clear)
+				path.clear();
 		}
 		//create new list of neighbors
     validNeighbors(next);
@@ -260,7 +267,6 @@ unsigned int BFS::hopOnly(position cur, position dest)
 			neighbors.pop();
     }
   }
-	return INF;
 }
 
 //maps positions with index
@@ -294,25 +300,27 @@ void BFS::makeRefDP()
 
 void BFS::preProcess(bool readFromFile, string file)
 {
- int i = 0; 	
+	int i = 0; 	
+	bool clear = false;
+	map<position, int> ::iterator itClear = dpRef.end();
+	itClear--;
 	map<position, int> ::iterator it3 = dpRef.begin();
+
+
 	for(; it3 != dpRef.end(); it3++){
 		int j = 0;
 		map<position, int> ::iterator it4 = dpRef.begin();
-		
-		for(; it4 != dpRef.end(); it4++){
-			//nullify path if start = end
-			if(i == j)
-				dp[i][j++] = INF;
-			else{
-				dp[i][j++] = hopOnly(it3->first, it4->first);
-			//	printf("start (%i,%i) dest (%i,%i)\n", it3->first.x, it3->first.y, it4->first.x, it4->first.y);
-			//	printf("here %i\n", hopOnly(it3->first, it4->first));
+	
+		for(; it4 != dpRef.end(); it4++){	
+				if(it4 == itClear)
+					clear = true;
+				hopOnly(it3->first, it4->first, clear);
+				clear = false;
+				printf("start (%i,%i) dest (%i,%i)\n", it3->first.x, it3->first.y, it4->first.x, it4->first.y);
+			//	printf("here %i\n", hopOnly(it3->first, it4->first,clear));
 			}
 		}
-		i++;
-	}
-
+	i++;
 
 	i = 0; 
 	int n = shelf.size();
