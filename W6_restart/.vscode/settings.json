@@ -20,6 +20,9 @@
     "limits": "cpp",
     "ratio": "cpp",
     "memory": "cpp",
-    "utility": "cpp"
+    "utility": "cpp",
+    "atomic": "cpp",
+    "system_error": "cpp",
+    "exception": "cpp"
   }
 }

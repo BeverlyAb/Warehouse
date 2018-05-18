@@ -70,7 +70,7 @@ class BFS : public Layout
     virtual void processSingleOrder(int);
     //accessor
     int getTotalDist();
-    void hopOnly(position cur, position dest, bool clear);
+    void hopOnly(position cur, int newRowLeft);
     void preProcess(bool readFromFile, string file);
 };
 #endif

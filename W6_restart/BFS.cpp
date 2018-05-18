@@ -207,18 +207,15 @@ position BFS::getFinalDest()
   return finalDest;
 }
 
-void BFS::hopOnly(position cur, position dest, bool clear)
+void BFS::hopOnly(position cur, int newRowLeft)
 {
   bool found = false;
   unsigned int hops = 0;
   unsigned int prevHop = 0;
 	
+	int terminate = 0;
 	int srcID = dpRef.find(cur)->second;
-	int destID = dpRef.find(dest)->second;
 
-	if(cur == dest){
-		dp[srcID][destID] = INF;
-	}
   //cur, prev with hop
 	moveSpace prev = {cur,hops++};
 
@@ -228,23 +225,34 @@ void BFS::hopOnly(position cur, position dest, bool clear)
 	path.insert(pair<position,moveSpace>(prev.loc,prev));
 	moveSpace filler = {prev.loc, INF};
 
-  while(!active.empty()) {
-
+  while(!active.empty() && terminate < newRowLeft) {
 		position next = active.front();
-		
-		if(dest == next)
+
+		if(dpRef.find(next) != dpRef.end())
 			found = true;
 		
 		active.pop();
 
 		if(found){
 			finalDest = next;
+			
 		//	printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
 			prevHop = path.find(next)->second.hop;
-			dp[srcID][destID] = prevHop;
+			int destID = dpRef.find(finalDest)->second;
+			
+			if(dp[srcID][destID] == 0){
+				if(cur == next){
+					dp[srcID][srcID] = INF;
+					terminate++;
+				}
+				else {			
+					dp[srcID][destID] = prevHop;
+					dp[destID][srcID] = prevHop; //get compliment
+					terminate++;
+				}
+			}
 
-			if(clear)
-				path.clear();
+			found = false;
 		}
 		//create new list of neighbors
     validNeighbors(next);
@@ -267,6 +275,8 @@ void BFS::hopOnly(position cur, position dest, bool clear)
 			neighbors.pop();
     }
   }
+	path.clear();
+	return;
 }
 
 //maps positions with index
@@ -304,26 +314,31 @@ void BFS::preProcess(bool readFromFile, string file)
 	bool clear = false;
 	map<position, int> ::iterator itClear = dpRef.end();
 	itClear--;
+	itClear--;//clear path after processing last item in row
+
 	map<position, int> ::iterator it3 = dpRef.begin();
 
-
+	int n = dpRef.size();
+	position cur;
 	for(; it3 != dpRef.end(); it3++){
 		int j = 0;
-		map<position, int> ::iterator it4 = dpRef.begin();
-	
-		for(; it4 != dpRef.end(); it4++){	
-				if(it4 == itClear)
-					clear = true;
-				hopOnly(it3->first, it4->first, clear);
+		cur = it3->first;
+	//	map<position, int> ::iterator it4 = dpRef.begin();
+
+	//	for(; it4 != dpRef.end(); it4++){	
+	//		dest = it4->first;
+			if(it3 == itClear)
 				clear = false;
-				printf("start (%i,%i) dest (%i,%i)\n", it3->first.x, it3->first.y, it4->first.x, it4->first.y);
-			//	printf("here %i\n", hopOnly(it3->first, it4->first,clear));
+			
+			hopOnly(cur, n--);
+			clear = false;
+			//printf("start (%i,%i) dest (%i,%i)\n", cur.x, cur.y, dest.x, dest.y);
+		//	printf("here %i\n", hopOnly(it3->first, it4->first,clear));
 			}
-		}
-	i++;
+	//	}
 
 	i = 0; 
-	int n = shelf.size();
+	n = shelf.size();
 	for(; i < n; i++){
 		for(int k = 0; k < n; k++){
 			printf("%i, ", dp[i][k]);
