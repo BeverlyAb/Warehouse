@@ -2,10 +2,10 @@
 #define COL 5
 #define INF 999999
 
-#include <map>
 #include <stdio.h>
 #include <math.h>
-
+#include <ctime>
+#include <map>
 
 using namespace std;
 void updateTemp(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][COL])
@@ -152,6 +152,8 @@ void print(int(&arr)[ROW][COL], int index)
     printf("\n");
   }
 }
+
+
 int main()
 {
   map<int, int> order;//ID, index
@@ -170,7 +172,20 @@ int main()
     {19, 6, 18, INF, 3},
     {16, 4, 7, 16, INF}
   };
+ /*{{INF,	3,	5,	9,	11,	13,	15,	17,	19,	21},
+{3,	INF,	2,	6,	8,	10,	12,	14,	16,	18},
+{5,	2,	INF,	4,	6,	8,	10,	12,	14,	16},
+{9,	6,	4,	INF,	2,	4,	6,	8,	10,	12},
+{11,	8,	6,	2,	INF,	2,	4,	6,	8,	10},
+{13,	10,	8,	4,	2,	INF,	2,	4,	6,	8},
+{15,	12,	10,	6,	4,	2,	INF,	2,	4,	6},
+{17,	14,	12,	8,	6,	4,	2,	INF,	2,	4},
+{19,	16,	14,	10,	8,	6,	4,	2,	INF,	2},
+{21,	18,	16,	12,	10,	8,	6,	4,	2,	INF}};*/
 
+
+  clock_t startTime, endTime;
+  startTime = clock();
   printf("\nOriginal");
   print(dp, 0);
 
@@ -200,7 +215,8 @@ int main()
 
   map<int, int>::iterator outer = order.begin();
   //offset to 2 to reflect the n-th reductions
-  for(int i = 2; i < 6; i++){
+
+  for(int i = 2; i < 1 + ROW; i++){
     outer = order.begin();
     for(; outer != order.end(); outer++){
       
@@ -208,7 +224,7 @@ int main()
       dest = outer->second;
       nullDest(order, temp, src, dest, out);
       red(order, temp, tempCost);
-      //printf("Cost1 %i\n", tempCost);
+      printf("Cost1 %i\n", tempCost);
       totalCost(dp, tempCost, src, dest);
       
       //printf("Cost2 %i\n", tempCost);
@@ -238,8 +254,8 @@ int main()
 
     src = dest;
     nullSrc(order, temp, src, out, index, false);
-    //print(temp,i);
-    //printf("Cost %i\n", cost);
+    print(temp,i);
+    printf("Cost %i\n", cost);
 
     map<int,int>::iterator it = order.begin();
     for(; it!= order.end(); it++){
@@ -248,4 +264,10 @@ int main()
   }
   for(int i = 0; i < ROW; i++)
     printf("order %i\n", out[i]);
+
+    endTime =  clock();
+
+  int t = difftime(endTime, startTime);
+	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
+
 }

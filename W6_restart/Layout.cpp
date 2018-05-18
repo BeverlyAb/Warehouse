@@ -86,15 +86,15 @@ void Layout::stockSingleItem(unsigned int ID, unsigned int xCoord, unsigned int 
   position itemLoc = {xCoord, yCoord};
   stock.insert(pair<unsigned int, position>(ID,itemLoc));
 
-   //is shelf already in use?
+  /* //is shelf already in use?
   if(shelf.find(itemLoc) != shelf.end()){
 		
     unsigned int counter = shelf.find(itemLoc)->second + 1;
     map<position,unsigned int>::iterator it = shelf.find(itemLoc);
 		it->second = counter;
   }
-	else
-    shelf.insert(pair<position, unsigned int>(itemLoc, 1));
+	else*/
+    shelf.insert(pair<position, bool>(itemLoc, false));
 }
 void Layout::getNameItems()
 {
@@ -170,9 +170,17 @@ void Layout::printStock()
     printf("%i\n", it->first);
 
   printf("size %lu\n", stock.size()); */
-  map<position, unsigned int> ::iterator it = shelf.begin();
+  map<position, bool> ::iterator it = shelf.begin();
   for(; it != shelf.end(); it++)
     printf("shelf(%i, %i)\n", it->first.x, it->first.y);
 
   printf("size %lu\n", shelf.size());
 }
+
+  void Layout::resetShelf()
+  {
+    map<position, bool>::iterator it = shelf.begin();
+    for(; it != shelf.end(); it++)
+      it->second = false;
+
+  }

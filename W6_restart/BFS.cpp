@@ -131,6 +131,7 @@ void BFS::hopOnlyNeighbors(position cur)
 
 //	#pragma omp parallel for schedule(static) num_threads(THREADS)
   for(int i = 0; i < ADJ_SIZE; i++){
+		if(shelf.find(arr[i])->second == false || shelf.find(arr[i]) == shelf.end())
     	neighbors.push(arr[i]);
     }
 }
@@ -257,7 +258,8 @@ void BFS::hopOnly(position cur, int newRowLeft)
 		//	printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
 			prevHop = path.find(next)->second.hop;
 			int destID = dpRef.find(finalDest)->second;
-			
+			//visited shelf already, treat it as obstruction
+			shelf.find(next)->second = true; 
 			if(dp[srcID][destID] == 0){
 				if(cur == next){
 					dp[srcID][srcID] = INF;
@@ -301,7 +303,7 @@ void BFS::hopOnly(position cur, int newRowLeft)
 void BFS::makeRefDP()
 {
 	int count = 0;
-	map<position, unsigned int> ::iterator it2 = shelf.begin();
+	map<position, bool> ::iterator it2 = shelf.begin();
 	//insert start
 	dpRef.insert(pair<position, int>(start,count++));
 
@@ -327,9 +329,11 @@ void BFS::preProcess()
 	int n = dpRef.size();
 	position cur;
 
+	//#pragma omp parallel for schedule(static) num_threads(THREADS)
 	for(; it3 != dpRef.end(); it3++){
 		cur = it3->first;
-			hopOnly(cur, n--);
+		hopOnly(cur, n--);
+		resetShelf(); // turn all to unvisited
 			//printf("start (%i,%i) dest (%i,%i)\n", cur.x, cur.y, dest.x, dest.y);
 		//	printf("here %i\n", hopOnly(it3->first, it4->first,clear));
 	}

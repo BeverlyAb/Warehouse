@@ -36,7 +36,7 @@ class Layout
     string infile;
     unsigned int width, height;
     map<unsigned int, position> stock; //reads via ID
-    map<position, unsigned int> shelf; //reads via position and # of items in shelf
+    map<position, bool> shelf; //reads via position and # of items in shelf
   	
     position start,end;
   	queue<unsigned int> orgItems;
@@ -53,5 +53,6 @@ class Layout
     void getListItems(string, int);
     void processSingleOrder(int);
     void printStock();
+    void resetShelf();
 };
 #endif
