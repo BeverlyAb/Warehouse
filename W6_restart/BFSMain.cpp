@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
   test.makeRefDP();
   
   startTime = clock();
-  test.preProcess(false, "fake");
+  test.preProcess();
   endTime =  clock();
 
   int t = difftime(endTime, startTime);

@@ -1,5 +1,5 @@
 #include "BFS.h"
-#define THREADS 1
+#define THREADS 4
 
 void BFS::nextPos(position cur, position dest)
 {
@@ -114,6 +114,24 @@ void BFS::validNeighbors(position cur)
             neighbors.push(arr[i]);
 		//	printf("neigh(%i,%i)\n",arr[i].x,arr[i].y);
 				}
+    }
+}
+
+void BFS::hopOnlyNeighbors(position cur)
+{
+    position right = {cur.x + 1, cur.y};
+    position left = {cur.x - 1, cur.y};
+    position up = {cur.x, cur.y + 1};
+    position down = {cur.x, cur.y - 1};
+
+    position arr[ADJ_SIZE] = {right, left, up, down};
+	//clear just in case
+	for(int i = 0; i < neighbors.size(); i++)
+		neighbors.pop();
+
+//	#pragma omp parallel for schedule(static) num_threads(THREADS)
+  for(int i = 0; i < ADJ_SIZE; i++){
+    	neighbors.push(arr[i]);
     }
 }
 
@@ -255,7 +273,7 @@ void BFS::hopOnly(position cur, int newRowLeft)
 			found = false;
 		}
 		//create new list of neighbors
-    validNeighbors(next);
+    hopOnlyNeighbors(next);
     int n = neighbors.size();
     for(int i = 0; i < n; i++){
       position temp = neighbors.front();
@@ -288,58 +306,36 @@ void BFS::makeRefDP()
 	dpRef.insert(pair<position, int>(start,count++));
 
 	for(; it2 != shelf.end(); it2++){
-		position left = {it2->first.x - 1, it2->first.y};
-		position right = {it2->first.x + 1, it2->first.y};
-
-		//update ref library
-		if(dpRef.find(left) == dpRef.end() && left.x > 0 && shelf.find(left) == shelf.end()){
-			dpRef.insert(pair<position, int>(left,count++));
+		position cur = it2->first;
+		
+		if(dpRef.find(cur) == dpRef.end()){
+			dpRef.insert(pair<position, int>(cur,count++));
 		}
-
-		if(dpRef.find(right) == dpRef.end() && right.x < width && shelf.find(right) == shelf.end()){
-			dpRef.insert(pair<position, int>(right,count++));
-		}
-	}
-
-	map<position, int> ::iterator it3 = dpRef.begin();
+	} 
+	
+	/*map<position, int> ::iterator it3 = dpRef.begin();
 	for(; it3 != dpRef.end(); it3++){
 //		printf("(%i,%i)\n", it3->first.x, it3->first.y);
-	}
+	}*/
 }
 
 
-void BFS::preProcess(bool readFromFile, string file)
+void BFS::preProcess()
 {
-	int i = 0; 	
-	bool clear = false;
-	map<position, int> ::iterator itClear = dpRef.end();
-	itClear--;
-	itClear--;//clear path after processing last item in row
-
 	map<position, int> ::iterator it3 = dpRef.begin();
 
 	int n = dpRef.size();
 	position cur;
-	for(; it3 != dpRef.end(); it3++){
-		int j = 0;
-		cur = it3->first;
-	//	map<position, int> ::iterator it4 = dpRef.begin();
 
-	//	for(; it4 != dpRef.end(); it4++){	
-	//		dest = it4->first;
-			if(it3 == itClear)
-				clear = false;
-			
+	for(; it3 != dpRef.end(); it3++){
+		cur = it3->first;
 			hopOnly(cur, n--);
-			clear = false;
 			//printf("start (%i,%i) dest (%i,%i)\n", cur.x, cur.y, dest.x, dest.y);
 		//	printf("here %i\n", hopOnly(it3->first, it4->first,clear));
-			}
-	//	}
+	}
 
-	i = 0; 
 	n = shelf.size();
-	for(; i < n; i++){
+	for(int i = 0; i < n; i++){
 		for(int k = 0; k < n; k++){
 			printf("%i, ", dp[i][k]);
 		}

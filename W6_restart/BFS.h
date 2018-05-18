@@ -71,6 +71,7 @@ class BFS : public Layout
     //accessor
     int getTotalDist();
     void hopOnly(position cur, int newRowLeft);
-    void preProcess(bool readFromFile, string file);
+    void hopOnlyNeighbors(position cur);
+    void preProcess();
 };
 #endif
