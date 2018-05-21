@@ -482,10 +482,12 @@ void BFS::setOpt(queue<unsigned int> in)
 		orgItems.pop();
 
 	n = in.size();
+	
 	for(int i = 0; i < n; i ++){
 		orgItems.push(in.front());
 		in.pop();
 	}
+	return;
 }
 int BFS::getItemSize()
 {

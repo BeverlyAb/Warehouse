@@ -356,8 +356,8 @@ int main(int argc, char *argv[])
       printf("left%i over %i\n", i,it->second);
     }
   }
-  for(int i = 0; i < myROW; i++)
-    printf("order %i\n", out[i]);
+ // for(int i = 0; i < myROW; i++)
+  //  printf("order %i\n", out[i]);
 
   unsigned int intermediate[myROW];
   map<  unsigned int, int> intOrder;
@@ -380,8 +380,9 @@ int main(int argc, char *argv[])
 
   sort(intermediate,myROW + intermediate);
   int table[myROW-1];
- // for(int i = 0; i < myROW; i++)
- //    printf("sort %i \n", intermediate[i]);
+  //for(int i = 0; i < myROW; i++)
+  //   printf("sort %i \n", intermediate[i]);
+
 
   for(int i = 0; i < myROW; i++){
     it4 = intOrder.begin();
@@ -399,11 +400,13 @@ int main(int argc, char *argv[])
   for(int i = 0; i < myROW; i++){
     finalOrder.push(table[out[i]]);
 
-    printf("finalOrder %i out %i\n ", finalOrder.front(), out[i]);
-    finalOrder.pop();
+    printf("finalOrder %i out %i\n ", table[out[i]], out[i]);
+    //finalOrder.pop();
   } 
+  finalOrder.pop(); //remove start
 
-
+  test.setOpt(finalOrder);
+  test.getPath();
     endTime =  clock();
 
   int t = difftime(endTime, startTime);
