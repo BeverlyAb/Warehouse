@@ -204,6 +204,9 @@ int main(int argc, char *argv[])
     return 2;
   }
   test.getPath();
+  test.makeRefDP();
+  test.preProcess();
+ // test.makeSubDP();
 }
 
 /*-------------------

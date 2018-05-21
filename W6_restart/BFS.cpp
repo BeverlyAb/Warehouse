@@ -188,15 +188,16 @@ position BFS::getPos(unsigned int ID)
 
 void BFS::getPath()
 {
-if(!isValid(start)) {
+	queue<unsigned int> temp = orgItems;
+	if(!isValid(start)) {
 		printf("Starting position is either out of bounds or starts on a shelf.\n");
 		return;
 	}else {
 		printf("---------------------------------------------------------------------\n");
 		printf("Order\t\t Distance\t Weight\t\t\t\t Effort\t\t\t  Path\n");
-		if(!orgItems.empty()){
+		if(!temp.empty()){
 
-			unsigned int tempID = orgItems.front();
+			unsigned int tempID = temp.front();
 			int totalDist = 0;
 			double totalEffort = 0;
 			position next = {0,0};
@@ -205,19 +206,19 @@ if(!isValid(start)) {
 			nextPos(start, getPos(tempID), tempID);
 			totalDist = getTotalDist();
 			totalEffort = getTotalEffort();
-			orgItems.pop();
+			temp.pop();
 
 			next = getFinalDest();
 		
-			int n = orgItems.size();
+			int n = temp.size();
 			for(int i = 0; i < n ; i++){
-				tempID = orgItems.front();
+				tempID = temp.front();
 				printf("%i\t\t",tempID);
 				nextPos(next, getPos(tempID), tempID);
 				totalDist +=  getTotalDist();
 				totalEffort +=  getTotalEffort();
 				
-				orgItems.pop();
+				temp.pop();
 				next = getFinalDest();
 			}
 			printf("end\t\t\t");
@@ -285,7 +286,7 @@ void BFS::hopOnly(position cur, int newRowLeft)
 		if(found){
 			finalDest = next;
 			
-		//	printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
+			printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
 			prevHop = path.find(next)->second.hop;
 			int destID = dpRef.find(finalDest)->second;
 			//visited shelf already, treat it as obstruction
@@ -348,10 +349,10 @@ void BFS::makeRefDP()
 	//insert end
 	dpRef.insert(pair<position, int>(end,count));
 	
-	/*map<position, int> ::iterator it3 = dpRef.begin();
+/*	map<position, int> ::iterator it3 = dpRef.begin();
 	for(; it3 != dpRef.end(); it3++){
-//		printf("(%i,%i)\n", it3->first.x, it3->first.y);
-	}*/
+		printf("(%i,%i)\n", it3->first.x, it3->first.y);
+	} */
 }
 
 
@@ -367,7 +368,7 @@ void BFS::preProcess()
 		cur = it3->first;
 		hopOnly(cur, n--);
 		resetShelf(); // turn all to unvisited
-			//printf("start (%i,%i) dest (%i,%i)\n", cur.x, cur.y, dest.x, dest.y);
+		//	printf("start (%i,%i) dest (%i,%i)\n", cur.x, cur.y, dest.x, dest.y);
 		//	printf("here %i\n", hopOnly(it3->first, it4->first,clear));
 	}
 
@@ -377,6 +378,29 @@ void BFS::preProcess()
 			printf("%i, ", dp[i][k]);
 		}
 		printf("\n");
+	} 
+}
+
+void BFS::makeSubDP()
+{
+	queue<unsigned int> temp = orgItems;
+	int n = temp.size();
+	int j = 0; int k = 0;
+
+
+	for(int i = 0; i < n; i ++){
+		
+		position src = getPos(temp.front());
+		temp.pop();
+		int srcIndx = dpRef.find(src)->second;
+
+		position dest = getPos(temp.front());
+		int destIndx = dpRef.find(dest)->second;
+
+		int dist = dp[srcIndx][destIndx];
+		printf("dist %i\n", dist);
+		
+		
 	}
 }
 

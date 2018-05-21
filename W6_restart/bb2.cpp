@@ -282,6 +282,7 @@ int main()
     int nodeVisited[ROW];  
     updateVisited(nodeVisited, parent.visited);
     int nodeDepth += parent.depth;
+    
   }
 
 

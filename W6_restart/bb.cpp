@@ -5,6 +5,7 @@ BB::BB(map<int, int> totalNodes,  map<int, int> unvisitedNodes, int dpMat[ROW][C
   this->totalNodes = totalNodes;
   this->unvisitedNodes = unvisitedNodes;
   updateRight(order, dpMat, this-> dpMat);
+  
 }
 
 void BB::updateRight(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][COL])

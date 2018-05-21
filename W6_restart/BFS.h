@@ -7,8 +7,8 @@
 
 #define ADJ_SIZE 4
 
-#define MAX_ROW 103//183 //91*2 + 1
-#define MAX_COL 103 //count based on shelf from t2.txt
+#define MAX_ROW 91//183 //91*2 + 1
+#define MAX_COL 91 //count based on shelf from t2.txt
 #define INF 99999999
 
 typedef struct moveSpace moveSpace;
@@ -30,8 +30,9 @@ class BFS : public Layout
     double totalEffort;
     position finalDest;
    
-    map<position, int> dpRef; //position, ID
-    int dp[MAX_ROW][MAX_COL]; //hops, where indices are ID
+    map<position, int> dpRef; //position, Index to dp
+    int dp[MAX_ROW][MAX_COL]; //hops
+    int subDP[MAX_ROW][MAX_COL];
 
   public:
     BFS() : Layout()
@@ -42,6 +43,7 @@ class BFS : public Layout
       for(int i = 0; i < MAX_ROW; i++){
         for(int j = 0; j < MAX_COL; j++){
           dp[i][j] = 0;
+          subDP[i][j] = 0;
         }
       }
     };
@@ -56,6 +58,7 @@ class BFS : public Layout
       for(int i = 0; i < MAX_ROW; i++){
         for(int j = 0; j < MAX_COL; j++){
           dp[i][j] = 0;
+          subDP[i][j] = 0;
         }
       }
     };
@@ -80,5 +83,6 @@ class BFS : public Layout
     void hopOnlyNeighbors(position cur);
     void preProcess();
     void readWeight(string in);
+    void makeSubDP();
 };
 #endif
