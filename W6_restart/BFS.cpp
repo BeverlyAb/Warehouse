@@ -1,11 +1,20 @@
 #include "BFS.h"
 #define THREADS 4
 
-void BFS::nextPos(position cur, position dest)
+void BFS::nextPos(position cur, position dest, unsigned int ID)
 {
   bool found = false;
   unsigned int hops = 0;
   unsigned int prevHop = 0;
+
+	double weight = 0;
+	
+	if(weights.find(ID) != weights.end()){
+		weight = weights.find(ID)->second;
+	}
+	
+	double prevEffort = 0;
+	double effort = 0;
 
   if(isValidStop(dest,cur)){
     moveSpace prev = {cur,hops};
@@ -16,7 +25,7 @@ void BFS::nextPos(position cur, position dest)
   }
 
   //cur, prev with hop
-	moveSpace prev = {cur,hops++};
+	moveSpace prev = {cur,hops++, weight, effort};
 
   queue<position> active;
   map<position,moveSpace> onlyFound;
@@ -35,8 +44,11 @@ void BFS::nextPos(position cur, position dest)
 	//		printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
 
 			prevHop = path.find(next)->second.hop;
+			prevEffort = path.find(next)->second.effort;
+
 			prev.loc = next;
 			prev.hop = hops + prevHop;
+			prev.effort = (weight * hops);
 			path.insert(pair<position,moveSpace>(next,prev));
 		}
 		//create new list of neighbors
@@ -48,10 +60,12 @@ void BFS::nextPos(position cur, position dest)
       //add to path only if unvisited
 			if(path.find(temp) == path.end()){
 				prevHop = path.find(next)->second.hop;
+				prevEffort = path.find(next)->second.effort;
         if(prevHop > 30000) //debug issue
           prevHop = 0;
 				prev.loc = next;
 				prev.hop = hops + prevHop;
+				prev.effort = (weight * (prevHop+1));
         //printf("hop = %i, prev(%i,%i)\n",prevHop,prev.loc.x,prev.loc.y);
 				path.insert(pair<position,moveSpace>(temp,prev));
 				active.push(temp);
@@ -139,6 +153,10 @@ void BFS::hopOnlyNeighbors(position cur)
 void BFS::printSinglePath(position start, position end)
 {
 	unsigned int hop = path.find(end)->second.hop;
+	double weight = path.find(end)->second.weight;
+	double effort = path.find(end)->second.effort;
+
+
 	totalDist = 0;
 
   position reverse[hop];
@@ -153,7 +171,8 @@ void BFS::printSinglePath(position start, position end)
 	}
 	
 	totalDist += hop;
-  printf(" %i\t\t",hop);
+	printf(" %i\t\t\t\t %f\t\t\t %f\t\t",hop, weight, effort);
+
 	for(unsigned int i = 0; i <= hop; i++)
 		printf("(%i,%i)\t", reverse[i].x, reverse[i].y);
 
@@ -172,7 +191,7 @@ if(!isValid(start)) {
 		return;
 	}else {
 		printf("---------------------------------------------------------------------\n");
-		printf("Order\t\t Distance\t Path\n");
+		printf("Order\t\t Distance\t Weight\t\t\t\t Effort\t\t\t  Path\n");
 		if(!orgItems.empty()){
 
 			unsigned int tempID = orgItems.front();
@@ -180,7 +199,7 @@ if(!isValid(start)) {
 			position next = {0,0};
 			
 			printf("%i\t\t",tempID);
-			nextPos(start, getPos(tempID));
+			nextPos(start, getPos(tempID), tempID);
 			totalDist = getTotalDist();
 			orgItems.pop();
 
@@ -190,14 +209,14 @@ if(!isValid(start)) {
 			for(int i = 0; i < n ; i++){
 				tempID = orgItems.front();
 				printf("%i\t\t",tempID);
-				nextPos(next, getPos(tempID));
+				nextPos(next, getPos(tempID), tempID);
 				totalDist +=  getTotalDist();
 				
 				orgItems.pop();
 				next = getFinalDest();
 			}
 			printf("end\t\t\t");
-			nextPos(next,end);
+			nextPos(next,end, tempID);
 			totalDist += getTotalDist();
 			printf("Total Distance = %i\n",totalDist);
 			//last move, otherwise it ends at a neighbor of end
@@ -364,7 +383,9 @@ void BFS::readWeight(string in)
     while(myFile.good() && !ID.empty()){
 		  getline(myFile, weight,'\n');
 
-		  weights.insert(pair<int, int>(atoi(ID.c_str()), atoi(weight.c_str()) ));
+			string tens = weight.substr(0, weight.find("."));
+	
+		  weights.insert(pair<unsigned int, double>(atoi(ID.c_str()), stod(weight) ));
 			getline(myFile,ID,',');
 		}
 		    
@@ -375,9 +396,9 @@ void BFS::readWeight(string in)
     return;
   }
 
-	map<int, int>::iterator it = weights.find(2595980);
+	/*map<unsigned int, double>::iterator it = weights.begin();
 
-	//for(; it != weights.end(); it++){
-		printf("ID %i weight %i\n",it->first, it->second);
-//	}
+	for(; it != weights.end(); it++){
+		printf("ID %i weight %f\n",it->first, it->second);
+	} */
 }

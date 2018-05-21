@@ -16,7 +16,8 @@ struct moveSpace
 {
   position loc;
   unsigned int hop;
-  unsigned int weight;
+  double weight;
+  double effort;
 };
 
 class BFS : public Layout
@@ -24,7 +25,7 @@ class BFS : public Layout
   private:
     queue <position> neighbors;
 	  map<position,moveSpace> path;
-    map<int, int> weights;
+    map<unsigned int,double> weights;
     int totalDist;
     position finalDest;
    
@@ -56,7 +57,7 @@ class BFS : public Layout
       }
     };
     
-    void nextPos(position cur, position dest);
+    void nextPos(position cur, position dest, unsigned int);
     bool isValidStop(position ref, position stop);
     bool isValid(position cur);
     void validNeighbors(position next);

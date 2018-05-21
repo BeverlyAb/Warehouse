@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
     printf("Invalid choice. Ending program\n");
     return 2;
   }
-
+  test.getPath();
 }
 
 /*-------------------

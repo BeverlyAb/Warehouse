@@ -48,6 +48,7 @@ class BB
     int initRed[ROW][COL];
 
   public:
+    BB(map<int, int> totalNodes,  map<int, int> unvisitedNodes, int dpMat[ROW][COL]);
     void updateRight(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][COL]);
     void nullSrc(map<int, int> & order, int (& dp)[ROW][COL], const int & src, int (&out)[ROW], int & index, bool reset);
     void nullDest(map<int, int> & order, int (& temp)[ROW][COL], const int & src, const int & dest, const int (&out) [ROW]);
