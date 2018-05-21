@@ -391,9 +391,11 @@ void BFS::preProcess()
 int ** BFS::makeSubDP()
 {
 	queue<unsigned int> temp = orgItems;
-	int n = temp.size();
+	int n = temp.size() + 1;
+//	printf("arr size %i\n", n);
 	int arr[n];
 
+	arr[0] = dpRef.find(start)->second;
 	for(int i = 0; i < n; i++){
 		arr[i] = temp.front();
 		//printf("ID %i ", arr[i]);
@@ -485,3 +487,18 @@ void BFS::setOpt(queue<unsigned int> in)
 		in.pop();
 	}
 }
+int BFS::getItemSize()
+{
+	return orgItems.size();
+}
+queue<unsigned int> BFS::getItems()
+{
+	return orgItems;
+}
+/*int BFS::getDPRef(position want)
+{
+	if(dpRef.find(want) != dpRef.end())
+		return dpRef.find(want)->second;
+	else 
+		return -1;
+}*/

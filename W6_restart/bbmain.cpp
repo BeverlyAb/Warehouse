@@ -1,5 +1,6 @@
-//#define ROW 5
-//#define COL 5
+#define myROW 6
+#define myCOL 6
+//order 3, myRow 6
 //#define INF 999999
 
 #include "Layout.h"
@@ -11,11 +12,11 @@
 #include <iostream>
 
 using namespace std;
-void updateTemp(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][COL])
+void updateTemp(map<int, int> & order, int (& dp)[myROW][myCOL], int (& temp)[myROW][myCOL])
 {
  // printf("\ntemp\n");
-  for(int i = 0; i < ROW; i++){
-    for(int j = 0; j < COL; j++){
+  for(int i = 0; i <myROW; i++){
+    for(int j = 0; j <myCOL; j++){
       temp[i][j] = dp[i][j];
    //   printf("%i ", dp[i][j]);
     }
@@ -23,11 +24,11 @@ void updateTemp(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][C
   }
 }
 
-void updateOrig(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][COL])
+void updateOrig(map<int, int> & order, int (& dp)[myROW][myCOL], int (& temp)[myROW][myCOL])
 {
  //  printf("\norig\n");
-  for(int i = 0; i < ROW; i++){
-    for(int j = 0; j < COL; j++){
+  for(int i = 0; i <myROW; i++){
+    for(int j = 0; j <myCOL; j++){
       dp[i][j] = temp[i][j];
    //   printf("%i ", dp[i][j]);
     }
@@ -35,27 +36,45 @@ void updateOrig(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][C
   }
 }
 
-void nullSrc(map<int, int> & order, int (& dp)[ROW][COL], const int & src, int (&out)[ROW], int & index, bool reset)
+void nullSrc(map<int, int> & order, int (& dp)[myROW][myCOL], const int & src, int (&out)[myROW], int & index, bool reset)
 { 
+
   map<int, int>::iterator inner = order.begin();
-  //null row of source
+  //nullmyROW of source
   inner = order.begin();
+
   for(; inner != order.end(); inner++){
     dp[src][inner->second] = INF;
   }
-
+  
+  if(!reset){
+  printf("Before\n");
+  for(inner = order.begin(); inner != order.end(); inner++)
+    printf("%i ", inner->first);
+  printf("\n");
+  }
+  
   //must update values, not just resetting the new null
   if(!reset){ 
-    inner = order.find(src);
-    out[index++] = inner->second;
-    order.erase(inner);
+  //  inner = order.find(src);
+    out[index++] = src;
+    order.erase(src);
+  }
+
+  if(!reset){
+  printf("After\n");
+    for(inner = order.begin(); inner != order.end(); inner++)
+      printf("%i ", inner->first);
+
+  printf("index %i", index);
+  printf("\n");
   }
 }
 
-void nullDest(map<int, int> & order, int (& temp)[ROW][COL], const int & src, const int & dest, const int (&out) [ROW])
+void nullDest(map<int, int> & order, int (& temp)[myROW][myCOL], const int & src, const int & dest, const int (&out) [myROW])
 { 
   map<int, int>::iterator inner = order.begin();
-  //null col of dest
+  //nullmyCOL of dest
   //still decide what dest is; that's why use temp
   for(; inner != order.end(); inner++){
     temp[inner->second][dest] = INF;
@@ -64,7 +83,7 @@ void nullDest(map<int, int> & order, int (& temp)[ROW][COL], const int & src, co
   temp[dest][src] = INF;
 
   //null indirect backlinks
-  for(int i = 0; i < ROW; i++){
+  for(int i = 0; i <myROW; i++){
     if(out[i] != -1)//is a valid, visited node
       temp[dest][out[i]] = INF;
     else
@@ -72,16 +91,16 @@ void nullDest(map<int, int> & order, int (& temp)[ROW][COL], const int & src, co
   }
 }
 
-void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost)
+void red(map<int, int> & order, int (& temp)[myROW][myCOL], int & cost)
 {
  // map<int, int>::iterator outer = order.begin();
  // map<int, int>::iterator inner = order.begin();
 
-  //reduce row first
-  for(int i = 0; i < ROW; i++){
+  //reducemyROW first
+  for(int i = 0; i <myROW; i++){
 
     int min = INF;
-    for(int j = 0; j < COL; j++){
+    for(int j = 0; j <myCOL; j++){
       if(temp[i][j] < min){
         min = temp[i][j];
        
@@ -93,18 +112,18 @@ void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost)
     else 
       min = 0;
 
-    for(int j = 0; j < COL; j++){
+    for(int j = 0; j <myCOL; j++){
       temp[i][j] -= min;
     }
   }
  
-  //this might be costly, because COLUMN miss
+  //this might be costly, becausemyCOLUMN miss
  // outer = order.begin();
-  for(int i = 0; i < COL; i++){
+  for(int i = 0; i <myCOL; i++){
    
     int min = INF;
 
-    for(int j = 0; j < COL; j++){
+    for(int j = 0; j <myCOL; j++){
       if(temp[j][i] < min)
         min = temp[j][i];
     }
@@ -115,13 +134,13 @@ void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost)
     else 
       min = 0;
     
-    for(int j = 0; j < COL; j++){
+    for(int j = 0; j <myCOL; j++){
       temp[j][i] -= min;
     }
   }
 
 }
-void totalCost(int(&dp)[ROW][COL], int & cost, const int & src, const int & dest)
+void totalCost(int(&dp)[myROW][myCOL], int & cost, const int & src, const int & dest)
 {
   cost += dp[src][dest];
  // printf("back link %i \n",dp[src][dest]);
@@ -129,7 +148,7 @@ void totalCost(int(&dp)[ROW][COL], int & cost, const int & src, const int & dest
 
 
 //returns index of the node with least cost
-int findLeastCost(int(&storeCost)[ROW], map<int, int> & order, int & cost)
+int findLeastCost(int(&storeCost)[myROW], map<int, int> & order, int & cost)
 {
   int m = INF;
   int tempDest = 0;
@@ -146,16 +165,24 @@ int findLeastCost(int(&storeCost)[ROW], map<int, int> & order, int & cost)
 
 }
 
-void print(int(&arr)[ROW][COL], int index)
+void print(int(&arr)[myROW][myCOL], int index)
 {
   printf("\nR%i\n",index);
-  for(int i = 0; i < ROW; i++){
-    for(int j = 0; j < COL; j++)
+  for(int i = 0; i <myROW; i++){
+    for(int j = 0; j <myCOL; j++)
       printf("%i ", arr[i][j]);
     printf("\n");
   }
 }
 
+
+ void pointToArr(int ** in, int (&out)[myROW][myCOL])
+  {
+    for(int i = 0; i < myROW; i++){
+      for(int j = 0; j < myCOL; j++)
+        out[i][j] = in[i][j];
+    }
+  }
 
 int main(int argc, char *argv[])
 {
@@ -206,21 +233,34 @@ int main(int argc, char *argv[])
   test.getPath();
   test.makeRefDP();
   test.preProcess();
-  test.makeSubDP();
-}
 
-/*-------------------
-map<int, int> order;//ID, index
-  for(int i = 0; i < ROW; i++){
-    order.insert(pair<int,int>(i,i));
+  int ** arr = test.makeSubDP();
+
+  int dp[myROW][myROW];
+
+  pointToArr(arr, dp);
+  queue<unsigned int> itemList = test.getItems();
+  //---------------------
+  int startPos = 0;
+  map<int, int> order;//ID, index
+
+  order.insert(pair<int,int>(startPos, 0));
+  
+  for(int i = 1; i <myROW; i++){
+    int ID = itemList.front();
+    itemList.pop();
+    order.insert(pair<int,int>(ID,i));
+  //  printf("%i ", ID);
   }
+  map<int, int>:: iterator itt = order.begin();
+  for(; itt != order.end(); itt++)
+     printf("ID %i = index %i ", itt->first, itt->second);
+  printf("\n^^^^^^Order\n");
+
   //init with null values
-  int out[ROW];
-  for(int i = 0; i < ROW; i++)
+  int out[myROW];
+  for(int i = 0; i <myROW; i++)
     out[i] = -1;
-
-  int dp[ROW][COL];
-
 
   clock_t startTime, endTime;
   startTime = clock();
@@ -228,8 +268,8 @@ map<int, int> order;//ID, index
   print(dp, 0);
 
   int cost = 0;
-  int temp[ROW][COL];
-  int storeCost[ROW];
+  int temp[myROW][myCOL];
+  int storeCost[myROW];
 
   updateTemp(order, dp, temp);
   red(order, temp, cost);
@@ -254,7 +294,7 @@ map<int, int> order;//ID, index
   map<int, int>::iterator outer = order.begin();
   //offset to 2 to reflect the n-th reductions
 
-  for(int i = 2; i < 1 + ROW; i++){
+  for(int i = 2; i < 1 + myROW; i++){
     outer = order.begin();
     for(; outer != order.end(); outer++){
       
@@ -300,11 +340,11 @@ map<int, int> order;//ID, index
       printf("left%i over %i\n", i,it->second);
     }
   }
-  for(int i = 0; i < ROW; i++)
+  for(int i = 0; i < myROW; i++)
     printf("order %i\n", out[i]);
 
     endTime =  clock();
 
   int t = difftime(endTime, startTime);
-	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
-*/
+	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);  
+}

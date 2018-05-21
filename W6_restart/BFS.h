@@ -82,5 +82,7 @@ class BFS : public Layout
     void readWeight(string in);
     int ** makeSubDP();
     void setOpt(queue<unsigned int>);
+    queue<unsigned int> getItems();
+    int getItemSize();
 };
 #endif
