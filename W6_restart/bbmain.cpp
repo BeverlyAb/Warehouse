@@ -36,15 +36,28 @@ void updateOrig(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], int (&
   }
 }
 
-void nullSrc(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], const int & src, int (&out)[myROW], int & index, bool reset)
+void nullSrc(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], int & src, int (&out)[myROW], int & index, bool reset)
 { 
 
   map<unsigned int, int>::iterator inner = order.begin();
   //nullmyROW of source
   inner = order.begin();
 
+  int srcIdx = 0;
+  if(order.find(src) != order.end())
+    srcIdx = order.find(src)->second;
+  else {
+    int j = 0;
+    while(srcIdx != -1){
+      srcIdx = out[j++];
+      printf("srcIdx %i \n", srcIdx);
+    }
+  } 
+  //printf("srcIdx %i \n", srcIdx);
+  //printf("srcIdx %i \n", order.find(src)->second);
+
   for(; inner != order.end(); inner++){
-    dp[src][inner->second] = INF;
+    dp[srcIdx][inner->second] = INF;
   }
   
   if(!reset){
@@ -56,7 +69,7 @@ void nullSrc(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], const int
   
   //must update values, not just resetting the new null
   if(!reset){ 
-  //  inner = order.find(src);
+    inner = order.find(src);
     out[index++] = src;
     order.erase(src);
   }
@@ -66,9 +79,10 @@ void nullSrc(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], const int
     for(inner = order.begin(); inner != order.end(); inner++)
       printf("%i ", inner->first);
 
-  printf("index %i", index);
-  printf("\n");
+    printf("index %i", index);
+    printf("\n");
   }
+  src = srcIdx;
 }
 
 void nullDest(map<unsigned int, int> & order, int (& temp)[myROW][myCOL], const int & src, const int & dest, const int (&out) [myROW])
@@ -285,7 +299,7 @@ int main(int argc, char *argv[])
   int tempCost = cost;
   int index = 0;
 
-  nullSrc(order, temp, src, out, index, false);
+  nullSrc(order, temp, src, out, index, false);//false
   updateTemp(order, dp, temp);
   
   printf("\n Null src");
@@ -294,7 +308,7 @@ int main(int argc, char *argv[])
   map<unsigned int, int>::iterator outer = order.begin();
   //offset to 2 to reflect the n-th reductions
 
-  for(int i = 2; i < 1 + myROW; i++){
+  for(int i = 2; i < 3; i++){
     outer = order.begin();
     for(; outer != order.end(); outer++){
       
@@ -330,8 +344,18 @@ int main(int argc, char *argv[])
     print(dp, i);
     printf("Cost %i\n", cost);
 
-    src = dest;
-    nullSrc(order, temp, src, out, index, false);
+    map<unsigned int, int>::iterator itt = order.begin();
+    for(; itt != order.end(); itt++)
+    {
+      if(itt->second == dest){
+        dest = itt->first;
+        break;
+      }
+    } 
+    
+   src = dest;
+   printf("src %i, dest %i\n", src,dest);
+   nullSrc(order, temp, src, out, index, false);//false
     print(temp,i);
     printf("Cost %i\n", cost);
 
