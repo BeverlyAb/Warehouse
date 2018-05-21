@@ -24,6 +24,7 @@ class BFS : public Layout
   private:
     queue <position> neighbors;
 	  map<position,moveSpace> path;
+    map<int, int> weights;
     int totalDist;
     position finalDest;
    
@@ -73,5 +74,6 @@ class BFS : public Layout
     void hopOnly(position cur, int newRowLeft);
     void hopOnlyNeighbors(position cur);
     void preProcess();
+    void readWeight(string in);
 };
 #endif

@@ -1,55 +1,25 @@
-#define ROW 5
-#define COL 5
-#define INF 999999
+//#define ROW 5
+//#define COL 5
+//#define INF 999999
 
+#include "Layout.h"
+#include "BFS.h"
 #include <stdio.h>
 #include <math.h>
 #include <ctime>
 #include <map>
-#include <queue>
+#include <iostream>
 
 using namespace std;
-
-typedef struct Node Node;
-struct Node
-{
-  int visited[ROW]; // order of visited
-  int index;
-  int cost;
-  int depth;
-};
-
-//sort by min. cost, then by deepest depth
-class nodeComparator
-{
-  public:
-  int operator() (const Node & n1, const Node & n2)
-  {
-    if (n1.cost < n2.cost)
-      return 1;
-    else if (n1.cost == n2.cost)
-      return n1.depth > n2.depth;
-    else
-      return 0;
-  }
-};
-
 void updateTemp(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][COL])
 {
- // printf("\ntemp\n"); 
+ // printf("\ntemp\n");
   for(int i = 0; i < ROW; i++){
     for(int j = 0; j < COL; j++){
       temp[i][j] = dp[i][j];
    //   printf("%i ", dp[i][j]);
     }
    // printf("\n");
-  }
-}
-
-void updateVisited(int(& old)[ROW], int (& neww)[ROW])
-{
-  for(int i = 0 ; i < ROW; i++){
-    old[i] = cur[i];
   }
 }
 
@@ -176,16 +146,6 @@ int findLeastCost(int(&storeCost)[ROW], map<int, int> & order, int & cost)
 
 }
 
-void resetOrder(int(&out)[ROW] , map<int, int> & order, const map<int, int> & origOrder)
-{
-  order = origOrder;
-  for(int i = 0; i < ROW; i++){
-    int tempID = out[i];
-    map<int,int>::iterator it = order.find(tempID);
-    if(it != order.end())
-      order.erase(it);
-  }
-}
 void print(int(&arr)[ROW][COL], int index)
 {
   printf("\nR%i\n",index);
@@ -196,16 +156,58 @@ void print(int(&arr)[ROW][COL], int index)
   }
 }
 
-void printNode(Node n)
+
+int main(int argc, char *argv[])
 {
-  printf("index %i, cost %i, depth %i\n", n.index, n.cost, n.depth);
+  if(argc != 8){
+    printf("Error: Specify width, height, input file, start(x,y), end(x,y)\n");
+    return 1;
+  }
+
+  int width = atoi(argv[1]);
+  int height = atoi(argv[2]);
+  string infile = argv[3];
+
+  unsigned int x = atoi(argv[4]);
+  unsigned int y = atoi(argv[5]);
+  position start = {x,y};
+
+  x = atoi(argv[6]);
+  y = atoi(argv[7]);
+  position end = {x,y};
+
+  BFS test = BFS(width, height, infile, start, end);
+  test.readFile(STOCK, infile);
+
+  string act = "";
+  printf("Pick a number: name items (1) or read from list(2)?\n");
+  cin >> act;
+  if(atoi(act.c_str()) == NAME_ITEM)
+    test.readFile(NAME_ITEM, infile); //infile is dummy
+  else if(atoi(act.c_str()) == ORDER_FILE){
+   /* printf("Name order file\n");
+    cin >> infile;
+    test.readFile(ORDER_FILE, infile);*/
+    test.readFile(ORDER_FILE, "warehouse-orders.csv");//change from hardcode later 
+  } else{
+    printf("Invalid choice. Ending program\n");
+    return 2;
+  }
+
+  printf("Include weight? Yes (1) or No (0)\n");
+  cin >> act;
+  
+  if(atoi(act.c_str()) == 1)
+    test.readWeight("weights.csv");
+  else if(atoi(act.c_str()) != 0 || atoi(act.c_str()) != 1){
+    printf("Invalid choice. Ending program\n");
+    return 2;
+  }
+
 }
 
-int main()
-{
-  priority_queue <Node, vector<Node>, nodeComparator > pq;
-
-  map<int, int> order;//ID, index
+/*-------------------
+map<int, int> order;//ID, index
   for(int i = 0; i < ROW; i++){
     order.insert(pair<int,int>(i,i));
   }
@@ -214,23 +216,7 @@ int main()
   for(int i = 0; i < ROW; i++)
     out[i] = -1;
 
-  int dp[ROW][COL] =   
-  { {INF, 20, 30, 10, 11}, 
-    {15, INF, 16, 4, 2}, 
-    {3, 5, INF, 2, 4},
-    {19, 6, 18, INF, 3},
-    {16, 4, 7, 16, INF}
-  };
- /*{{INF,	3,	5,	9,	11,	13,	15,	17,	19,	21},
-{3,	INF,	2,	6,	8,	10,	12,	14,	16,	18},
-{5,	2,	INF,	4,	6,	8,	10,	12,	14,	16},
-{9,	6,	4,	INF,	2,	4,	6,	8,	10,	12},
-{11,	8,	6,	2,	INF,	2,	4,	6,	8,	10},
-{13,	10,	8,	4,	2,	INF,	2,	4,	6,	8},
-{15,	12,	10,	6,	4,	2,	INF,	2,	4,	6},
-{17,	14,	12,	8,	6,	4,	2,	INF,	2,	4},
-{19,	16,	14,	10,	8,	6,	4,	2,	INF,	2},
-{21,	18,	16,	12,	10,	8,	6,	4,	2,	INF}};*/
+  int dp[ROW][COL];
 
 
   clock_t startTime, endTime;
@@ -240,13 +226,7 @@ int main()
 
   int cost = 0;
   int temp[ROW][COL];
-  int initRed[ROW][COL];
-  int visited[ROW];
   int storeCost[ROW];
-  updateVisited(visited, out);
-  map<int,int> origOrder;
-
-  origOrder = order;
 
   updateTemp(order, dp, temp);
   red(order, temp, cost);
@@ -256,14 +236,11 @@ int main()
   printf("LB %i\n", cost); 
   
   updateOrig(order, dp, temp);
-  updateOrig(order, initRed, temp);
 
   int src = 0;
   int dest = 0;
   int tempCost = cost;
   int index = 0;
-  int depth = 0;
-  int terminate = 0;
 
   nullSrc(order, temp, src, out, index, false);
   updateTemp(order, dp, temp);
@@ -272,25 +249,59 @@ int main()
   print(temp,1);
 
   map<int, int>::iterator outer = order.begin();
-  Node tempNode = {out[ROW], dest, cost, depth};
-  printNode(tempNode);
-  pq.push(tempNode);
+  //offset to 2 to reflect the n-th reductions
 
-  while(!pq.empty()){
-    Node parent = pq.top();
-    pq.pop();
-    int nodeVisited[ROW];  
-    updateVisited(nodeVisited, parent.visited);
-    int nodeDepth += parent.depth;
+  for(int i = 2; i < 1 + ROW; i++){
+    outer = order.begin();
+    for(; outer != order.end(); outer++){
+      
+      //reduce along dest
+      dest = outer->second;
+      nullDest(order, temp, src, dest, out);
+      red(order, temp, tempCost);
+      //printf("Cost1 %i\n", tempCost);
+      totalCost(dp, tempCost, src, dest);
+      
+      //printf("Cost2 %i\n", tempCost);
+      
+      printf("\nNull dest for %i", outer->first);
+      print(temp, i);
+      printf("Cost %i\n", tempCost);
+      
+      storeCost[dest] = tempCost;
+
+      //reset temp and null src
+      tempCost = cost;
+      updateTemp(order, dp, temp); 
+      nullSrc(order, temp, src, out, index, true);
+    }
+    
+    dest = findLeastCost(storeCost, order, cost);
+    totalCost(dp, tempCost, src, dest);
+    cost = storeCost[dest];
+    //evaluate the matrix with least cost again and update original matrix
+    nullSrc(order, temp, src, out, index, true);
+    nullDest(order, temp, src, dest, out);
+    red(order, temp, cost);
+    updateOrig(order, dp, temp);
+    print(dp, i);
+    printf("Cost %i\n", cost);
+
+    src = dest;
+    nullSrc(order, temp, src, out, index, false);
+    print(temp,i);
+    printf("Cost %i\n", cost);
+
+    map<int,int>::iterator it = order.begin();
+    for(; it!= order.end(); it++){
+      printf("left%i over %i\n", i,it->second);
+    }
   }
+  for(int i = 0; i < ROW; i++)
+    printf("order %i\n", out[i]);
 
-
-
-
-
-  endTime =  clock();
+    endTime =  clock();
 
   int t = difftime(endTime, startTime);
 	printf ("It took me %d clicks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
-
-}
+*/

@@ -11,6 +11,8 @@ LayoutMain: LayoutMain.o Layout.o
 BFSMain:	BFSMain.o Layout.o BFS.o 
 	$(CC) $(COPTFLAGS) -o $@ $^
 
+bbmain:	bbmain.o Layout.o BFS.o
+	$(CC) $(COPTFLAGS) -o $@ $^
 %.o: %.cc
 	$(CC) $(CFLAGS) $(COPTFLAGS) -o $@ -c $<
 
@@ -22,3 +24,6 @@ makeL:
 
 makeB:
 	make BFSMain
+
+makeBB:
+	make bbmain

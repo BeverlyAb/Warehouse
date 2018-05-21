@@ -314,6 +314,9 @@ void BFS::makeRefDP()
 			dpRef.insert(pair<position, int>(cur,count++));
 		}
 	} 
+
+	//insert end
+	dpRef.insert(pair<position, int>(end,count));
 	
 	/*map<position, int> ::iterator it3 = dpRef.begin();
 	for(; it3 != dpRef.end(); it3++){
@@ -345,4 +348,36 @@ void BFS::preProcess()
 		}
 		printf("\n");
 	}
+}
+
+void BFS::readWeight(string in)
+{
+  string ID, weight; 
+  ID = ""; weight = ""; 
+  infile = in;
+  ifstream myFile;
+  myFile.open(infile.c_str());
+	
+  if(myFile.is_open()){
+    getline(myFile, ID,',');
+		
+    while(myFile.good() && !ID.empty()){
+		  getline(myFile, weight,'\n');
+
+		  weights.insert(pair<int, int>(atoi(ID.c_str()), atoi(weight.c_str()) ));
+			getline(myFile,ID,',');
+		}
+		    
+	  myFile.close();
+  }
+  else{
+    printf("%s could not be opened\n",infile.c_str());
+    return;
+  }
+
+	map<int, int>::iterator it = weights.find(2595980);
+
+	//for(; it != weights.end(); it++){
+		printf("ID %i weight %i\n",it->first, it->second);
+//	}
 }
