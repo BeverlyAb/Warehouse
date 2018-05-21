@@ -32,7 +32,6 @@ class BFS : public Layout
    
     map<position, int> dpRef; //position, Index to dp
     int dp2[MAX_ROW][MAX_COL]; //hops
-    int subDP[MAX_ROW][MAX_COL];
 
   public:
     BFS() : Layout()
@@ -43,7 +42,6 @@ class BFS : public Layout
       for(int i = 0; i < MAX_ROW; i++){
         for(int j = 0; j < MAX_COL; j++){
           dp2[i][j] = 0;
-          subDP[i][j] = 0;
         }
       }
     };
@@ -58,7 +56,6 @@ class BFS : public Layout
       for(int i = 0; i < MAX_ROW; i++){
         for(int j = 0; j < MAX_COL; j++){
           dp2[i][j] = 0;
-          subDP[i][j] = 0;
         }
       }
     };
@@ -83,6 +80,7 @@ class BFS : public Layout
     void hopOnlyNeighbors(position cur);
     void preProcess();
     void readWeight(string in);
-    void makeSubDP();
+    int ** makeSubDP();
+    void setOpt(queue<unsigned int>);
 };
 #endif

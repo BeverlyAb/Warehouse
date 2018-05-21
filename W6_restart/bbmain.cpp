@@ -206,7 +206,7 @@ int main(int argc, char *argv[])
   test.getPath();
   test.makeRefDP();
   test.preProcess();
- // test.makeSubDP();
+  test.makeSubDP();
 }
 
 /*-------------------

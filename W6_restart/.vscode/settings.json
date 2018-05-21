@@ -23,6 +23,7 @@
     "utility": "cpp",
     "atomic": "cpp",
     "system_error": "cpp",
-    "exception": "cpp"
+    "exception": "cpp",
+    "__string": "cpp"
   }
 }

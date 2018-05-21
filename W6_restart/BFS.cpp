@@ -293,7 +293,6 @@ void BFS::hopOnly(position cur, int newRowLeft)
 			if(shelf.find(next) != shelf.end()) 
 				shelf.find(next)->second = true; 
 
-
 			if(dp2[srcID][destID] == 0){
 			
 				if(cur == next){
@@ -352,8 +351,8 @@ void BFS::makeRefDP()
 		}
 	} 
 
-	//insert end
-	dpRef.insert(pair<position, int>(end,count));
+	//insert end (exlucde for now)
+//	dpRef.insert(pair<position, int>(end,count));
 	
 /*	map<position, int> ::iterator it3 = dpRef.begin();
 	for(; it3 != dpRef.end(); it3++){
@@ -366,8 +365,8 @@ void BFS::preProcess()
 {
 	map<position, int> ::iterator it3 = dpRef.begin();
 
-	int n = dpRef.size();
-	printf("dpRefsize = %i\n", dpRef.size());
+	int n = dpRef.size(); //includes start (include end later)
+	//printf("dpRefsize = %i\n", dpRef.size());
 	position cur;
 
 	//#pragma omp parallel for schedule(static) num_threads(THREADS)
@@ -379,36 +378,65 @@ void BFS::preProcess()
 		//	printf("here %i\n", hopOnly(it3->first, it4->first,clear));
 	}
 
-	n = shelf.size();
+/*	n = shelf.size(); //excludes start and end
+	//printf("shelf size %i \n", n);
 	for(int i = 0; i < n; i++){
 		for(int k = 0; k < n; k++){
 			printf("%i, ", dp2[i][k]);
 		}
 		printf("\n");
-	} 
+	} */
 }
 
-void BFS::makeSubDP()
+int ** BFS::makeSubDP()
 {
 	queue<unsigned int> temp = orgItems;
 	int n = temp.size();
-	int j = 0; int k = 0;
+	int arr[n];
 
-
-	for(int i = 0; i < n; i ++){
-		
-		position src = getPos(temp.front());
+	for(int i = 0; i < n; i++){
+		arr[i] = temp.front();
+		//printf("ID %i ", arr[i]);
 		temp.pop();
-		int srcIndx = dpRef.find(src)->second;
-
-		position dest = getPos(temp.front());
-		int destIndx = dpRef.find(dest)->second;
-
-		int dist = dp2[srcIndx][destIndx];
-		printf("dist %i\n", dist);
-		
-		
 	}
+	int s[n][n];
+	int ** subDP = 0;
+
+
+	for(int i = 0; i < n; i++){
+		position pos = getPos(arr[i]);
+		int srcIndx = dpRef.find(pos)->second;
+
+		for(int j = i; j < n; j++){
+			if(i == j)
+				s[i][j] = INF;
+			
+			else{
+				pos = getPos(arr[j]);
+				int destIndx = dpRef.find(pos)->second;
+				s[i][j] = dp2[srcIndx][destIndx];
+				s[j][i] = dp2[srcIndx][destIndx];
+			}
+		}
+	}
+	
+	subDP = new int * [n];
+	
+	for(int i = 0; i < n; i++){
+		subDP[i] = new int[n];
+		for(int j = 0; j < n; j++){
+			subDP[i][j] = s[i][j];
+			}
+	}
+	
+
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < n; j++){
+				printf("%i ", subDP[i][j]);
+			}
+			printf("\n");
+		}
+	return subDP; 
 }
 
 void BFS::readWeight(string in)
@@ -443,4 +471,17 @@ void BFS::readWeight(string in)
 	for(; it != weights.end(); it++){
 		printf("ID %i weight %f\n",it->first, it->second);
 	} */
+}
+
+void BFS::setOpt(queue<unsigned int> in)
+{
+	int n = orgItems.size();
+	for(int i = 0; i < n; i ++)
+		orgItems.pop();
+
+	n = in.size();
+	for(int i = 0; i < n; i ++){
+		orgItems.push(in.front());
+		in.pop();
+	}
 }
