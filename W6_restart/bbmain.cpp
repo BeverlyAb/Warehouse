@@ -1,7 +1,12 @@
-#define myROW 6
-#define myCOL 6
-//order 3, myRow 6
-//#define INF 999999
+#define myROW 22
+#define myCOL 22
+//myRow orgItems.size() + 1
+/* 
+  myRow | ID Based on CSV | ID on main should be -1 Based on CSV
+  6     | 4, 26, 27       | 3, 25, 26
+  11    | 5, 43           | 4, 42
+  21    | 10, 12, 69      | 9, 11, 68
+*///#define INF 999999
 
 #include "Layout.h"
 #include "BFS.h"
@@ -356,27 +361,30 @@ int main(int argc, char *argv[])
       printf("left%i over %i\n", i,it->second);
     }
   }
- // for(int i = 0; i < myROW; i++)
-  //  printf("order %i\n", out[i]);
+  for(int i = 0; i < myROW; i++)
+    printf("order %i\n", out[i]);
 
   unsigned int intermediate[myROW];
   map<  unsigned int, int> intOrder;
  // int itemIndx = test.getDPRef(start);
   // printf("ind = %i\n", intermediate[0]);
+
   for(int i = 1; i < myROW; i++){ //exclude start
     unsigned int ID = d.front();
-    //printf("FRONT %i\n", d.front());
+ //   printf("FRONT %i\n", d.front());
     int itemIndx = test.getDPRef(ID);
     intermediate[i] = itemIndx;
     intOrder.insert(pair< unsigned int, int>  ( ID, itemIndx));
-  //  printf("intermediate %i , ind = %i\n", ID,intermediate[i]);
+ //   printf("intermediate %i , ind = %i\n", ID,intermediate[i]);
     d.pop();
   } 
-
+  
   map< unsigned  int,int>::iterator it4 = intOrder.begin();
- // for(; it4 != intOrder.end(); it4++)
- // printf("Indx %i , ID= %i\n", it4->first,it4->second);
-    
+  for(; it4 != intOrder.end(); it4++){
+  //printf("Indx %i , ID= %i\n", it4->first,it4->second);
+  /*if(it4->second == -1)
+    intOrder.erase(it4);
+  */}
 
   sort(intermediate,myROW + intermediate);
   int table[myROW-1];
@@ -390,14 +398,16 @@ int main(int argc, char *argv[])
       if(it4->second == intermediate[i]){
         table[i] = it4->first;
         intOrder.erase(table[i]);
-    //    printf("mappint %i \n", table[i]);
+       // printf("mappint %i %i\n", table[i], it4->second);
         break;
       }
     }
-    
   } 
 
-  for(int i = 0; i < myROW; i++){
+  //  for(int i = 0; i < myROW-1; i++)
+ //      printf("table %i\n ", table[i]); 
+// printf("here2\n");
+  for(int i = 0; i < myROW-1; i++){
     finalOrder.push(table[out[i]]);
 
     printf("finalOrder %i out %i\n ", table[out[i]], out[i]);
