@@ -84,5 +84,7 @@ class BFS : public Layout
     void setOpt(queue<unsigned int>);
     queue<unsigned int> getItems();
     int getItemSize();
+    int getDPRef(position want);
+    int getDPRef(unsigned int ID);
 };
 #endif

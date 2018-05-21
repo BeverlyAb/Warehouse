@@ -9,10 +9,11 @@
 #include <math.h>
 #include <ctime>
 #include <map>
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
-void updateTemp(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], int (& temp)[myROW][myCOL])
+void updateTemp(map<int, int> & order, int (& dp)[myROW][myCOL], int (& temp)[myROW][myCOL])
 {
  // printf("\ntemp\n");
   for(int i = 0; i <myROW; i++){
@@ -24,7 +25,7 @@ void updateTemp(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], int (&
   }
 }
 
-void updateOrig(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], int (& temp)[myROW][myCOL])
+void updateOrig(map<int, int> & order, int (& dp)[myROW][myCOL], int (& temp)[myROW][myCOL])
 {
  //  printf("\norig\n");
   for(int i = 0; i <myROW; i++){
@@ -36,28 +37,15 @@ void updateOrig(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], int (&
   }
 }
 
-void nullSrc(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], int & src, int (&out)[myROW], int & index, bool reset)
+void nullSrc(map<int, int> & order, int (& dp)[myROW][myCOL], const int & src, int (&out)[myROW], int & index, bool reset)
 { 
 
-  map<unsigned int, int>::iterator inner = order.begin();
+  map<int, int>::iterator inner = order.begin();
   //nullmyROW of source
   inner = order.begin();
 
-  int srcIdx = 0;
-  if(order.find(src) != order.end())
-    srcIdx = order.find(src)->second;
-  else {
-    int j = 0;
-    while(srcIdx != -1){
-      srcIdx = out[j++];
-      printf("srcIdx %i \n", srcIdx);
-    }
-  } 
-  //printf("srcIdx %i \n", srcIdx);
-  //printf("srcIdx %i \n", order.find(src)->second);
-
   for(; inner != order.end(); inner++){
-    dp[srcIdx][inner->second] = INF;
+    dp[src][inner->second] = INF;
   }
   
   if(!reset){
@@ -69,9 +57,16 @@ void nullSrc(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], int & src
   
   //must update values, not just resetting the new null
   if(!reset){ 
-    inner = order.find(src);
-    out[index++] = src;
-    order.erase(src);
+  //  inner = order.find(src);
+    if(index < myROW -1){
+      out[index++] = src;
+      printf("src = %i\n", src);
+      order.erase(src);
+    }
+    else{
+      out[index] = order.begin()->first;
+       printf("src = %i\n", out[index]);
+    }
   }
 
   if(!reset){
@@ -79,15 +74,14 @@ void nullSrc(map<unsigned int, int> & order, int (& dp)[myROW][myCOL], int & src
     for(inner = order.begin(); inner != order.end(); inner++)
       printf("%i ", inner->first);
 
-    printf("index %i", index);
-    printf("\n");
+  printf("index %i", index);
+  printf("\n");
   }
-  src = srcIdx;
 }
 
-void nullDest(map<unsigned int, int> & order, int (& temp)[myROW][myCOL], const int & src, const int & dest, const int (&out) [myROW])
+void nullDest(map<int, int> & order, int (& temp)[myROW][myCOL], const int & src, const int & dest, const int (&out) [myROW])
 { 
-  map<unsigned int, int>::iterator inner = order.begin();
+  map<int, int>::iterator inner = order.begin();
   //nullmyCOL of dest
   //still decide what dest is; that's why use temp
   for(; inner != order.end(); inner++){
@@ -105,10 +99,11 @@ void nullDest(map<unsigned int, int> & order, int (& temp)[myROW][myCOL], const 
   }
 }
 
-void red(map<unsigned int, int> & order, int (& temp)[myROW][myCOL], int & cost)
+
+void red(map<int, int> & order, int (& temp)[myROW][myCOL], int & cost)
 {
- // map<unsigned int, int>::iterator outer = order.begin();
- // map<unsigned int, int>::iterator inner = order.begin();
+ // map<int, int>::iterator outer = order.begin();
+ // map<int, int>::iterator inner = order.begin();
 
   //reducemyROW first
   for(int i = 0; i <myROW; i++){
@@ -162,12 +157,12 @@ void totalCost(int(&dp)[myROW][myCOL], int & cost, const int & src, const int & 
 
 
 //returns index of the node with least cost
-int findLeastCost(int(&storeCost)[myROW], map<unsigned int, int> & order, int & cost)
+int findLeastCost(int(&storeCost)[myROW], map<int, int> & order, int & cost)
 {
   int m = INF;
   int tempDest = 0;
   //only check modified values
-  map<unsigned int, int>::iterator inner = order.begin();
+  map<int, int>::iterator inner = order.begin();
   for(; inner != order.end(); inner++){
     if(m > storeCost[inner->second]){
       m = storeCost[inner->second];
@@ -254,22 +249,29 @@ int main(int argc, char *argv[])
 
   pointToArr(arr, dp);
   queue<unsigned int> itemList = test.getItems();
+    queue<unsigned int> d = test.getItems();
+  /*for(int i = 0; i < myROW; i++)
+  {
+    printf("d %i ", d.front());
+    d.pop();
+  }*/
+  queue<unsigned int> finalOrder;
   //---------------------
   int startPos = 0;
-  map<unsigned int, int> order;//ID, index
+  map<int, int> order;//ID, index
 
-  order.insert(pair<unsigned int,int>(startPos, 0));
+  order.insert(pair<int,int>(startPos, 0));
   
   for(int i = 1; i <myROW; i++){
     int ID = itemList.front();
     itemList.pop();
-    order.insert(pair<unsigned int,int>(ID,i));
+    order.insert(pair<int,int>(i,i));
   //  printf("%i ", ID);
   }
-  map<unsigned int, int>:: iterator itt = order.begin();
+  map<int, int>:: iterator itt = order.begin();
   for(; itt != order.end(); itt++)
-     printf("ID %i = index %i ", itt->first, itt->second);
-  printf("\n^^^^^^Order\n");
+     printf("Order = ID %i = index %i ", itt->first, itt->second);
+  printf("\n");
 
   //init with null values
   int out[myROW];
@@ -299,16 +301,16 @@ int main(int argc, char *argv[])
   int tempCost = cost;
   int index = 0;
 
-  nullSrc(order, temp, src, out, index, false);//false
+  nullSrc(order, temp, src, out, index, false);
   updateTemp(order, dp, temp);
   
   printf("\n Null src");
   print(temp,1);
 
-  map<unsigned int, int>::iterator outer = order.begin();
+  map<int, int>::iterator outer = order.begin();
   //offset to 2 to reflect the n-th reductions
 
-  for(int i = 2; i < 3; i++){
+  for(int i = 2; i < 2 + myROW; i++){
     outer = order.begin();
     for(; outer != order.end(); outer++){
       
@@ -344,28 +346,63 @@ int main(int argc, char *argv[])
     print(dp, i);
     printf("Cost %i\n", cost);
 
-    map<unsigned int, int>::iterator itt = order.begin();
-    for(; itt != order.end(); itt++)
-    {
-      if(itt->second == dest){
-        dest = itt->first;
-        break;
-      }
-    } 
-    
-   src = dest;
-   printf("src %i, dest %i\n", src,dest);
-   nullSrc(order, temp, src, out, index, false);//false
+    src = dest;
+    nullSrc(order, temp, src, out, index, false);
     print(temp,i);
     printf("Cost %i\n", cost);
 
-    map<unsigned int,int>::iterator it = order.begin();
+    map<int,int>::iterator it = order.begin();
     for(; it!= order.end(); it++){
       printf("left%i over %i\n", i,it->second);
     }
   }
   for(int i = 0; i < myROW; i++)
     printf("order %i\n", out[i]);
+
+  unsigned int intermediate[myROW];
+  map<  unsigned int, int> intOrder;
+ // int itemIndx = test.getDPRef(start);
+  // printf("ind = %i\n", intermediate[0]);
+  for(int i = 1; i < myROW; i++){ //exclude start
+    unsigned int ID = d.front();
+    //printf("FRONT %i\n", d.front());
+    int itemIndx = test.getDPRef(ID);
+    intermediate[i] = itemIndx;
+    intOrder.insert(pair< unsigned int, int>  ( ID, itemIndx));
+  //  printf("intermediate %i , ind = %i\n", ID,intermediate[i]);
+    d.pop();
+  } 
+
+  map< unsigned  int,int>::iterator it4 = intOrder.begin();
+ // for(; it4 != intOrder.end(); it4++)
+ // printf("Indx %i , ID= %i\n", it4->first,it4->second);
+    
+
+  sort(intermediate,myROW + intermediate);
+  int table[myROW-1];
+ // for(int i = 0; i < myROW; i++)
+ //    printf("sort %i \n", intermediate[i]);
+
+  for(int i = 0; i < myROW; i++){
+    it4 = intOrder.begin();
+    for(; it4 != intOrder.end(); it4++){
+      if(it4->second == intermediate[i]){
+        table[i] = it4->first;
+        intOrder.erase(table[i]);
+    //    printf("mappint %i \n", table[i]);
+        break;
+      }
+    }
+    
+  } 
+
+  for(int i = 0; i < myROW; i++){
+    finalOrder.push(table[out[i]]);
+
+    printf("finalOrder %i out %i\n ", finalOrder.front(), out[i]);
+    finalOrder.pop();
+  } 
+
 
     endTime =  clock();
 

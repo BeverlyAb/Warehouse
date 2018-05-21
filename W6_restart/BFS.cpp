@@ -495,10 +495,21 @@ queue<unsigned int> BFS::getItems()
 {
 	return orgItems;
 }
-/*int BFS::getDPRef(position want)
+int BFS::getDPRef(position want)
 {
 	if(dpRef.find(want) != dpRef.end())
 		return dpRef.find(want)->second;
 	else 
 		return -1;
-}*/
+}
+
+int BFS::getDPRef(unsigned int ID)
+{
+//	printf("I read %i\n", ID);
+	position want = getPos(ID);
+	//printf("(%i, %i)\n", want.x, want.y);
+	if(dpRef.find(want) != dpRef.end())
+		return dpRef.find(want)->second;
+	else 
+		return -1;
+}

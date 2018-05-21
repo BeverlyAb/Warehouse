@@ -24,6 +24,14 @@
     "atomic": "cpp",
     "system_error": "cpp",
     "exception": "cpp",
-    "__string": "cpp"
+    "__string": "cpp",
+    "__hash_table": "cpp",
+    "array": "cpp",
+    "forward_list": "cpp",
+    "list": "cpp",
+    "regex": "cpp",
+    "set": "cpp",
+    "unordered_map": "cpp",
+    "unordered_set": "cpp"
   }
 }
