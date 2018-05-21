@@ -27,6 +27,7 @@ class BFS : public Layout
 	  map<position,moveSpace> path;
     map<unsigned int,double> weights;
     int totalDist;
+    double totalEffort;
     position finalDest;
    
     map<position, int> dpRef; //position, ID
@@ -36,6 +37,7 @@ class BFS : public Layout
     BFS() : Layout()
     {
       totalDist = 0;
+      totalEffort = 0;
       finalDest.x = 0; finalDest.y = 0;
       for(int i = 0; i < MAX_ROW; i++){
         for(int j = 0; j < MAX_COL; j++){
@@ -48,6 +50,7 @@ class BFS : public Layout
     :Layout(width, height, infile, start, end)
     {
       totalDist = 0;
+      totalEffort = 0;
       finalDest.x = 0; finalDest.y = 0;
 
       for(int i = 0; i < MAX_ROW; i++){
@@ -72,6 +75,7 @@ class BFS : public Layout
     virtual void processSingleOrder(int);
     //accessor
     int getTotalDist();
+    double getTotalEffort();
     void hopOnly(position cur, int newRowLeft);
     void hopOnlyNeighbors(position cur);
     void preProcess();

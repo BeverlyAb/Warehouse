@@ -158,6 +158,7 @@ void BFS::printSinglePath(position start, position end)
 
 
 	totalDist = 0;
+	totalEffort = 0;
 
   position reverse[hop];
 	position temp = path.find(end)->first;
@@ -171,6 +172,7 @@ void BFS::printSinglePath(position start, position end)
 	}
 	
 	totalDist += hop;
+	totalEffort += effort;
 	printf(" %i\t\t\t\t %f\t\t\t %f\t\t",hop, weight, effort);
 
 	for(unsigned int i = 0; i <= hop; i++)
@@ -196,11 +198,13 @@ if(!isValid(start)) {
 
 			unsigned int tempID = orgItems.front();
 			int totalDist = 0;
+			double totalEffort = 0;
 			position next = {0,0};
 			
 			printf("%i\t\t",tempID);
 			nextPos(start, getPos(tempID), tempID);
 			totalDist = getTotalDist();
+			totalEffort = getTotalEffort();
 			orgItems.pop();
 
 			next = getFinalDest();
@@ -211,6 +215,7 @@ if(!isValid(start)) {
 				printf("%i\t\t",tempID);
 				nextPos(next, getPos(tempID), tempID);
 				totalDist +=  getTotalDist();
+				totalEffort +=  getTotalEffort();
 				
 				orgItems.pop();
 				next = getFinalDest();
@@ -218,7 +223,8 @@ if(!isValid(start)) {
 			printf("end\t\t\t");
 			nextPos(next,end, tempID);
 			totalDist += getTotalDist();
-			printf("Total Distance = %i\n",totalDist);
+			totalEffort += getTotalEffort();
+			printf("Total Distance = %i\t Total Effort = %f\n",totalDist, totalEffort);
 			//last move, otherwise it ends at a neighbor of end
 			//printf("(%i,%i)\n",end.x,end.y); //should hop++
 		}
@@ -238,6 +244,11 @@ void BFS::processSingleOrder(int indx)
 int BFS::getTotalDist()
 {
   return totalDist;
+}
+
+double BFS::getTotalEffort()
+{
+  return totalEffort;
 }
 
 position BFS::getFinalDest()
