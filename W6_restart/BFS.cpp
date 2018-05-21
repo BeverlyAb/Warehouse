@@ -286,31 +286,37 @@ void BFS::hopOnly(position cur, int newRowLeft)
 		if(found){
 			finalDest = next;
 			
-			printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
+			//printf("prev(%i,%i), cur(%i,%i)\n",next.x,next.y,prev.loc.x,prev.loc.y);
 			prevHop = path.find(next)->second.hop;
 			int destID = dpRef.find(finalDest)->second;
 			//visited shelf already, treat it as obstruction
-			shelf.find(next)->second = true; 
-			if(dp[srcID][destID] == 0){
+			if(shelf.find(next) != shelf.end()) 
+				shelf.find(next)->second = true; 
+
+
+			if(dp2[srcID][destID] == 0){
+			
 				if(cur == next){
-					dp[srcID][srcID] = INF;
+					dp2[srcID][srcID] = INF;
 					terminate++;
 				}
 				else {			
-					dp[srcID][destID] = prevHop;
-					dp[destID][srcID] = prevHop; //get compliment
+					dp2[srcID][destID] = prevHop;
+					dp2[destID][srcID] = prevHop; //get compliment
 					terminate++;
 				}
-			}
-
+			} 
+		
 			found = false;
 		}
+	
 		//create new list of neighbors
     hopOnlyNeighbors(next);
+
     int n = neighbors.size();
     for(int i = 0; i < n; i++){
       position temp = neighbors.front();
-
+			
       //add to path only if unvisited
 			if(path.find(temp) == path.end()){
 				prevHop = path.find(next)->second.hop;
@@ -323,8 +329,8 @@ void BFS::hopOnly(position cur, int newRowLeft)
 				path.insert(pair<position,moveSpace>(temp,prev));
 				active.push(temp);
 			}
-			neighbors.pop();
-    }
+			neighbors.pop(); 
+    } 
   }
 	path.clear();
 	return;
@@ -361,6 +367,7 @@ void BFS::preProcess()
 	map<position, int> ::iterator it3 = dpRef.begin();
 
 	int n = dpRef.size();
+	printf("dpRefsize = %i\n", dpRef.size());
 	position cur;
 
 	//#pragma omp parallel for schedule(static) num_threads(THREADS)
@@ -375,7 +382,7 @@ void BFS::preProcess()
 	n = shelf.size();
 	for(int i = 0; i < n; i++){
 		for(int k = 0; k < n; k++){
-			printf("%i, ", dp[i][k]);
+			printf("%i, ", dp2[i][k]);
 		}
 		printf("\n");
 	} 
@@ -397,7 +404,7 @@ void BFS::makeSubDP()
 		position dest = getPos(temp.front());
 		int destIndx = dpRef.find(dest)->second;
 
-		int dist = dp[srcIndx][destIndx];
+		int dist = dp2[srcIndx][destIndx];
 		printf("dist %i\n", dist);
 		
 		
