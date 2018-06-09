@@ -4,8 +4,8 @@
 #define STOCK 0
 #define NAME_ITEM 1
 #define ORDER_FILE 2
-#define ROW 100
-#define COL 50
+#define ROW 2500
+#define COL 100
 
 #include <string>
 #include <map>

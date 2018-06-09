@@ -34,52 +34,53 @@ int main(int argc, char *argv[])
   BFS test = BFS(width, height, infile, start, end);
   test.readFile(STOCK, infile);
 
-  test.getListItems("warehouse-orders.csv",0);//change from hardcode later 
+  test.getListItems("bigWarehouse.txt",0);//change from hardcode later 
   int once = 0;
   for(int i = index; i < index + 1; i++){
     test.processSingleOrder(i);
       printf("INDEX %i\n", i);
     test.readWeight("weights.csv");
     test.getPath();
-    if(once == 0){
-      test.makeRefDP();
-      test.preProcess();
-      once++;
-    }
-    int ** arr = test.makeSubDP();
-    queue<unsigned int> itemList = test.getItems();
-    queue<unsigned int> d = test.getItems();
-    queue<unsigned int> finalOrder;
-    int startPos = 0;
-    map<int, int> myorder;//ID, index
-    myorder.insert(pair<int,int>(startPos, 0)); //include start!
-    int size = itemList.size() + 1;           //include start!
-    
-    for(int i = 1; i < size; i++){
-      int ID = itemList.front();
-      itemList.pop();
-      myorder.insert(pair<int,int>(i,i));
-      printf("%i ", ID);
-    }
-  //-------------------------------------------------
-    BB branch = BB(myorder, size, arr);
-    branch.process();
-    unsigned int intermediate[size];
-    int IDs[size];
-    for(int i = 1; i <size; i++){ //exclude start
-    unsigned int ID = d.front();
-    //   printf("FRONT %i\n", d.front());
-    int itemIndx = test.getDPRef(ID);
-    intermediate[i] = itemIndx;
-    IDs[i] = ID;
-  //   printf("intermediate %i , ind = %i\n", ID,intermediate[i]);
-    d.pop();
-  } 
-
-  finalOrder = branch.mapBackToItems(intermediate, IDs);
-  test.setOpt(finalOrder);
-  test.getPath();
+    // if(once == 0){
+    //   test.makeRefDP();
+    //   test.preProcess();
+    //   once++;
+    // }
   }
+  //   int ** arr = test.makeSubDP();
+  //   queue<unsigned int> itemList = test.getItems();
+  //   queue<unsigned int> d = test.getItems();
+  //   queue<unsigned int> finalOrder;
+  //   int startPos = 0;
+  //   map<int, int> myorder;//ID, index
+  //   myorder.insert(pair<int,int>(startPos, 0)); //include start!
+  //   int size = itemList.size() + 1;           //include start!
+    
+  //   for(int i = 1; i < size; i++){
+  //     int ID = itemList.front();
+  //     itemList.pop();
+  //     myorder.insert(pair<int,int>(i,i));
+  //     printf("%i ", ID);
+  //   }
+  // //-------------------------------------------------
+  //   BB branch = BB(myorder, size, arr);
+  //   branch.process();
+  //   unsigned int intermediate[size];
+  //   int IDs[size];
+  //   for(int i = 1; i <size; i++){ //exclude start
+  //   unsigned int ID = d.front();
+  //   //   printf("FRONT %i\n", d.front());
+  //   int itemIndx = test.getDPRef(ID);
+  //   intermediate[i] = itemIndx;
+  //   IDs[i] = ID;
+  // //   printf("intermediate %i , ind = %i\n", ID,intermediate[i]);
+  //   d.pop();
+  // } 
+
+  // finalOrder = branch.mapBackToItems(intermediate, IDs);
+  // test.setOpt(finalOrder);
+  // test.getPath();
+  // }
 
   return 0;
 }

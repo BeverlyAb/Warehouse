@@ -120,36 +120,51 @@ void Layout::getListItems(string in, int index)
   myFile.open(infile.c_str());
 
   if(myFile.is_open()){
-		myFile >> ID;
-
-    while(myFile.good() && !ID.empty()){
-      if(ID[ID.length()-1] == '"'){
-        i++;
-        myFile >> ID;
-      }
-      else {
-      //remove trailing front ' " '
-        if(ID[0]== '"'){
-          ID.erase(ID.begin());
-        }
+      myFile >> ID;
+      orderFile[i].push_back(atoi(ID.c_str()));
+      printf("item %i at %i", (atoi(ID.c_str())),i);
+    
+      while(myFile.good() && !ID.empty()){
         orderFile[i].push_back(atoi(ID.c_str()));
         myFile >> ID;
+        if(ID[ID.length()-1] == '\n'){
+          i++;
+          printf("what %i at %i\n", (atoi(ID.c_str())),i);
+        }
+        printf("item %i at %i", (atoi(ID.c_str())),i);
       }
-    }
-    myFile.close();
+      myFile.close();
+    }	else{
+      printf("%s could not be opened.\n",infile.c_str()); 
+      return;
+    }  
 
-  }	else{
-	  printf("%s could not be opened.\n",infile.c_str()); 
-    return;
-  }  
-  
-  if(n < 0 || n > ROW || n == 101) {
-		n = ROW;
-		for(int j = 0; j < n; j++){
-      processSingleOrder(j);
-    }
-  } else
-    processSingleOrder(n); 
+  //works for warehouse.csv text formatting issues
+  // if(myFile.is_open()){
+	// 	myFile >> ID;
+  //   while(myFile.good() && !ID.empty()){
+  //     if(ID[ID.length()-1] == '"'){
+  //       i++;
+  //       myFile >> ID;
+  //     }
+  //     else {
+  //     //remove trailing front ' " '
+  //       if(ID[0]== '"'){
+  //         ID.erase(ID.begin());
+  //       }
+  //       orderFile[i].push_back(atoi(ID.c_str()));
+  //       myFile >> ID;
+  //     }
+  //   }
+  //   myFile.close();
+  // }	else{
+	//   printf("%s could not be opened.\n",infile.c_str()); 
+  //   return;
+  // }  
+  printf("size = %i \n",orderFile.size());
+    //  for(int j = 0; j < 2; j++){
+    //   printf("item %i",orderFile[j][0]);  
+    // } 
 } 
 void Layout::processSingleOrder(int indx)
 {
