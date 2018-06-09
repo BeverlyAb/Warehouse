@@ -13,15 +13,15 @@ BB::BB()
 BB::~BB()
 {
   for(int i = 0; i < size; i++){
-    free(dp[i]);
-    free(temp[i]);
-    free(initRed[i]);
+    delete[] dp[i];
+    delete[] temp[i];
+    delete[] initRed[i];
   }
-  free(dp);
-  free(temp);
-  free(initRed);
-  free(out);
-  free(storeCost);
+  delete[] dp;
+  delete[]temp;
+  delete[]initRed;
+  delete[]out;
+  delete[]storeCost;
 }
 BB::BB(map<int, int> order, int size, int ** in)
 {
