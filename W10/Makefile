@@ -17,6 +17,9 @@ bbmain:	bbmain.o Layout.o BFS.o
 final:	final.o Layout.o BB.o BFS.o
 	$(CC) $(COPTFLAGS) -o $@ $^	
 
+batch:	batch.o Layout.o BB.o BFS.o
+	$(CC) $(COPTFLAGS) -o $@ $^	
+
 %.o: %.cc
 	$(CC) $(CFLAGS) $(COPTFLAGS) -o $@ -c $<
 

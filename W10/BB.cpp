@@ -126,7 +126,7 @@ void BB::red(int & cost)
     }
     if(min < INF -10000){//error correction
       cost += min;
-       printf("cost1 = %i\n", cost);
+       //printf("cost1 = %i\n", cost);
     }
     else 
       min = 0;
@@ -149,7 +149,7 @@ void BB::red(int & cost)
     
     if(min < INF -10000){//error correction
       cost += min;
-       printf("cost2 = %i\n", cost);
+      // printf("cost2 = %i\n", cost);
     }
     else 
       min = 0;
@@ -280,8 +280,6 @@ void BB::process()
   printf("\n Null src");
   print(temp,1);
 
-
-
   map<int, int>::iterator outer = order.begin();
 
   for(int i = 2; i < 2 + size; i++){
@@ -334,56 +332,55 @@ void BB::process()
    for(int i = 0; i < size; i++){
     printf("order %i\n", out[i]);
    }
+}
+queue<unsigned int> BB::mapBackToItems(unsigned int * intermediate, int * IDs)
+{
+  map<  unsigned int, int> intOrder;
+ // int itemIndx = test.getDPRef(start);
+  // printf("ind = %i\n", intermediate[0]);
 
-//   unsigned int intermediate[size];
-//   map<  unsigned int, int> intOrder;
-//  // int itemIndx = test.getDPRef(start);
-//   // printf("ind = %i\n", intermediate[0]);
-
-//   for(int i = 1; i < size; i++){ //exclude start
-//     unsigned int ID = d.front();
-//  //   printf("FRONT %i\n", d.front());
-//     int itemIndx = test.getDPRef(ID);
-//     intermediate[i] = itemIndx;
-//     intOrder.insert(pair< unsigned int, int>  ( ID, itemIndx));
-//  //   printf("intermediate %i , ind = %i\n", ID,intermediate[i]);
-//     d.pop();
-//   } 
+  for(int i = 1; i < size; i++){ //exclude start
+    intOrder.insert(pair< unsigned int, int>  (IDs[i], intermediate[i]));
+  } 
   
-//   map< unsigned  int,int>::iterator it4 = intOrder.begin();
-//   for(; it4 != intOrder.end(); it4++){
-//   //printf("Indx %i , ID= %i\n", it4->first,it4->second);
-//   /*if(it4->second == -1)
-//     intOrder.erase(it4);
-//   */}
+  map< unsigned  int,int>::iterator it4 = intOrder.begin();
+  for(; it4 != intOrder.end(); it4++){
+  //printf("Indx %i , ID= %i\n", it4->first,it4->second);
+  /*if(it4->second == -1)
+    intOrder.erase(it4);
+  */}
 
-//   sort(intermediate,myROW + intermediate);
-//   int table[size-1];
-//   //for(int i = 0; i < myROW; i++)
-//   //   printf("sort %i \n", intermediate[i]);
+  sort(intermediate, size + intermediate);
+  int table[size-1];
+  //for(int i = 0; i < myROW; i++)
+  //   printf("sort %i \n", intermediate[i]);
 
 
-//   for(int i = 0; i < myROW; i++){
-//     it4 = intOrder.begin();
-//     for(; it4 != intOrder.end(); it4++){
-//       if(it4->second == intermediate[i]){
-//         table[i] = it4->first;
-//         intOrder.erase(table[i]);
-//         finalOrder.push(table[i]);
-//         printf("mappint %i %i\n", table[i], it4->second);
-//         break;
-//       }
-//     }
-//   } 
+  for(int i = 0; i < size; i++){
+    it4 = intOrder.begin();
+    for(; it4 != intOrder.end(); it4++){
+      if(it4->second == intermediate[i]){
+        table[i] = it4->first;
+        intOrder.erase(table[i]);
+        finalOrder.push(table[i]);
+        printf("mappint %i %i\n", table[i], it4->second);
+        break;
+      }
+    }
+  } 
 
   //  for(int i = 0; i < myROW-1; i++)
  //      printf("table %i\n ", table[i]); 
 // printf("here2\n");
- /* for(int i = 0; i < myROW-1; i++){
-    finalOrder.push(table[out[i]]);
+
+  for(int i = 0; i < size; i++){
+  //  finalOrder.push(table[out[i]]);
 
     printf("finalOrderz %i out %i\n ", table[out[i]], out[i]);
     //finalOrder.pop();
-  } */
-  //finalOrder.pop(); //remove start
+  } 
+
+
+  finalOrder.pop(); //remove start
+  return finalOrder;
 }

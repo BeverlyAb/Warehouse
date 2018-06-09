@@ -43,6 +43,7 @@ class BB
     int ** initRed;
     int * out;
     int * storeCost;
+    queue<unsigned int> finalOrder;
 
   public:
     BB();
@@ -58,11 +59,12 @@ class BB
     //reduces temp only!
     void red(int & cost);
     void nullSrc(const int & src, bool reset);
-   void nullDest(const int & src, const int & dest);
- void totalCost(int & cost, const int & src, const int & dest);
+    void nullDest(const int & src, const int & dest);
+    void totalCost(int & cost, const int & src, const int & dest);
     int findLeastCost(int &cost); 
     void print(int ** arr, int index);
     void process();
+    queue<unsigned int> mapBackToItems(unsigned int * intermediate, int * IDs);
    /* void resetOrder(int(&out)[ROW] , map<int, int> & order, const map<int, int> & origOrder);
     void pointToArr(int ** in, int (&out)[ROW][COL]);  */
 };

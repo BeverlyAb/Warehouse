@@ -41,6 +41,7 @@ void Layout::readFile(int fileType, string in)
 		int indx = 0;
 		printf("Give an order list number or type '101' to read the entire file\n");
 		cin >> indx;
+
 		getListItems(infile,indx); 	
 	} 
   else 

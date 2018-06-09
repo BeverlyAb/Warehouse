@@ -235,11 +235,16 @@ void BFS::getPath()
 void BFS::processSingleOrder(int indx)
 {
   int n = indx;
+	while(!orgItems.empty())
+		orgItems.pop();
+
+	while(!optItems.empty())
+		optItems.pop();	
+
   for(int j = 0; j < orderFile[n].size(); j++){
     orgItems.push(orderFile[n][j]);  
     optItems.push(orderFile[n][j]);
 	} 
-  getPath();
 }
 
 int BFS::getTotalDist()
@@ -350,7 +355,6 @@ void BFS::makeRefDP()
 			dpRef.insert(pair<position, int>(cur,count++));
 		}
 	} 
-
 	//insert end (exlucde for now)
 //	dpRef.insert(pair<position, int>(end,count));
 	
