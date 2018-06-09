@@ -52,13 +52,13 @@ class BB
     void updateOrig();
     int index;
     int ** getArr(string name);
+    int * get1DArr(string name);
     //reduces temp only!
     void red(int & cost);
     void nullSrc(const int & src, bool reset);
-   /* void nullDest(map<int, int> & order, int (& temp)[ROW][COL], const int & src, const int & dest, const int (&out) [ROW]);
-    void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost);
-    void totalCost(int(&dp)[ROW][COL], int & cost, const int & src, const int & dest);
-    int findLeastCost(int(&storeCost)[ROW], map<int, int> & order, int & cost); */
+   void nullDest(const int & src, const int & dest);
+ void totalCost(int & cost, const int & src, const int & dest);
+    int findLeastCost(int * storeCost,int & cost); 
     void print(int ** arr, int index);
    /* void resetOrder(int(&out)[ROW] , map<int, int> & order, const map<int, int> & origOrder);
     void pointToArr(int ** in, int (&out)[ROW][COL]);  */

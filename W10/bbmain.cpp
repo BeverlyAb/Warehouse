@@ -306,7 +306,7 @@ int main(int argc, char *argv[])
   printf("LB %i\n", cost); 
   
   updateOrig(order, dp, temp);
-
+ 
   int src = 0;
   int dest = 0;
   int tempCost = cost;

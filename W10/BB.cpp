@@ -25,7 +25,7 @@ BB::BB(map<int, int> order, int size, int ** in)
 {
   this->size = size;
   this->order = order;
-
+  index = 0;
 
   //populate dp, temp, and initRed to be original matrix. Init purpose only
   dp = new int * [size];
@@ -40,8 +40,8 @@ BB::BB(map<int, int> order, int size, int ** in)
 
     for(int j = 0; j < size; j++) { 
       dp[i][j] = in[i][j];
-      temp[i][j] = in[i][j];
-      initRed[i][j] = in[i][j]; 
+      temp[i][j] = 0;
+      initRed[i][j] = 0; 
     }
   }
 
@@ -59,19 +59,20 @@ void BB::updateTemp()
   for(int i = 0; i < size; i++){
     for(int j = 0; j < size; j++){
       temp[i][j] = dp[i][j];
-   //   printf("%i ", dp[i][j]);
+    //  printf("%i ", temp[i][j]);
     }
    // printf("\n");
   }
 }
 void BB::updateOrig()
 {
+ //  printf("\ndp\n");
   for(int i = 0; i < size; i++){
     for(int j = 0; j < size; j++){
       dp[i][j] = temp[i][j];
    //   printf("%i ", dp[i][j]);
     }
-   // printf("\n");
+  //  printf("\n");
   }
 }
 
@@ -83,6 +84,16 @@ int ** BB::getArr(string name)
     return temp;
   else if(name == "initRed")
     return initRed;
+  else{
+    printf("Invalid array name\n");
+    return 0;
+  }
+}
+
+int * BB::get1DArr(string name)
+{
+  if(name == "out")
+    return out;
   else{
     printf("Invalid array name\n");
     return 0;
@@ -141,7 +152,7 @@ void BB::nullSrc(const int & src, bool reset)
 {
 
   map<int, int>::iterator inner = order.begin();
-  //nullmyROW of source
+  //null ROW of source
   inner = order.begin();
 
   for(; inner != order.end(); inner++){
@@ -162,9 +173,15 @@ void BB::nullSrc(const int & src, bool reset)
       out[index++] = src;
       printf("src = %i\n", src);
       order.erase(src);
+      
+      map<int, int>:: iterator itt = order.begin();
+      for(; itt != order.end(); itt++)
+        printf("Order = ID %i = index %i ", itt->first, itt->second);
+      printf("\n");
+
     }
     else{
-      out[index] = order.begin()->first;
+       out[index] = order.begin()->first;
        printf("src = %i\n", out[index]);
     }
   }
@@ -187,3 +204,41 @@ void BB::print(int ** arr, int index)
     printf("\n");
   }
 } 
+void BB::nullDest(const int & src, const int & dest)
+{
+  map<int, int>::iterator inner = order.begin();
+  //nullmyCOL of dest
+  //still decide what dest is; that's why use temp
+  for(; inner != order.end(); inner++){
+    temp[inner->second][dest] = INF;
+  }
+
+  temp[dest][src] = INF;
+
+  //null indirect backlinks
+  for(int i = 0; i < size; i++){
+    if(out[i] != -1)//is a valid, visited node
+      temp[dest][out[i]] = INF;
+    else
+      break;
+  }
+}
+void BB::totalCost(int & cost, const int & src, const int & dest)
+{
+  cost += dp[src][dest];
+}
+int BB::findLeastCost(int * storeCost,int & cost)
+{
+  int m = INF;
+  int tempDest = 0;
+  //only check modified values
+  map<int, int>::iterator inner = order.begin();
+  for(; inner != order.end(); inner++){
+    if(m > storeCost[inner->second]){
+      m = storeCost[inner->second];
+      tempDest = inner->second;
+    }
+  //  printf("min = %i, dest = %i\n", m, tempDest);
+  }
+  return tempDest;
+}
