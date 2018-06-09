@@ -37,8 +37,7 @@ makeBB:
 	make bbmain
 
 makeBatch:
+	make clean
+	make
 	make batch
-	for i in{0..10..2}
-		do
-			echo "$i"
-	done
+	./batchRunner.sh

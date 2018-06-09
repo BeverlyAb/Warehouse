@@ -36,9 +36,9 @@ int main(int argc, char *argv[])
 
   test.getListItems("warehouse-orders.csv",0);//change from hardcode later 
   int once = 0;
-  //for(int i = index; i < index + 2; i++){
-    test.processSingleOrder(index);
-      printf("INDEX %i\n", index);
+  for(int i = index; i < index + 1; i++){
+    test.processSingleOrder(i);
+      printf("INDEX %i\n", i);
     test.readWeight("weights.csv");
     test.getPath();
     if(once == 0){
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
   finalOrder = branch.mapBackToItems(intermediate, IDs);
   test.setOpt(finalOrder);
   test.getPath();
- // }
+  }
 
   return 0;
 }
