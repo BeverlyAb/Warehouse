@@ -7,6 +7,7 @@ BB::BB()
   initRed = 0;
   out = 0;
   index = 0;
+  storeCost = 0;
 }
 //destructor
 BB::~BB()
@@ -20,6 +21,7 @@ BB::~BB()
   delete[] temp;
   delete[] initRed;
   delete[] out;
+  delete[] storeCost;
 }
 BB::BB(map<int, int> order, int size, int ** in)
 {
@@ -31,7 +33,9 @@ BB::BB(map<int, int> order, int size, int ** in)
   dp = new int * [size];
   temp = new int * [size];
   initRed = new int * [size];
+  
   out = new int[size];
+  storeCost = new int[size];
 
   for(int i = 0; i < size; i++){
     dp[i] = new int[size];
@@ -99,6 +103,11 @@ int * BB::get1DArr(string name)
     return 0;
   }
 }
+map<int,int> BB::getOrder()
+{
+  return order;
+}
+
 void BB::red(int & cost)
 {
  // map<int, int>::iterator outer = order.begin();
@@ -116,6 +125,7 @@ void BB::red(int & cost)
     }
     if(min < INF -10000){//error correction
       cost += min;
+       printf("cost1 = %i\n", cost);
     }
     else 
       min = 0;
@@ -138,6 +148,7 @@ void BB::red(int & cost)
     
     if(min < INF -10000){//error correction
       cost += min;
+       printf("cost2 = %i\n", cost);
     }
     else 
       min = 0;
@@ -227,7 +238,7 @@ void BB::totalCost(int & cost, const int & src, const int & dest)
 {
   cost += dp[src][dest];
 }
-int BB::findLeastCost(int * storeCost,int & cost)
+int BB::findLeastCost(int & cost)
 {
   int m = INF;
   int tempDest = 0;
@@ -241,4 +252,81 @@ int BB::findLeastCost(int * storeCost,int & cost)
   //  printf("min = %i, dest = %i\n", m, tempDest);
   }
   return tempDest;
+}
+
+void BB::process()
+{
+  printf("\nOriginal");
+  print(dp, 0);
+  int cost = 0;
+  int storeCost[size];
+
+  updateTemp();
+  red(cost);
+  
+  printf("\nInit Reduce");
+  print(temp,1);
+  printf("LB %i\n", cost); 
+
+  updateOrig();
+
+  int src = 0;
+  int dest = 0;
+  int tempCost = cost;
+
+  nullSrc(src, false);
+  updateTemp();
+  printf("\n Null src");
+  print(temp,1);
+
+  map<int, int>::iterator outer = order.begin();
+
+  for(int i = 2; i < 2 + size; i++){
+    outer = order.begin();
+    for(; outer != order.end(); outer++){
+      
+      //reduce along dest
+      dest = outer->second;
+      nullDest(src, dest);
+      red(tempCost);
+      //printf("Cost1 %i\n", tempCost);
+      totalCost(tempCost, src, dest);
+      
+      //printf("Cost2 %i\n", tempCost);
+      
+      printf("\nNull dest for %i", outer->first);
+      print(temp, i);
+      printf("Cost %i\n", tempCost);
+      
+      storeCost[dest] = tempCost;
+
+      //reset temp and null src
+      tempCost = cost;
+      updateTemp(); 
+      nullSrc( src,true);
+    }
+    
+    dest = findLeastCost(cost);
+    totalCost(tempCost, src, dest);
+    cost = storeCost[dest];
+    //evaluate the matrix with least cost again and update original matrix
+    nullSrc(src, true);
+    nullDest(src, dest);
+    red(cost);
+    updateOrig();
+    print(dp, i);
+    printf("Cost %i\n", cost);
+
+    src = dest;
+    nullSrc(src, false);
+    print(temp,i);
+    printf("Cost %i\n", cost);
+
+    map<int,int>::iterator it = order.begin();
+    for(; it!= order.end(); it++){
+      printf("left%i over %i\n", i,it->second);
+    }
+  }
+   for(int i = 0; i < size; i++)
+    printf("order %i\n", out[i]);
 }

@@ -1,6 +1,6 @@
 #ifndef BB_H
 #define BB_H
-#define INF 999999
+#define INF 99999999
 
 #include <stdio.h>
 #include <math.h>
@@ -42,6 +42,7 @@ class BB
     int  ** temp;
     int ** initRed;
     int * out;
+    int * storeCost;
 
   public:
     BB();
@@ -53,13 +54,15 @@ class BB
     int index;
     int ** getArr(string name);
     int * get1DArr(string name);
+    map<int, int> getOrder();
     //reduces temp only!
     void red(int & cost);
     void nullSrc(const int & src, bool reset);
    void nullDest(const int & src, const int & dest);
  void totalCost(int & cost, const int & src, const int & dest);
-    int findLeastCost(int * storeCost,int & cost); 
+    int findLeastCost(int &cost); 
     void print(int ** arr, int index);
+    void process();
    /* void resetOrder(int(&out)[ROW] , map<int, int> & order, const map<int, int> & origOrder);
     void pointToArr(int ** in, int (&out)[ROW][COL]);  */
 };

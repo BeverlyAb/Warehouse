@@ -76,98 +76,100 @@ int main(int argc, char *argv[])
     myorder.insert(pair<int,int>(i,i));
   //  printf("%i ", ID);
   }
+  //-------------------------------------------------
   BB branch = BB(myorder, size, arr);
+  branch.process();
+//   myorder = branch.getOrder();
+//   map<int, int>:: iterator itt = myorder.begin();
+//   for(; itt !=  myorder.end(); itt++)
+//      printf("Order = ID %i = index %i ", itt->first, itt->second);
+//   printf("\n"); 
 
- /* map<int, int>:: iterator itt = order.begin();
-  for(; itt != order.end(); itt++)
-     printf("Order = ID %i = index %i ", itt->first, itt->second);
-  printf("\n"); */
+// //    //init with null values
+// //   /*int out[size];
+// //   for(int i = 0; i <size; i++)
+// //     out[i] = -1;
+// // */
+//   clock_t startTime, endTime;
+//   startTime = clock();
+//   printf("\nOriginal");
+//   branch.print(branch.getArr("dp"), 0);
 
-   //init with null values
-  /*int out[size];
-  for(int i = 0; i <size; i++)
-    out[i] = -1;
-*/
-  clock_t startTime, endTime;
-  startTime = clock();
-  printf("\nOriginal");
-  branch.print(branch.getArr("dp"), 0);
+//   int cost = 0;
+//   int storeCost[size];
 
-  int cost = 0;
-  int storeCost[size];
+//   branch.updateTemp();
+//   branch.red(cost);
+//   printf("\nInit Reduce");
+//   branch.print(branch.getArr("temp"),1);
+//   printf("LB %i\n", cost); 
 
-  branch.updateTemp();
-  branch.red(cost);
-  printf("\nInit Reduce");
-  branch.print(branch.getArr("temp"),1);
-  printf("LB %i\n", cost); 
+//   branch.updateOrig();
 
-  branch.updateOrig();
+//   int src = 0;
+//   int dest = 0;
+//   int tempCost = cost;
+//   //int index = 0;
 
-  int src = 0;
-  int dest = 0;
-  int tempCost = cost;
-  //int index = 0;
+//   branch.nullSrc(src, false);
+//   branch.updateTemp();
 
-  branch.nullSrc(src, false);
-  itt = order.begin();
- 
-  //branch.updateTemp();
-
-  printf("\n Null src");
-  branch.print(branch.getArr("temp"),1);
+//   printf("\n Null src");
+//   branch.print(branch.getArr("temp"),1);
   
-   map<int, int>::iterator outer = order.begin();
-  //offset to 2 to reflect the n-th reductions
+//   myorder = branch.getOrder();
+//    map<int, int>::iterator outer =  myorder.begin();
+//   //offset to 2 to reflect the n-th reductions
 
-  for(int i = 2; i < 2 + size; i++){
-    outer = order.begin();
-    for(; outer != order.end(); outer++){
+//   for(int i = 2; i < 2 + size; i++){
+//     outer =  myorder.begin();
+//     for(; outer !=  myorder.end(); outer++){
       
-      //reduce along dest
-      dest = outer->second;
-      branch.nullDest(src, dest);
-      branch.red(tempCost);
-      //printf("Cost1 %i\n", tempCost);
-      branch.totalCost(tempCost, src, dest);
+//       //reduce along dest
+//       dest = outer->second;
+//       branch.nullDest(src, dest);
+//       branch.red(tempCost);
+//       //printf("Cost1 %i\n", tempCost);
+//       branch.totalCost(tempCost, src, dest);
       
-      //printf("Cost2 %i\n", tempCost);
+//       //printf("Cost2 %i\n", tempCost);
       
-      printf("\nNull dest for %i", outer->first);
-      branch.print(branch.getArr("temp"), i);
-      printf("Cost %i\n", tempCost);
+//       printf("\nNull dest for %i", outer->first);
+//       branch.print(branch.getArr("temp"), i);
+//       printf("Cost %i\n", tempCost);
       
-      storeCost[dest] = tempCost;
+//       storeCost[dest] = tempCost;
 
-      //reset temp and null src
-      tempCost = cost;
-      branch.updateTemp(); 
-      branch.nullSrc(src, true);
-    }
+//       //reset temp and null src
+//       tempCost = cost;
+//       branch.updateTemp(); 
+//       branch.nullSrc(src, true);
+//     }
 
-    dest = branch.findLeastCost(storeCost,  cost);
-    branch.totalCost(tempCost, src, dest);
-    cost = storeCost[dest];
-    //evaluate the matrix with least cost again and update original matrix
-    branch.nullSrc(src, true);
-    branch.nullDest(src, dest);
-    branch.red(cost);
-    branch.updateOrig();
-    branch.print(branch.getArr("dp"),i);
-    printf("Cost %i\n", cost);
+//     dest = branch.findLeastCost(storeCost,  cost);
+//     branch.totalCost(tempCost, src, dest);
+//     cost = storeCost[dest];
+//     //evaluate the matrix with least cost again and update original matrix
+//     branch.nullSrc(src, true);
+//     branch.nullDest(src, dest);
+//     branch.red(cost);
+//     branch.updateOrig();
+//     branch.print(branch.getArr("dp"),i);
+//     printf("Cost %i\n", cost);
 
-    src = dest;
-    branch.nullSrc(src,false);
-    branch.print(branch.getArr("temp"),i);
-    printf("Cost %i\n", cost);
+//     src = dest;
+//     branch.nullSrc(src,false);
+//     myorder = branch.getOrder();
+//     branch.print(branch.getArr("temp"),i);
+//     printf("Cost %i\n", cost);
 
-    map<int,int>::iterator it = order.begin();
-    for(; it!= order.end(); it++){
-      printf("left%i over %i\n", i,it->second);
-    }
-  } 
-  for(int i = 0; i < size; i++)
-    printf("order %i\n", branch.get1DArr("out")[i]);
+//     map<int,int>::iterator it =  branch.getOrder().begin();
+//     for(; it!=  branch.getOrder().end(); it++){
+//       printf("left%i over %i\n", i,it->second);
+//     }
+//   } 
+//   for(int i = 0; i < size; i++)
+//     printf("order %i\n", branch.get1DArr("out")[i]);
 
 //   unsigned int intermediate[size];
 //   map<  unsigned int, int> intOrder;

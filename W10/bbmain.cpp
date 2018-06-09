@@ -118,7 +118,7 @@ void red(map<int, int> & order, int (& temp)[myROW][myCOL], int & cost)
     for(int j = 0; j <myCOL; j++){
       if(temp[i][j] < min){
         min = temp[i][j];
-       
+        printf("cost1 = %i\n", cost);
       }
     }
     if(min < INF -10000){//error correction
@@ -145,6 +145,7 @@ void red(map<int, int> & order, int (& temp)[myROW][myCOL], int & cost)
     
     if(min < INF -10000){//error correction
       cost += min;
+      printf("cost2 = %i\n", cost);
     }
     else 
       min = 0;
