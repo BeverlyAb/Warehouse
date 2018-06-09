@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
   test.readFile(STOCK, infile);
 
   test.getListItems("warehouse-orders.csv",0);//change from hardcode later 
-  for(int i = 2; i < 3; i++){
+  for(int i = 12; i < 13; i++){
     test.processSingleOrder(i);
 
     test.readWeight("weights.csv");

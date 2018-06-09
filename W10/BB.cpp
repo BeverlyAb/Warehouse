@@ -13,7 +13,6 @@ BB::BB()
 BB::~BB()
 {
   for(int i = 0; i < size; i++){
-    printf("");
     delete[] dp[i];
     delete[] temp[i];
     delete[] initRed[i];
@@ -170,42 +169,44 @@ void BB::nullSrc(const int & src, bool reset)
   for(; inner != order.end(); inner++){
     temp[src][inner->second] = INF;
   }
-  
-  if(!reset){
-  printf("Before\n");
-  for(inner = order.begin(); inner != order.end(); inner++)
-    printf("%i ", inner->first);
-  printf("\n");
-  }
+//for debugging  
+  // if(!reset){
+  // printf("Before\n");
+  // for(inner = order.begin(); inner != order.end(); inner++)
+  //   printf("%i ", inner->first);
+  // printf("\n");
+  // }
   
   //must update values, not just resetting the new null
   if(!reset){ 
   //  inner = order.find(src);
     if(index < size -1){
       out[index++] = src;
-      printf("src = %i\n", src);
+     // printf("src = %i\n", src);
       order.erase(src);
       
-      map<int, int>:: iterator itt = order.begin();
-      for(; itt != order.end(); itt++)
-        printf("Order = ID %i = index %i ", itt->first, itt->second);
-      printf("\n");
+      //for debugging
+      // map<int, int>:: iterator itt = order.begin();
+      // for(; itt != order.end(); itt++)
+      //   printf("Order = ID %i = index %i ", itt->first, itt->second);
+      // printf("\n");
 
     }
     else{
        out[index] = order.begin()->first;
-       printf("src = %i\n", out[index]);
+     //  printf("src = %i\n", out[index]);
     }
   }
 
-  if(!reset){
-  printf("After\n");
-    for(inner = order.begin(); inner != order.end(); inner++)
-      printf("%i ", inner->first);
+  //for debugging
+  // if(!reset){
+  // printf("After\n");
+  //   for(inner = order.begin(); inner != order.end(); inner++)
+  //     printf("%i ", inner->first);
 
-  printf("index %i", index);
-  printf("\n");
-  }
+  // printf("index %i", index);
+  // printf("\n");
+  // }
 }
 void BB::print(int ** arr, int index)
 {
@@ -238,7 +239,7 @@ void BB::nullDest(const int & src, const int & dest)
 void BB::totalCost(int & cost, const int & src, const int & dest)
 {
   cost += dp[src][dest];
-  printf("dp[src][dest] = %i, src = %i, dest = %i\n", dp[src][dest],src,dest);
+  //printf("dp[src][dest] = %i, src = %i, dest = %i\n", dp[src][dest],src,dest);
 }
 int BB::findLeastCost(int & cost)
 {
@@ -258,16 +259,16 @@ int BB::findLeastCost(int & cost)
 
 void BB::process()
 {
-  printf("\nOriginal");
-  print(dp, 0);
+  // printf("\nOriginal");
+  // print(dp, 0);
   int cost = 0;
 
   updateTemp();
   red(cost);
   
-  printf("\nInit Reduce");
-  print(temp,1);
-  printf("LB %i\n", cost); 
+  // printf("\nInit Reduce");
+  // print(temp,1);
+  // printf("LB %i\n", cost); 
 
   updateOrig();
   
@@ -277,8 +278,8 @@ void BB::process()
 
   nullSrc(src, false);
   updateTemp();
-  printf("\n Null src");
-  print(temp,1);
+  // printf("\n Null src");
+  // print(temp,1);
 
   map<int, int>::iterator outer = order.begin();
 
@@ -295,9 +296,9 @@ void BB::process()
       
       //printf("Cost2 %i\n", tempCost);
       
-      printf("\nNull dest for %i", outer->first);
-      print(temp, i);
-      printf("Cost %i\n", tempCost);
+      // printf("\nNull dest for %i", outer->first);
+      // print(temp, i);
+      // printf("Cost %i\n", tempCost);
       
       storeCost[dest] = tempCost;
 
@@ -308,7 +309,7 @@ void BB::process()
     }
     
     dest = findLeastCost(cost);
-    printf("final dest = %i\n", dest);
+   // printf("final dest = %i\n", dest);
     totalCost(tempCost, src, dest);
     cost = storeCost[dest];
     //evaluate the matrix with least cost again and update original matrix
@@ -316,21 +317,21 @@ void BB::process()
     nullDest(src, dest);
     red(cost);
     updateOrig();
-    print(dp, i);
-    printf("Cost %i\n", cost);
+    // print(dp, i);
+    // printf("Cost %i\n", cost);
 
     src = dest;
     nullSrc(src, false);
-    print(temp,i);
-    printf("Cost %i\n", cost);
+    // print(temp,i);
+    // printf("Cost %i\n", cost);
 
     map<int,int>::iterator it = order.begin();
     for(; it!= order.end(); it++){
-      printf("left%i over %i\n", i,it->second);
+//      printf("left%i over %i\n", i,it->second);
     }
   }
    for(int i = 0; i < size; i++){
-    printf("order %i\n", out[i]);
+    // printf("order %i\n", out[i]);
    }
 }
 queue<unsigned int> BB::mapBackToItems(unsigned int * intermediate, int * IDs)
@@ -363,7 +364,7 @@ queue<unsigned int> BB::mapBackToItems(unsigned int * intermediate, int * IDs)
         table[i] = it4->first;
         intOrder.erase(table[i]);
         finalOrder.push(table[i]);
-        printf("mappint %i %i\n", table[i], it4->second);
+        // printf("mappint %i %i\n", table[i], it4->second);
         break;
       }
     }
@@ -376,8 +377,5 @@ queue<unsigned int> BB::mapBackToItems(unsigned int * intermediate, int * IDs)
   // for(int i = 0; i < size; i++){
   //   printf("finalOrderz %i out %i\n ", table[out[i]], out[i]);
   // } 
-
-
-  finalOrder.pop(); //remove start
   return finalOrder;
 }

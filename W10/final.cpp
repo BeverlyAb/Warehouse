@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     int ID = itemList.front();
     itemList.pop();
     myorder.insert(pair<int,int>(i,i));
-   printf("%i ", ID);
+   //printf("%i ", ID);
   }
   //-------------------------------------------------
  BB branch = BB(myorder, size, arr);

@@ -435,13 +435,13 @@ int ** BFS::makeSubDP()
 			}
 	}
 	
-
-		for(int i = 0; i < n; i++){
-			for(int j = 0; j < n; j++){
-				printf("%i ", subDP[i][j]);
-			}
-			printf("\n");
-		}
+		//for debugging
+		// for(int i = 0; i < n; i++){
+		// 	for(int j = 0; j < n; j++){
+		// 		printf("%i ", subDP[i][j]);
+		// 	}
+		// 	printf("\n");
+		// }
 	return subDP; 
 }
 
