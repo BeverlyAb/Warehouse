@@ -12,8 +12,8 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-  if(argc != 8){
-    printf("Error: Specify width, height, input file, start(x,y), end(x,y)\n");
+  if(argc != 9){
+    printf("Error: Specify width, height, input file, start(x,y), end(x,y), Index\n");
     return 1;
   }
 
@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 
   unsigned int x = atoi(argv[4]);
   unsigned int y = atoi(argv[5]);
+  int index = atoi(argv[8]);
+
   position start = {x,y};
 
   x = atoi(argv[6]);
@@ -33,48 +35,21 @@ int main(int argc, char *argv[])
   test.readFile(STOCK, infile);
 
   test.getListItems("warehouse-orders.csv",0);//change from hardcode later 
-  
-  // int ** arr = NULL;
-  // int n = test.getItems().size() + 1;
-  // arr = (int **)malloc(n* sizeof(int*));
-  //  //Check memory validity
-  // if(arr == NULL)
-  // {
-  // return 1;
-  // }
-
-  // for(int i = 0; i < n; i++){
-  //   arr[i] = (int *)malloc(n* sizeof(int));
-  //    //Check memory validity
-  //   if(arr[i] == NULL)
-  //   {
-  //   return 1;
-  //   }
-  // }
-
-  for(int i = 0; i < 2; i++){
-    test.processSingleOrder(i);
+  int once = 0;
+  //for(int i = index; i < index + 2; i++){
+    test.processSingleOrder(index);
+      printf("INDEX %i\n", index);
+    test.readWeight("weights.csv");
+    test.getPath();
+    if(once == 0){
+      test.makeRefDP();
+      test.preProcess();
+      once++;
+    }
+    int ** arr = test.makeSubDP();
     queue<unsigned int> itemList = test.getItems();
     queue<unsigned int> d = test.getItems();
     queue<unsigned int> finalOrder;
-
-    test.readWeight("weights.csv");
-    test.getPath();
-    if(i == 0){
-      test.makeRefDP();
-      test.preProcess();
-    }
-    int ** arr = test.makeSubDP();
-    // for(int i = 0; i < n; i ++){
-    //   for(int j = 0; j < n; j++){
-    //     arr[i][j] = test.makeSubDP()[i][j];
-    //     printf("%i ",test.makeSubDP()[i][j]);
-    //   }
-    //   printf("\n");
-    // }
-    // for(int i = 0; i < n; i++)
-    //   free(arr[i]);
-    // free(arr);
     int startPos = 0;
     map<int, int> myorder;//ID, index
     myorder.insert(pair<int,int>(startPos, 0)); //include start!
@@ -104,7 +79,7 @@ int main(int argc, char *argv[])
   finalOrder = branch.mapBackToItems(intermediate, IDs);
   test.setOpt(finalOrder);
   test.getPath();
-  }
+ // }
 
   return 0;
 }

@@ -408,7 +408,6 @@ int ** BFS::makeSubDP()
 	int s[n][n];
 	int ** subDP = 0;
 
-
 	for(int i = 0; i < n; i++){
 		position pos = getPos(arr[i]);
 		int srcIndx = dpRef.find(pos)->second;
@@ -435,7 +434,7 @@ int ** BFS::makeSubDP()
 			}
 	}
 	
-		//for debugging
+	//	for debugging
 		// for(int i = 0; i < n; i++){
 		// 	for(int j = 0; j < n; j++){
 		// 		printf("%i ", subDP[i][j]);
@@ -473,7 +472,6 @@ void BFS::readWeight(string in)
   }
 
 	/*map<unsigned int, double>::iterator it = weights.begin();
-
 	for(; it != weights.end(); it++){
 		printf("ID %i weight %f\n",it->first, it->second);
 	} */
@@ -519,4 +517,3 @@ int BFS::getDPRef(unsigned int ID)
 	else 
 		return -1;
 }
-

@@ -25,7 +25,7 @@ BB::~BB()
 }
 BB::BB(map<int, int> order, int size, int ** in)
 {
-  BB();//assign to nulls
+  BB();//assign to 0
 
   this->size = size;
   this->order = order;

@@ -1,3 +1,4 @@
+#!/bin/bash
 CC = g++-7 -fopenmp -lc++ #MAC
 #CC = g++ -fopenmp #server 
 CFLAGS = #-std=c++99
@@ -34,3 +35,10 @@ makeB:
 
 makeBB:
 	make bbmain
+
+makeBatch:
+	make batch
+	for i in{0..10..2}
+		do
+			echo "$i"
+	done
