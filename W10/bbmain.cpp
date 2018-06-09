@@ -18,7 +18,6 @@
 #include <iostream>
 
 using namespace std;
-
 void updateTemp(map<int, int> & order, int (& dp)[myROW][myCOL], int (& temp)[myROW][myCOL])
 {
  // printf("\ntemp\n");
@@ -118,7 +117,7 @@ void red(map<int, int> & order, int (& temp)[myROW][myCOL], int & cost)
     for(int j = 0; j <myCOL; j++){
       if(temp[i][j] < min){
         min = temp[i][j];
-        printf("cost1 = %i\n", cost);
+       
       }
     }
     if(min < INF -10000){//error correction
@@ -145,7 +144,6 @@ void red(map<int, int> & order, int (& temp)[myROW][myCOL], int & cost)
     
     if(min < INF -10000){//error correction
       cost += min;
-      printf("cost2 = %i\n", cost);
     }
     else 
       min = 0;
@@ -251,17 +249,12 @@ int main(int argc, char *argv[])
   test.preProcess();
 
   int ** arr = test.makeSubDP();
-  queue<unsigned int> itemList = test.getItems();
-  queue<unsigned int> d = test.getItems();
 
- /* #undef myROW
-  #define myROW mySize
-  #undef myCOL
-  #define myCOL mySize*/
+  int dp[myROW][myROW];
 
-  int dp[myROW][myCOL];
   pointToArr(arr, dp);
- 
+  queue<unsigned int> itemList = test.getItems();
+    queue<unsigned int> d = test.getItems();
   /*for(int i = 0; i < myROW; i++)
   {
     printf("d %i ", d.front());
@@ -307,7 +300,7 @@ int main(int argc, char *argv[])
   printf("LB %i\n", cost); 
   
   updateOrig(order, dp, temp);
- 
+
   int src = 0;
   int dest = 0;
   int tempCost = cost;
