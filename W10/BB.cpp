@@ -2,52 +2,61 @@
 BB::BB()
 {
   size = 0;
-  dp = 0;
-  temp = 0;
-  initRed = 0;
-  out = 0;
+  dp = NULL;
+  temp = NULL;
+  initRed = NULL;
+  out = NULL;
   index = 0;
-  storeCost = 0;
+  storeCost = NULL;
 }
 //destructor
 BB::~BB()
 {
   for(int i = 0; i < size; i++){
-    delete[] dp[i];
-    delete[] temp[i];
-    delete[] initRed[i];
+    free(dp[i]);
+    free(temp[i]);
+    free(initRed[i]);
   }
-  delete[] dp;
-  delete[]temp;
-  delete[]initRed;
-  delete[]out;
-  delete[]storeCost;
+  free(dp);
+  free(temp);
+  free(initRed);
+  free(out);
+  free(storeCost);
 }
 BB::BB(map<int, int> order, int size, int ** in)
 {
+  BB();//assign to nulls
+
   this->size = size;
   this->order = order;
   index = 0;
   int buffer = 40;
-  //populate dp, temp, and initRed to be original matrix. Init purpose only
-  dp = new int * [buffer];
-  temp = new int * [buffer];
-  initRed = new int * [buffer];
-  
-  out = new int[buffer];
-  storeCost = new int[buffer];
+  //populate dp, temp, and initRed  
+  dp =  (int **)malloc(size * sizeof (int*));
+  temp = (int **)malloc (size * sizeof (int*));
+  initRed = (int **)malloc (size * sizeof (int*));
+
+  out = (int *)malloc (size * sizeof (int));
+  storeCost = (int *)malloc (size * sizeof (int));
+
+  for(int i = 0; i < size; i++) { 
+    dp[i] =   (int *)malloc(size * sizeof(int));
+    temp[i] = (int *)malloc(size * sizeof(int));
+    initRed[i] = (int *)malloc(size * sizeof(int));
+  }
+
 
   for(int i = 0; i < size; i++){
-    dp[i] = new int[buffer];
-    temp[i] = new int[buffer];
-    initRed[i] = new int[buffer];
+    // dp[i] = new int[buffer];
+    // temp[i] = new int[buffer];
+    // initRed[i] = new int[buffer];
 
     for(int j = 0; j < size; j++) { 
       dp[i][j] = in[i][j];
       temp[i][j] = 0;
       initRed[i][j] = 0; 
     }
-  }
+   }
 
   resetOut();
 }
