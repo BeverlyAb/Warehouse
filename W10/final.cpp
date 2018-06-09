@@ -64,20 +64,22 @@ int main(int argc, char *argv[])
   queue<unsigned int> itemList = test.getItems();
   queue<unsigned int> d = test.getItems();
   //-------------------------------BB stuff
-  int size = itemList.size() + 1; //include start!
-  BB branch = BB(itemList, size, arr);
-  
-  queue<unsigned int> finalOrder;
+   queue<unsigned int> finalOrder;
   int startPos = 0;
   map<int, int> order;//ID, index
-
-  order.insert(pair<int,int>(startPos, 0));
+  order.insert(pair<int,int>(startPos, 0)); //include start!
+  int size = itemList.size() + 1;           //include start!
+  
   for(int i = 1; i < size; i++){
     int ID = itemList.front();
     itemList.pop();
     order.insert(pair<int,int>(i,i));
   //  printf("%i ", ID);
   }
+
+
+  printf("%i\n", size);
+  BB branch = BB(order, size, arr);
 
   map<int, int>:: iterator itt = order.begin();
   for(; itt != order.end(); itt++)
@@ -96,12 +98,21 @@ int main(int argc, char *argv[])
 
   int cost = 0;
   int storeCost[size];
-  branch.updateTemp(order, branch.getArr("dp"), branch.getArr("temp"));
+
+  branch.updateTemp();
+  branch.red(cost);
   printf("\nInit Reduce");
   branch.print(branch.getArr("temp"),1);
   printf("LB %i\n", cost); 
 
+  branch.updateOrig();
 
+  int src = 0;
+  int dest = 0;
+  int tempCost = cost;
+  int index = 0;
+
+  branch.nullSrc(src, false);
 
   return 0;
 }

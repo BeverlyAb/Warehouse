@@ -1,6 +1,6 @@
 #ifndef BB_H
 #define BB_H
-#define staticSize(x) x
+#define INF 999999
 
 #include <stdio.h>
 #include <math.h>
@@ -35,21 +35,27 @@ struct Node
 class BB
 {
   private:  
-    queue<unsigned int> totalNodes;
+    map<int, int> order;
     int size;
     //queue<unsigned int> visitedNodes;
     int **  dp;
     int  ** temp;
     int ** initRed;
+    int * out;
 
   public:
     BB();
-    BB(queue<unsigned int> order, int size, int ** in);
-    void updateTemp(map<int, int> & order, int ** dp, int ** temp);
+    ~BB();
+    BB(map<int, int> order, int size, int ** in);
+    void resetOut();
+    void updateTemp();
+    void updateOrig();
+    int index;
     int ** getArr(string name);
-  /*  void updateOrig(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][COL]);
-    void nullSrc(map<int, int> & order, int (& dp)[ROW][COL], const int & src, int (&out)[ROW], int & index, bool reset);
-    void nullDest(map<int, int> & order, int (& temp)[ROW][COL], const int & src, const int & dest, const int (&out) [ROW]);
+    //reduces temp only!
+    void red(int & cost);
+    void nullSrc(const int & src, bool reset);
+   /* void nullDest(map<int, int> & order, int (& temp)[ROW][COL], const int & src, const int & dest, const int (&out) [ROW]);
     void red(map<int, int> & order, int (& temp)[ROW][COL], int & cost);
     void totalCost(int(&dp)[ROW][COL], int & cost, const int & src, const int & dest);
     int findLeastCost(int(&storeCost)[ROW], map<int, int> & order, int & cost); */
