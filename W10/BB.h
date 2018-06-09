@@ -7,6 +7,7 @@
 #include <ctime>
 #include <map>
 #include <queue>
+#include <string>
 
 
 using namespace std;
@@ -45,7 +46,7 @@ class BB
     BB();
     BB(queue<unsigned int> order, int size, int ** in);
     void updateTemp(map<int, int> & order, int ** dp, int ** temp);
-    int ** getDp();
+    int ** getArr(string name);
   /*  void updateOrig(map<int, int> & order, int (& dp)[ROW][COL], int (& temp)[ROW][COL]);
     void nullSrc(map<int, int> & order, int (& dp)[ROW][COL], const int & src, int (&out)[ROW], int & index, bool reset);
     void nullDest(map<int, int> & order, int (& temp)[ROW][COL], const int & src, const int & dest, const int (&out) [ROW]);

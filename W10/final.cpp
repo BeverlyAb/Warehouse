@@ -66,6 +66,7 @@ int main(int argc, char *argv[])
   //-------------------------------BB stuff
   int size = itemList.size() + 1; //include start!
   BB branch = BB(itemList, size, arr);
+  
   queue<unsigned int> finalOrder;
   int startPos = 0;
   map<int, int> order;//ID, index
@@ -91,11 +92,14 @@ int main(int argc, char *argv[])
   clock_t startTime, endTime;
   startTime = clock();
   printf("\nOriginal");
-  branch.print(branch.getDp(), 0);
+  branch.print(branch.getArr("dp"), 0);
 
   int cost = 0;
-  int temp[size][size];
   int storeCost[size];
+  branch.updateTemp(order, branch.getArr("dp"), branch.getArr("temp"));
+  printf("\nInit Reduce");
+  branch.print(branch.getArr("temp"),1);
+  printf("LB %i\n", cost); 
 
 
 
