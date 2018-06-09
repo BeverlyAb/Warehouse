@@ -13,34 +13,34 @@ BB::BB()
 BB::~BB()
 {
   for(int i = 0; i < size; i++){
-    delete[] dp[i];
-    delete[] temp[i];
-    delete[] initRed[i];
+    free(dp[i]);
+    free(temp[i]);
+    free(initRed[i]);
   }
-  delete[] dp;
-  delete[] temp;
-  delete[] initRed;
-  delete[] out;
-  delete[] storeCost;
+  free(dp);
+  free(temp);
+  free(initRed);
+  free(out);
+  free(storeCost);
 }
 BB::BB(map<int, int> order, int size, int ** in)
 {
   this->size = size;
   this->order = order;
   index = 0;
-
+  int buffer = 40;
   //populate dp, temp, and initRed to be original matrix. Init purpose only
-  dp = new int * [size];
-  temp = new int * [size];
-  initRed = new int * [size];
+  dp = new int * [buffer];
+  temp = new int * [buffer];
+  initRed = new int * [buffer];
   
-  out = new int[size];
-  storeCost = new int[size];
+  out = new int[buffer];
+  storeCost = new int[buffer];
 
   for(int i = 0; i < size; i++){
-    dp[i] = new int[size];
-    temp[i] = new int[size];
-    initRed[i] = new int[size];
+    dp[i] = new int[buffer];
+    temp[i] = new int[buffer];
+    initRed[i] = new int[buffer];
 
     for(int j = 0; j < size; j++) { 
       dp[i][j] = in[i][j];

@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
   test.readFile(STOCK, infile);
 
   test.getListItems("warehouse-orders.csv",0);//change from hardcode later 
-  for(int i = 12; i < 13; i++){
+  for(int i = 0; i < 20; i++){
     test.processSingleOrder(i);
 
     test.readWeight("weights.csv");
@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
   finalOrder = branch.mapBackToItems(intermediate, IDs);
   test.setOpt(finalOrder);
   test.getPath();
+  // branch.~BB();
   }
 
   return 0;
