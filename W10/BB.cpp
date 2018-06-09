@@ -373,12 +373,9 @@ queue<unsigned int> BB::mapBackToItems(unsigned int * intermediate, int * IDs)
  //      printf("table %i\n ", table[i]); 
 // printf("here2\n");
 
-  for(int i = 0; i < size; i++){
-  //  finalOrder.push(table[out[i]]);
-
-    printf("finalOrderz %i out %i\n ", table[out[i]], out[i]);
-    //finalOrder.pop();
-  } 
+  // for(int i = 0; i < size; i++){
+  //   printf("finalOrderz %i out %i\n ", table[out[i]], out[i]);
+  // } 
 
 
   finalOrder.pop(); //remove start
