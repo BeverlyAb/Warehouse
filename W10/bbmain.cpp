@@ -1,6 +1,5 @@
 #define myROW 6
 #define myCOL 6
-
 //myRow = orgItems.size() + 1
 /* 
   myRow | ID Based on CSV | ID on main should be -1 Based on CSV
@@ -19,11 +18,12 @@
 #include <iostream>
 
 using namespace std;
-void updateTemp(map<int, int> & order, vector<vector<int> >  & dp, vector<vector<int> >  & temp)
+
+void updateTemp(map<int, int> & order, int (& dp)[myROW][myCOL], int (& temp)[myROW][myCOL])
 {
  // printf("\ntemp\n");
-  for(int i = 0; i < dp.size(); i++){
-    for(int j = 0; j < dp.size(); j++){
+  for(int i = 0; i <myROW; i++){
+    for(int j = 0; j <myCOL; j++){
       temp[i][j] = dp[i][j];
    //   printf("%i ", dp[i][j]);
     }
@@ -31,11 +31,11 @@ void updateTemp(map<int, int> & order, vector<vector<int> >  & dp, vector<vector
   }
 }
 
-void updateOrig(map<int, int> & order,  vector<vector<int> >  & dp,  vector<vector<int> >  & temp)
+void updateOrig(map<int, int> & order, int (& dp)[myROW][myCOL], int (& temp)[myROW][myCOL])
 {
  //  printf("\norig\n");
-  for(int i = 0; i < dp.size(); i++){
-    for(int j = 0; j < dp.size(); j++){
+  for(int i = 0; i <myROW; i++){
+    for(int j = 0; j <myCOL; j++){
       dp[i][j] = temp[i][j];
    //   printf("%i ", dp[i][j]);
     }
@@ -43,7 +43,7 @@ void updateOrig(map<int, int> & order,  vector<vector<int> >  & dp,  vector<vect
   }
 }
 
-void nullSrc(map<int, int> & order, vector<vector<int> >  & dp, const int & src, int (&out)[myROW], int & index, bool reset)
+void nullSrc(map<int, int> & order, int (& dp)[myROW][myCOL], const int & src, int (&out)[myROW], int & index, bool reset)
 { 
 
   map<int, int>::iterator inner = order.begin();
@@ -85,7 +85,7 @@ void nullSrc(map<int, int> & order, vector<vector<int> >  & dp, const int & src,
   }
 }
 
-void nullDest(map<int, int> & order,  vector<vector<int> >  & temp, const int & src, const int & dest, const int (&out) [myROW])
+void nullDest(map<int, int> & order, int (& temp)[myROW][myCOL], const int & src, const int & dest, const int (&out) [myROW])
 { 
   map<int, int>::iterator inner = order.begin();
   //nullmyCOL of dest
@@ -106,7 +106,7 @@ void nullDest(map<int, int> & order,  vector<vector<int> >  & temp, const int & 
 }
 
 
-void red(map<int, int> & order,  vector<vector<int> >  & temp, int & cost)
+void red(map<int, int> & order, int (& temp)[myROW][myCOL], int & cost)
 {
  // map<int, int>::iterator outer = order.begin();
  // map<int, int>::iterator inner = order.begin();
@@ -155,7 +155,7 @@ void red(map<int, int> & order,  vector<vector<int> >  & temp, int & cost)
   }
 
 }
-void totalCost( vector<vector<int> >  & dp, int & cost, const int & src, const int & dest)
+void totalCost(int(&dp)[myROW][myCOL], int & cost, const int & src, const int & dest)
 {
   cost += dp[src][dest];
  // printf("back link %i \n",dp[src][dest]);
@@ -180,7 +180,7 @@ int findLeastCost(int(&storeCost)[myROW], map<int, int> & order, int & cost)
 
 }
 
-void print( vector<vector<int> >  & arr, int index)
+void print(int(&arr)[myROW][myCOL], int index)
 {
   printf("\nR%i\n",index);
   for(int i = 0; i <myROW; i++){
@@ -191,10 +191,9 @@ void print( vector<vector<int> >  & arr, int index)
 }
 
 
- void pointToVec(int ** in,  vector<vector<int> >  & out)
+ void pointToArr(int ** in, int (&out)[myROW][myCOL])
   {
     for(int i = 0; i < myROW; i++){
-      out[i] = vector<int>(in[i]);
       for(int j = 0; j < myCOL; j++)
         out[i][j] = in[i][j];
     }
@@ -251,12 +250,17 @@ int main(int argc, char *argv[])
   test.preProcess();
 
   int ** arr = test.makeSubDP();
-
-  vector<vector<int> > dp;
-
-  pointToVec(arr, dp);
   queue<unsigned int> itemList = test.getItems();
-    queue<unsigned int> d = test.getItems();
+  queue<unsigned int> d = test.getItems();
+
+ /* #undef myROW
+  #define myROW mySize
+  #undef myCOL
+  #define myCOL mySize*/
+
+  int dp[myROW][myCOL];
+  pointToArr(arr, dp);
+ 
   /*for(int i = 0; i < myROW; i++)
   {
     printf("d %i ", d.front());
@@ -288,7 +292,7 @@ int main(int argc, char *argv[])
   clock_t startTime, endTime;
   startTime = clock();
   printf("\nOriginal");
-  //print(dp, 0);
+  print(dp, 0);
 
   int cost = 0;
   int temp[myROW][myCOL];
@@ -298,7 +302,7 @@ int main(int argc, char *argv[])
   red(order, temp, cost);
   
   printf("\nInit Reduce");
- // print(temp,1);
+  print(temp,1);
   printf("LB %i\n", cost); 
   
   updateOrig(order, dp, temp);
@@ -312,7 +316,7 @@ int main(int argc, char *argv[])
   updateTemp(order, dp, temp);
   
   printf("\n Null src");
- // print(temp,1);
+  print(temp,1);
 
   map<int, int>::iterator outer = order.begin();
   //offset to 2 to reflect the n-th reductions
@@ -350,12 +354,12 @@ int main(int argc, char *argv[])
     nullDest(order, temp, src, dest, out);
     red(order, temp, cost);
     updateOrig(order, dp, temp);
-   // print(dp, i);
+    print(dp, i);
     printf("Cost %i\n", cost);
 
     src = dest;
     nullSrc(order, temp, src, out, index, false);
-   // print(temp,i);
+    print(temp,i);
     printf("Cost %i\n", cost);
 
     map<int,int>::iterator it = order.begin();
@@ -368,20 +372,30 @@ int main(int argc, char *argv[])
 
   unsigned int intermediate[myROW];
   map<  unsigned int, int> intOrder;
+ // int itemIndx = test.getDPRef(start);
+  // printf("ind = %i\n", intermediate[0]);
 
   for(int i = 1; i < myROW; i++){ //exclude start
     unsigned int ID = d.front();
+ //   printf("FRONT %i\n", d.front());
     int itemIndx = test.getDPRef(ID);
     intermediate[i] = itemIndx;
     intOrder.insert(pair< unsigned int, int>  ( ID, itemIndx));
+ //   printf("intermediate %i , ind = %i\n", ID,intermediate[i]);
     d.pop();
   } 
   
   map< unsigned  int,int>::iterator it4 = intOrder.begin();
+  for(; it4 != intOrder.end(); it4++){
+  //printf("Indx %i , ID= %i\n", it4->first,it4->second);
+  /*if(it4->second == -1)
+    intOrder.erase(it4);
+  */}
 
   sort(intermediate,myROW + intermediate);
   int table[myROW-1];
-
+  //for(int i = 0; i < myROW; i++)
+  //   printf("sort %i \n", intermediate[i]);
 
 
   for(int i = 0; i < myROW; i++){
@@ -396,6 +410,17 @@ int main(int argc, char *argv[])
       }
     }
   } 
+
+  //  for(int i = 0; i < myROW-1; i++)
+ //      printf("table %i\n ", table[i]); 
+// printf("here2\n");
+ /* for(int i = 0; i < myROW-1; i++){
+    finalOrder.push(table[out[i]]);
+
+    printf("finalOrderz %i out %i\n ", table[out[i]], out[i]);
+    //finalOrder.pop();
+  } */
+  //finalOrder.pop(); //remove start
 
   test.setOpt(finalOrder);
   test.getPath();

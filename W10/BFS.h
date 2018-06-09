@@ -78,7 +78,7 @@ class BFS : public Layout
     void hopOnlyNeighbors(position cur);
     void preProcess();
     void readWeight(string in);
-    vector<int> makeSubDP();
+    int ** makeSubDP();
     void setOpt(queue<unsigned int>);
     queue<unsigned int> getItems();
     int getItemSize();

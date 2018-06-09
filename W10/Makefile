@@ -13,6 +13,10 @@ BFSMain:	BFSMain.o Layout.o BFS.o
 
 bbmain:	bbmain.o Layout.o BFS.o
 	$(CC) $(COPTFLAGS) -o $@ $^
+
+final:	final.o Layout.o BB.o BFS.o
+	$(CC) $(COPTFLAGS) -o $@ $^	
+
 %.o: %.cc
 	$(CC) $(CFLAGS) $(COPTFLAGS) -o $@ -c $<
 

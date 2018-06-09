@@ -2,6 +2,18 @@
   "files.associations": {
     "iosfwd": "cpp",
     "iterator": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "queue": "cpp",
+    "__tree": "cpp",
+    "map": "cpp",
+    "__split_buffer": "cpp",
+    "bitset": "cpp",
+    "deque": "cpp",
+    "initializer_list": "cpp",
+    "memory": "cpp",
+    "stack": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "utility": "cpp"
   }
 }
