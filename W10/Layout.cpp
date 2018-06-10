@@ -122,25 +122,14 @@ void Layout::getListItems(string in, int index)
 
   //works for bigWarehouse.txt
   if(myFile.is_open()){
-    // istringstream iss(IDs);
-    // string ID = "";
-    // getline(myFile, IDs);
-    // while(getline(iss, ID, ' '))  {
-    //     orderFile[i].push_back(atoi(ID.c_str()));
-    //    printf("%s at %i ",IDs.c_str(), i);
-    // }
-    // i++;
-    while(myFile.good() && getline(myFile, IDs)){
-      string ID = "";
-      istringstream iss(IDs);
-      while(getline(iss, ID, ' '))  {
-        orderFile[i].push_back(atoi(ID.c_str()));
-    //   printf("%s at %i \n",ID.c_str(), i);
-      }
-      i++;
-    }
+   while(myFile.good() && getline(myFile, IDs, '\n')){
+    std::string ID;                 // Have a buffer string
+    std::stringstream ss(IDs);       // Insert the string into a stream
+    while (ss >> ID)
+      orderFile[i].push_back(atoi(ID.c_str()));
+    i++;
     myFile.close();
-
+    }
   }	else{
     printf("%s could not be opened.\n",infile.c_str()); 
     return;
@@ -169,9 +158,9 @@ void Layout::getListItems(string in, int index)
   //   return;
   // }  
  // printf("size = %i \n",orderFile.size());
-     for(int j = 0; j < 2500; j++){
-      printf("item %i at %i\n",orderFile[j][1],j);  
-    } 
+    //  for(int j = 0; j < 2500; j++){
+    //   printf("item %i at %i\n",orderFile[j][1],j);  
+    // } 
 } 
 void Layout::processSingleOrder(int indx)
 {
