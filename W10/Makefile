@@ -48,16 +48,16 @@ makeBatch:
 singleOrder:
 	make clean
 	make
-	make batch 
 	make batchParser 
-	./batch 18 10 warehouse-grid.csv 0 0 0 20 92 > output.txt
-	./batchParser output.txt 92 > pathOnly.txt
+	./batch 18 10 warehouse-grid.csv 7 7 20 20 1 > output.txt
+	grep -n "INDEX 1" output.txt | cut -d : -f 1 > ind.txt
+	./batchParser output.txt ind.txt > pathOnly.txt
 	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker
 
 fromBatch:
 	make clean
 	make
-	make batch 
 	make batchParser 
-	./batchParser bigBatchProcess.txt 35 > pathOnly.txt
+	grep -n "INDEX 0" bigBatchProcess.txt | cut -d : -f 1 > ind.txt
+	./batchParser bigBatchProcess.txt ind.txt > pathOnly.txt
 	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker

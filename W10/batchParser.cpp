@@ -19,18 +19,23 @@ void lineMaker(const vector<int> x, const vector<int> y)
 int main(int argc, char *argv[])
 {
   if(argc != 3){
-    printf("input file, index\n");
+    printf("input file, ind.txt\n");
     return 1;
   }
   
   string fileName =  argv[1];
-
+  string indName = argv[2];
+  
   string ans = "";
   // printf("Index?\n");
   // cin >> ans;
   // printf("%s\n",ans.c_str());
   // int lineNum = atoi(ans.c_str());
-  int lineNum = atoi(argv[2]);
+  ifstream indFile;
+  indFile.open(indName.c_str());
+  indFile >> ans;
+
+  int lineNum = atoi(ans.c_str());
   vector<int> xPt;
   vector<int> yPt;
 
@@ -39,7 +44,7 @@ int main(int argc, char *argv[])
   
   string whole ="";
   string x = ""; string y = "";
-
+  
   if(myFile.is_open()){
     //jump to line with index
     for(int i = 0; i < lineNum; i++ ){
@@ -53,9 +58,8 @@ int main(int argc, char *argv[])
     }
     getline(myFile, whole);
     // Output so far : "Order            Distance        Weight                          Effort                   Path"
-    
     //parse for coord. until reaches next index
-    while(whole.substr(0,5) != "INDEX" && myFile.good()){
+    while(whole.substr(0,5) != "INDEX" && myFile.good() && !myFile.eof()){
         getline(myFile, whole); 
         int pos = 0;
         int n = whole.size();
@@ -68,7 +72,7 @@ int main(int argc, char *argv[])
               x += whole[pos +2];
 
             xPt.push_back(atoi(x.c_str()));
-           // printf("%s ", x.c_str());
+            printf("%s ", x.c_str());
           }
           if(whole[pos] == ','){
             y = whole[pos + 1];
@@ -76,7 +80,7 @@ int main(int argc, char *argv[])
             if(whole[pos + 2] != ')')
               y += whole[pos +2];
             yPt.push_back(atoi(y.c_str()));
-            //printf("%s\n", y.c_str());
+            printf("%s\n", y.c_str());
           }
           pos++;
         }
@@ -87,6 +91,7 @@ int main(int argc, char *argv[])
     printf("%s could not be opened.\n",fileName.c_str()); 
     return 2;
   } 
+
   lineMaker(xPt, yPt);
   return 0;
 }
