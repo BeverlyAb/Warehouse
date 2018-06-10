@@ -17,6 +17,7 @@
     "utility": "cpp",
     "ios": "cpp",
     "__locale": "cpp",
-    "__bit_reference": "cpp"
+    "__bit_reference": "cpp",
+    "istream": "cpp"
   }
 }
