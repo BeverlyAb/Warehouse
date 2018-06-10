@@ -38,41 +38,30 @@ int main(int argc, char *argv[])
     printf("%s\n", whole.c_str());
     
     //parse for coord. until reaches next index
-   // while(whole.substr(0,5) != "INDEX"){
+    while(whole.substr(0,5) != "INDEX"){
         getline(myFile, whole); 
-        printf("whole %s\n", whole.c_str());
         int pos = 0;
         int n = whole.size();
-        printf("size = %i\n", n);
-        int end = 0;
-        while(pos < n && end < 15){
-          end++;
+
+        while(pos < n){
           if(whole[pos] == '('){
             x = whole[pos + 1];
             
-            if(whole[pos + 2] != ','){
-              x += whole[pos + 2];
-              y = whole[pos +3];
-              
-              if(whole[pos + 4] != ')')
-                y += whole[pos +4];
-            }
-            else{
-              y = whole[pos + 3];
-              
-              if(whole[pos + 4] != ')'){
-                y += whole[pos +4];
-                pos += 4;
-              } 
-              else
-                pos += 3;
-            }
+            if(whole[pos + 2] != ',')
+              x += whole[pos +2];
 
-            printf("x = %s y = %s\n", x.c_str(), y.c_str());
+            printf("x = %s ", x.c_str());
           }
+          if(whole[pos] == ','){
+            y = whole[pos + 1];
+            
+            if(whole[pos + 2] != ')')
+              y += whole[pos +2];
+            printf("y = %s\n", y.c_str());
+          }
+          pos++;
         }
-        //printf("pos = %i\n", pos);
-   // }
+    }
     myFile.close();
   }
   else{
