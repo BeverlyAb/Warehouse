@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
     // Output so far : "Order            Distance        Weight                          Effort                   Path"
     printf("%s\n", whole.c_str());
     
-    int end = 0;
     //parse for coord. until reaches next index
    // while(whole.substr(0,5) != "INDEX"){
         getline(myFile, whole); 
@@ -45,19 +44,35 @@ int main(int argc, char *argv[])
         int pos = 0;
         int n = whole.size();
         printf("size = %i\n", n);
-        while(pos < n){
+        int end = 0;
+        while(pos < n && end < 15){
+          end++;
           if(whole[pos] == '('){
             x = whole[pos + 1];
             
-            if(whole[pos + 2] != ',')
-              x += whole[pos +2];
+            if(whole[pos + 2] != ','){
+              x += whole[pos + 2];
+              y = whole[pos +3];
+              
+              if(whole[pos + 4] != ')')
+                y += whole[pos +4];
+            }
+            else{
+              y = whole[pos + 3];
+              
+              if(whole[pos + 4] != ')'){
+                y += whole[pos +4];
+                pos += 4;
+              } 
+              else
+                pos += 3;
+            }
 
-            printf("x = %s\n", x.c_str());
+            printf("x = %s y = %s\n", x.c_str(), y.c_str());
           }
-          pos++;
         }
-        printf("pos = %i\n", pos);
-  //  }
+        //printf("pos = %i\n", pos);
+   // }
     myFile.close();
   }
   else{
