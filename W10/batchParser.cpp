@@ -31,36 +31,26 @@ int main(int argc, char *argv[])
     getline(myFile, whole);
 
     getline(myFile, whole);
-    while(whole == "---------------------------------------------------------------------"){
+    while(whole != "---------------------------------------------------------------------"){
       getline(myFile, whole);
     }
+    getline(myFile, whole);
     // Output so far : "Order            Distance        Weight                          Effort                   Path"
+    printf("%s\n", whole.c_str());
     
+    int end = 0;
     //parse for coord. until reaches next index
-   // while(whole.substr(0,5) != "INDEX"){
-      getline(myFile, whole);
-     
-      //'find' doesn't work for char? :/
-      int pos = 0;
-      int n = whole.length();
-      while(pos < n){
-        if(whole[pos] == '('{
-          x = whole[pos+1];
-          y = whole[pos+3];
+    while(whole.substr(0,5) != "INDEX"){
+        getline(myFile, whole);
+        size_t pos = whole.find("(");
+        size_t comma = whole.find(",");
+        int  n = whole.length();
+        while(pos != string::npos && pos < n && end < 30){
+          end++;
+          x = whole.substr(whole.find("(") +1,;
+          printf("x = %s\n", x.c_str());
         }
-        pos++;
-        printf("x = %s y = %s\n", x.c_str(), y.c_str());
-        string temp = whole.substr(pos);
-        //printf("%s\n", temp.c_str());
-       //couldn't simply offset y by 3 
-     // }
-      }
-        
-     // y = whole.substr(pos + 2, pos + 3);
-     // printf("%s\n", whole.c_str());
-      
-  //  }
-
+    }
     myFile.close();
   }
   else{
