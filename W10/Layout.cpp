@@ -1,5 +1,6 @@
 #include "Layout.h"
 #include <iostream>
+#include <sstream>
  /*  
     string infile;
     unsigned int width, height;
@@ -114,30 +115,36 @@ void Layout::getListItems(string in, int index)
 {
   int i = 0;
   int n = index;
-  string ID = "";
+  string IDs = ""; // change to ID for warehouse.csv
   infile = in;
   ifstream myFile;
   myFile.open(infile.c_str());
 
+  //works for bigWarehouse.txt
   if(myFile.is_open()){
-      myFile >> ID;
-      orderFile[i].push_back(atoi(ID.c_str()));
-      printf("item %i at %i", (atoi(ID.c_str())),i);
-    
-      while(myFile.good() && !ID.empty()){
+    // istringstream iss(IDs);
+    // string ID = "";
+    // getline(myFile, IDs);
+    // while(getline(iss, ID, ' '))  {
+    //     orderFile[i].push_back(atoi(ID.c_str()));
+    //    printf("%s at %i ",IDs.c_str(), i);
+    // }
+    // i++;
+    while(myFile.good() && getline(myFile, IDs)){
+      string ID = "";
+      istringstream iss(IDs);
+      while(getline(iss, ID, ' '))  {
         orderFile[i].push_back(atoi(ID.c_str()));
-        myFile >> ID;
-        if(ID[ID.length()-1] == '\n'){
-          i++;
-          printf("what %i at %i\n", (atoi(ID.c_str())),i);
-        }
-        printf("item %i at %i", (atoi(ID.c_str())),i);
+    //   printf("%s at %i \n",ID.c_str(), i);
       }
-      myFile.close();
-    }	else{
-      printf("%s could not be opened.\n",infile.c_str()); 
-      return;
-    }  
+      i++;
+    }
+    myFile.close();
+
+  }	else{
+    printf("%s could not be opened.\n",infile.c_str()); 
+    return;
+  }  
 
   //works for warehouse.csv text formatting issues
   // if(myFile.is_open()){
@@ -161,10 +168,10 @@ void Layout::getListItems(string in, int index)
 	//   printf("%s could not be opened.\n",infile.c_str()); 
   //   return;
   // }  
-  printf("size = %i \n",orderFile.size());
-    //  for(int j = 0; j < 2; j++){
-    //   printf("item %i",orderFile[j][0]);  
-    // } 
+ // printf("size = %i \n",orderFile.size());
+     for(int j = 0; j < 2500; j++){
+      printf("item %i at %i\n",orderFile[j][1],j);  
+    } 
 } 
 void Layout::processSingleOrder(int indx)
 {
