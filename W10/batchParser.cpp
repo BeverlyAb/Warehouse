@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
     // skips first "---------------------------------------------------------------------"
     getline(myFile, whole);
 
-    getline(myFile, whole);
     while(whole != "---------------------------------------------------------------------"){
       getline(myFile, whole);
     }
@@ -40,17 +39,25 @@ int main(int argc, char *argv[])
     
     int end = 0;
     //parse for coord. until reaches next index
-    while(whole.substr(0,5) != "INDEX"){
-        getline(myFile, whole);
-        size_t pos = whole.find("(");
-        size_t comma = whole.find(",");
-        int  n = whole.length();
-        while(pos != string::npos && pos < n && end < 30){
-          end++;
-          x = whole.substr(whole.find("(") +1,;
-          printf("x = %s\n", x.c_str());
+   // while(whole.substr(0,5) != "INDEX"){
+        getline(myFile, whole); 
+        printf("whole %s\n", whole.c_str());
+        int pos = 0;
+        int n = whole.size();
+        printf("size = %i\n", n);
+        while(pos < n){
+          if(whole[pos] == '('){
+            x = whole[pos + 1];
+            
+            if(whole[pos + 2] != ',')
+              x += whole[pos +2];
+
+            printf("x = %s\n", x.c_str());
+          }
+          pos++;
         }
-    }
+        printf("pos = %i\n", pos);
+  //  }
     myFile.close();
   }
   else{
