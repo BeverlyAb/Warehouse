@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
   myFile.open(fileName.c_str());
   
   string whole ="";
-  int x = 0; int y = 0;
+  string x = ""; string y = "";
 
   if(myFile.is_open()){
     //jump to line with index
@@ -37,10 +37,27 @@ int main(int argc, char *argv[])
     // Output so far : "Order            Distance        Weight                          Effort                   Path"
     
     //parse for coord. until reaches next index
-    while(whole.substr(0,5) != "INDEX"){
+   // while(whole.substr(0,5) != "INDEX"){
       getline(myFile, whole);
-      printf("%s\n", whole.c_str());
-    }
+     
+      //'find' doesn't work for char? :/
+     // while((pos != string::npos) && end < 10){
+      if(pos != string::npos){ 
+        x = whole[pos+1];
+        y = whole[pos+3];
+        printf("x = %s y = %s\n", x.c_str(), y.c_str());
+        string temp = whole.substr(pos);
+        printf("%s\n", temp.c_str());
+        pos = whole.find('(');
+        end++;
+       //couldn't simply offset y by 3 
+     // }
+      }
+        
+     // y = whole.substr(pos + 2, pos + 3);
+     // printf("%s\n", whole.c_str());
+      
+  //  }
 
     myFile.close();
   }
