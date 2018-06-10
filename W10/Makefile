@@ -51,13 +51,13 @@ singleOrder:
 	make batch 
 	make batchParser 
 	./batch 18 10 warehouse-grid.csv 0 0 0 20 92 > output.txt
-	./batchParser output.txt 92
+	./batchParser output.txt 92 > pathOnly.txt
+	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker
 
 fromBatch:
 	make clean
 	make
 	make batch 
 	make batchParser 
-	./batch 18 10 warehouse-grid.csv 0 0 0 20 91 > output.txt
-	./batchParser bigBatchProcess.txt 91
+	./batchParser bigBatchProcess.txt 35 > pathOnly.txt
 	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker
