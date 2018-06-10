@@ -41,15 +41,17 @@ int main(int argc, char *argv[])
       getline(myFile, whole);
      
       //'find' doesn't work for char? :/
-     // while((pos != string::npos) && end < 10){
-      if(pos != string::npos){ 
-        x = whole[pos+1];
-        y = whole[pos+3];
+      int pos = 0;
+      int n = whole.length();
+      while(pos < n){
+        if(whole[pos] == '('{
+          x = whole[pos+1];
+          y = whole[pos+3];
+        }
+        pos++;
         printf("x = %s y = %s\n", x.c_str(), y.c_str());
         string temp = whole.substr(pos);
-        printf("%s\n", temp.c_str());
-        pos = whole.find('(');
-        end++;
+        //printf("%s\n", temp.c_str());
        //couldn't simply offset y by 3 
      // }
       }
