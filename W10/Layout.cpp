@@ -184,7 +184,7 @@ void Layout::printStock()
   printf("size %lu\n", stock.size()); */
   map<position, bool> ::iterator it = shelf.begin();
   for(; it != shelf.end(); it++)
-    printf("shelf(%i, %i)\n", it->first.x, it->first.y);
+    printf("%i %i\n", it->first.x, it->first.y);
 
   printf("size %lu\n", shelf.size());
 }

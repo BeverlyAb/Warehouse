@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 
   Layout test = Layout(width, height, infile, start, end);
   test.readFile(STOCK, infile);
-
+  test.printStock();
   string act = "";
   printf("Pick a number: name items (1) or read from list(2)?\n");
   cin >> act;

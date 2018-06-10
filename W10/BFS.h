@@ -3,7 +3,7 @@
 
 #include "Layout.h"
 #include <stack>
-#include <omp.h>
+//#include <omp.h>
 
 #define ADJ_SIZE 4
 

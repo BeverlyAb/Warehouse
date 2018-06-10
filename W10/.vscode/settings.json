@@ -18,6 +18,7 @@
     "ios": "cpp",
     "__locale": "cpp",
     "__bit_reference": "cpp",
-    "istream": "cpp"
+    "istream": "cpp",
+    "iostream": "cpp"
   }
 }

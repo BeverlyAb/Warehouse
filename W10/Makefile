@@ -18,7 +18,10 @@ bbmain:	bbmain.o Layout.o BFS.o
 final:	final.o Layout.o BB.o BFS.o
 	$(CC) $(COPTFLAGS) -o $@ $^	
 
-batch:	batch.o Layout.o BB.o BFS.o batchParser.o
+batch:	batch.o Layout.o BB.o BFS.o 
+	$(CC) $(COPTFLAGS) -o $@ $^	
+
+batchParser:	batchParser.o
 	$(CC) $(COPTFLAGS) -o $@ $^	
 
 %.o: %.cc
@@ -41,3 +44,20 @@ makeBatch:
 	make
 	make batch
 	./batchRunner.sh
+
+singleOrder:
+	make clean
+	make
+	make batch 
+	make batchParser 
+	./batch 18 10 warehouse-grid.csv 0 0 0 20 92 > output.txt
+	./batchParser output.txt 92
+
+fromBatch:
+	make clean
+	make
+	make batch 
+	make batchParser 
+	./batch 18 10 warehouse-grid.csv 0 0 0 20 91 > output.txt
+	./batchParser bigBatchProcess.txt 91
+	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker

@@ -1,21 +1,39 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
 // grep -n "INDEX 1000" bigBatchProcess.txt | cut -d : -f 1
 // 53787 = 1000
 // 233 = 10
+
+//prints coord. to make lines
+void lineMaker(const vector<int> x, const vector<int> y)
+{
+  for(int i = 0; i < x.size(); i++){
+    printf("%i %i\n", x[i], y[i]);
+  }
+}
+
 int main(int argc, char *argv[])
 {
   if(argc != 3){
-    printf("input file, line number\n");
+    printf("input file, index\n");
     return 1;
   }
   
   string fileName =  argv[1];
+
+  string ans = "";
+  // printf("Index?\n");
+  // cin >> ans;
+  // printf("%s\n",ans.c_str());
+  // int lineNum = atoi(ans.c_str());
   int lineNum = atoi(argv[2]);
-  
+  vector<int> xPt;
+  vector<int> yPt;
+
   ifstream myFile;
   myFile.open(fileName.c_str());
   
@@ -35,10 +53,9 @@ int main(int argc, char *argv[])
     }
     getline(myFile, whole);
     // Output so far : "Order            Distance        Weight                          Effort                   Path"
-    printf("%s\n", whole.c_str());
     
     //parse for coord. until reaches next index
-    while(whole.substr(0,5) != "INDEX"){
+    while(whole.substr(0,5) != "INDEX" && myFile.good()){
         getline(myFile, whole); 
         int pos = 0;
         int n = whole.size();
@@ -50,14 +67,16 @@ int main(int argc, char *argv[])
             if(whole[pos + 2] != ',')
               x += whole[pos +2];
 
-            printf("x = %s ", x.c_str());
+            xPt.push_back(atoi(x.c_str()));
+           // printf("%s ", x.c_str());
           }
           if(whole[pos] == ','){
             y = whole[pos + 1];
             
             if(whole[pos + 2] != ')')
               y += whole[pos +2];
-            printf("y = %s\n", y.c_str());
+            yPt.push_back(atoi(y.c_str()));
+            //printf("%s\n", y.c_str());
           }
           pos++;
         }
@@ -68,5 +87,6 @@ int main(int argc, char *argv[])
     printf("%s could not be opened.\n",fileName.c_str()); 
     return 2;
   } 
+  lineMaker(xPt, yPt);
   return 0;
 }

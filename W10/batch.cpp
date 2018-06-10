@@ -13,7 +13,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
   if(argc != 9){
-    printf("Error: Specify width, height, input file, start(x,y), end(x,y), Index\n");
+    printf("Error: Specify width, height, input file,  -1 = USER INPUT\n");
     return 1;
   }
 
@@ -23,7 +23,14 @@ int main(int argc, char *argv[])
 
   unsigned int x = atoi(argv[4]);
   unsigned int y = atoi(argv[5]);
+  //if index == -1, talk to user, otherwise run batch
   int index = atoi(argv[8]);
+  if(index == -1){
+    string ans = "";
+    printf("Order Index?\n");
+    cin >> ans;
+    index = atoi(ans.c_str());
+  }
 
   position start = {x,y};
 
