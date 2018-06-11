@@ -45,15 +45,17 @@ makeBatch:
 	make batch
 	./batchRunner.sh
 
+#change Index on Lines : 4 and 5
 singleOrder:
 	make clean
 	make
 	make batchParser 
-	./batch 18 10 warehouse-grid.csv 7 7 20 20 1 > output.txt
-	grep -n "INDEX 1" output.txt | cut -d : -f 1 > ind.txt
+	./batch 18 10 warehouse-grid.csv 10 11 35 20 5 > output.txt
+	grep -n "INDEX 5" output.txt | cut -d : -f 1 > ind.txt
 	./batchParser output.txt ind.txt > pathOnly.txt
 	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker
 
+#change Index on Lines : 4 
 fromBatch:
 	make clean
 	make
