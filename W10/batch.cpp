@@ -13,7 +13,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
   if(argc != 9){
-    printf("Error: Specify width, height, input file,  -1 = USER INPUT\n");
+    printf("Error: Specify width, height, input file, start(x,y), end(x,y), -1 = USER input\n");;
     return 1;
   }
 
@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
       test.preProcess();
       once++;
     }
+  //-------------------------------------------------
   
     int ** arr = test.makeSubDP();
     queue<unsigned int> itemList = test.getItems();
@@ -69,7 +70,7 @@ int main(int argc, char *argv[])
       myorder.insert(pair<int,int>(i,i));
       printf("%i ", ID);
     }
-  //-------------------------------------------------
+
     BB branch = BB(myorder, size, arr);
     branch.process();
     unsigned int intermediate[size];

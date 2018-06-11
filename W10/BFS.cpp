@@ -517,3 +517,83 @@ int BFS::getDPRef(unsigned int ID)
 	else 
 		return -1;
 }
+
+//splits into 4 quadrants, but orders the request based on which quad.      
+//	has the most requests. Don't need cluster anymore. Only works for even width and height 
+//rearranges optimal
+void BFS::alg2Div()
+{
+	unsigned int xRangeStart[4] = {width/2 + 1, 0, 0, width/2 + 1};
+	unsigned int xRangeEnd[4] = {width, width/2,
+								 width/2, width};
+
+	unsigned int yRangeStart[4] = {height/2 + 1, height/2 + 1, 0, 0};
+	unsigned int yRangeEnd[4] = {height, height,
+								 height/2, height/2};
+
+	queue<unsigned int> quad0;
+	queue<unsigned int> quad1;
+	queue<unsigned int> quad2;
+	queue<unsigned int> quad3;
+
+	queue<unsigned int> quad[4]= {quad0, quad1, quad2, quad3}; 
+
+	int n = optItems.size();
+	//separate order positions into their quad	
+	for(int l = 0; l < n; l++){
+		unsigned int tempID = optItems.front();
+
+		for(int j = 0; j < 4; j++){
+
+			if(	getPos(tempID).x >= xRangeStart[j] && 
+				getPos(tempID).x <= xRangeEnd[j]	&& 
+				getPos(tempID).y >= yRangeStart[j] && 
+				getPos(tempID).y <= yRangeEnd[j]) {
+				
+				quad[j].push(tempID);
+				break;
+			}
+		}	
+		optItems.pop();	
+	}
+	//get orders in the same quad as start first
+	unsigned int startQuad = 0;
+	for(int j = 0; j < 4; j++){
+		if(start.x >= xRangeStart[j] && start.x <= xRangeEnd[j]
+			&& start.y >= yRangeStart[j] && start.y <= yRangeEnd[j]) {
+			startQuad = j;
+			break;		
+		}
+	}
+
+	for(int i = 0; i < quad[startQuad].size(); i++){
+		optItems.push(quad[startQuad].front());
+		quad[startQuad].pop();
+	}
+	
+
+	while(!quad[0].empty() || !quad[1].empty() || !quad[2].empty()|| !quad[3].empty()) {
+		int max = quad[0].size(); 
+	
+		for(int i = 0; i < 4; i++){
+			if(quad[i].size() > max){
+				max = quad[i].size();	
+			}
+
+			if(quad[i].size() == max){
+				for(int j = 0; j < quad[i].size(); j++){
+					optItems.push(quad[i].front());
+					quad[i].pop();
+				}
+			}
+		}		
+	}
+	// queue<unsigned int> namedItems;
+	// // //need to reverse order, do'h!
+	// n = optItems.size();
+	// for(int i = 0; i < n; i++){
+	// 	namedItems.push(optItems.front());
+	// 	optItems.pop();
+	// }
+	setOpt(optItems);
+}

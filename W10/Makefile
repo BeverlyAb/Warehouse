@@ -45,7 +45,7 @@ makeBatch:
 	make batch
 	./batchRunner.sh
 
-#change Index on Lines : 4 and 5
+#change Index on Lines : 4 and 5 (BB Implementation)
 singleOrder:
 	make clean
 	make
@@ -55,7 +55,20 @@ singleOrder:
 	./batchParser output.txt ind.txt > pathOnly.txt
 	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker
 
-#change Index on Lines : 4 
+
+#change Index on Lines : 5 and 6 (Divide Implementation)
+alg2Div:
+	make clean
+	make
+	make batchParser
+	make bbmain
+	./BFSMain 18 10 warehouse-grid.csv 20 20 20 20 90 > output.txt
+	grep -n "INDEX 90" output.txt | cut -d : -f 1 > ind.txt
+	./batchParser output.txt ind.txt > pathOnly.txt
+	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker
+
+
+#change Index on Lines : 4 (Batch using BB)
 fromBatch:
 	make clean
 	make

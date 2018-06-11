@@ -7,6 +7,6 @@ int main(int argc, char *argv[])
     PathMaker w;
     //w.readFile();
     w.show();
-
+    w.Route();
     return a.exec();
 }

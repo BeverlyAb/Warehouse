@@ -39,7 +39,6 @@ void PathMaker::paintEvent(QPaintEvent *e)
     painter.setPen(linepen);
     readFile(in, pathPt);
     painter.drawPoints( pathPt );
-
 }
 
 void PathMaker::readFile(QString in, QVector<QPoint> & polyPoints)
@@ -58,4 +57,10 @@ void PathMaker::readFile(QString in, QVector<QPoint> & polyPoints)
         str = whole.readLine();
     }
     myFile.close();
+}
+
+void PathMaker::Route()
+{
+
+    QMessageBox::information(this, "succotash", "molasses");
 }

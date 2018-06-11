@@ -84,5 +84,7 @@ class BFS : public Layout
     int getItemSize();
     int getDPRef(position want);
     int getDPRef(unsigned int ID);
+
+    void alg2Div();
 };
 #endif
