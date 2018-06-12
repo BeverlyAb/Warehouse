@@ -12,18 +12,23 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_PathMaker
 {
 public:
+    QPushButton *Route;
 
     void setupUi(QDialog *PathMaker)
     {
         if (PathMaker->objectName().isEmpty())
             PathMaker->setObjectName(QStringLiteral("PathMaker"));
-        PathMaker->resize(400, 300);
+        PathMaker->resize(727, 492);
+        Route = new QPushButton(PathMaker);
+        Route->setObjectName(QStringLiteral("Route"));
+        Route->setGeometry(QRect(330, 240, 113, 32));
 
         retranslateUi(PathMaker);
 
@@ -33,6 +38,7 @@ public:
     void retranslateUi(QDialog *PathMaker)
     {
         PathMaker->setWindowTitle(QApplication::translate("PathMaker", "PathMaker", nullptr));
+        Route->setText(QApplication::translate("PathMaker", "Route", nullptr));
     } // retranslateUi
 
 };

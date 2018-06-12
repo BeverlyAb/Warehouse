@@ -15,7 +15,7 @@ CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.11 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -O2 -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.11 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I. -I../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers -I../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers -I../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../../Qt/5.11.0/clang_64/mkspecs/macx-clang -F/Users/fullstackmachine/Qt/5.11.0/clang_64/lib
+INCPATH       = -I. -I/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/macx-clang -F/Users/fullstackmachine/Qt/5.11.0/clang_64/lib
 QMAKE         = /Users/fullstackmachine/Qt/5.11.0/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = PathMaker1.0.0
-DISTDIR = /Users/fullstackmachine/Downloads/QT-GUI-master/PathMaker_clean/.tmp/PathMaker1.0.0
+DISTDIR = /Users/fullstackmachine/Desktop/BevCode/AdvAlg_221/W10/PathMaker_clean/.tmp/PathMaker1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.11 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Users/fullstackmachine/Qt/5.11.0/clang_64/lib
 LIBS          = $(SUBLIBS) -F/Users/fullstackmachine/Qt/5.11.0/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL 
@@ -57,193 +57,193 @@ OBJECTS       = main.o \
 		pathmaker.o \
 		draw.o \
 		moc_pathmaker.o
-DIST          = ../../../Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/qdevice.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/device_config.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/unix.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/mac.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/macx.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/sanitize.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/gcc-base.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/gcc-base-mac.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/clang.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/clang-mac.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/qconfig.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/qt_functions.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/qt_config.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/spec_post.prf \
+DIST          = /Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/qdevice.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/device_config.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/unix.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/mac.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/macx.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/sanitize.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/gcc-base.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/gcc-base-mac.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/clang.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/clang-mac.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/qconfig.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qt_functions.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qt_config.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/spec_post.prf \
 		.qmake.stash \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/toolchain.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/toolchain.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/default_pre.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/default_pre.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/resolve_config.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/default_post.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/default_post.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/objective_c.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/mac.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/warn_on.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/qt.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/resources.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/moc.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/unix/opengl.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/uic.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/unix/thread.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/qmake_use.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/file_copies.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/rez.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/asset_catalogs.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/testcase_targets.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/exceptions.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/yacc.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/lex.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/toolchain.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/toolchain.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/default_pre.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/default_pre.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/resolve_config.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/default_post.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/default_post.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/objective_c.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/mac.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/warn_on.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qt.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/resources.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/moc.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/unix/opengl.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/uic.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/unix/thread.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qmake_use.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/file_copies.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/rez.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/asset_catalogs.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/testcase_targets.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/exceptions.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/yacc.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/lex.prf \
 		PathMaker.pro pathmaker.h main.cpp \
 		pathmaker.cpp \
 		draw.cpp
@@ -264,389 +264,389 @@ $(TARGET): ui_pathmaker.h $(OBJECTS)
 	@test -d PathMaker.app/Contents/MacOS/ || mkdir -p PathMaker.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
-Makefile: PathMaker.pro ../../../Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf ../../../Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/qdevice.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/device_config.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/unix.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/mac.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/macx.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/sanitize.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/gcc-base.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/gcc-base-mac.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/clang.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/common/clang-mac.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/qconfig.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/qt_functions.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/qt_config.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/spec_post.prf \
+Makefile: PathMaker.pro /Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf /Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/qdevice.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/device_config.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/unix.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/mac.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/macx.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/sanitize.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/gcc-base.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/gcc-base-mac.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/clang.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/clang-mac.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/qconfig.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qt_functions.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qt_config.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/spec_post.prf \
 		.qmake.stash \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/toolchain.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/toolchain.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/default_pre.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/default_pre.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/resolve_config.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/default_post.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/default_post.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/objective_c.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/mac.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/warn_on.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/qt.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/resources.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/moc.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/unix/opengl.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/uic.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/unix/thread.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/qmake_use.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/file_copies.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/rez.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/mac/asset_catalogs.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/testcase_targets.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/exceptions.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/yacc.prf \
-		../../../Qt/5.11.0/clang_64/mkspecs/features/lex.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/sdk.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/toolchain.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/toolchain.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/default_pre.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/default_pre.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/resolve_config.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/default_post.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/default_post.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/objective_c.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/mac.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/warn_on.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qt.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/resources.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/moc.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/unix/opengl.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/uic.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/unix/thread.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qmake_use.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/file_copies.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/rez.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/asset_catalogs.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/testcase_targets.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/exceptions.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/yacc.prf \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/lex.prf \
 		PathMaker.pro \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/QtGui.prl \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/QtCore.prl
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/QtGui.prl \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/QtCore.prl
 	$(QMAKE) -o Makefile PathMaker.pro
-../../../Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/qdevice.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/features/device_config.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/common/unix.conf:
-../../../Qt/5.11.0/clang_64/mkspecs/common/mac.conf:
-../../../Qt/5.11.0/clang_64/mkspecs/common/macx.conf:
-../../../Qt/5.11.0/clang_64/mkspecs/common/sanitize.conf:
-../../../Qt/5.11.0/clang_64/mkspecs/common/gcc-base.conf:
-../../../Qt/5.11.0/clang_64/mkspecs/common/gcc-base-mac.conf:
-../../../Qt/5.11.0/clang_64/mkspecs/common/clang.conf:
-../../../Qt/5.11.0/clang_64/mkspecs/common/clang-mac.conf:
-../../../Qt/5.11.0/clang_64/mkspecs/qconfig.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri:
-../../../Qt/5.11.0/clang_64/mkspecs/features/qt_functions.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/qt_config.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/spec_post.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/spec_pre.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/qdevice.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/device_config.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/unix.conf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/mac.conf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/macx.conf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/sanitize.conf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/gcc-base.conf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/gcc-base-mac.conf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/clang.conf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/common/clang-mac.conf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/qconfig.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3danimation_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dcore_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dextras_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dinput_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dlogic_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquick_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickextras_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickinput_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickrender_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_3drender_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_accessibility_support_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_bootstrap_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_charts_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_clipboard_support_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_concurrent_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_core_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_datavisualization_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_dbus_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designer_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_designercomponents_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_edid_support_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fb_support_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gamepad_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_graphics_support_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_gui_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_help_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_location_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_macextras_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimedia_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_network_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_networkauth_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_nfc_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_opengl_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_openglextensions_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_packetprotocol_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioning_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_positioningquick_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_printsupport_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_purchasing_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qml_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldebug_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmldevtools_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qmltest_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quick_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickparticles_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_quickwidgets_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_remoteobjects_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_repparser_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_script_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scripttools_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_scxml_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sensors_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialbus_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_serialport_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_sql_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_svg_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_testlib_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_texttospeech_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_theme_support_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uiplugin.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_uitools_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webchannel_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webengine_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecore_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_websockets_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_webview_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_widgets_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xml_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qt_functions.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qt_config.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/macx-clang/qmake.conf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/spec_post.prf:
 .qmake.stash:
-../../../Qt/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/mac/sdk.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/toolchain.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/mac/toolchain.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/default_pre.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/mac/default_pre.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/resolve_config.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/default_post.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/mac/default_post.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/mac/objective_c.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/mac/mac.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/warn_on.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/qt.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/resources.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/moc.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/unix/opengl.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/uic.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/unix/thread.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/qmake_use.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/file_copies.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/mac/rez.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/mac/asset_catalogs.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/testcase_targets.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/exceptions.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/yacc.prf:
-../../../Qt/5.11.0/clang_64/mkspecs/features/lex.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/exclusive_builds.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/sdk.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/toolchain.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/toolchain.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/default_pre.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/default_pre.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/resolve_config.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/default_post.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/default_post.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/objective_c.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/mac.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/warn_on.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qt.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/resources.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/moc.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/unix/opengl.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/uic.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/unix/thread.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/qmake_use.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/file_copies.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/rez.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/mac/asset_catalogs.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/testcase_targets.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/exceptions.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/yacc.prf:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/lex.prf:
 PathMaker.pro:
-../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
-../../../Qt/5.11.0/clang_64/lib/QtGui.framework/QtGui.prl:
-../../../Qt/5.11.0/clang_64/lib/QtCore.framework/QtCore.prl:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/QtGui.prl:
+/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/QtCore.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile PathMaker.pro
 
@@ -663,7 +663,7 @@ PathMaker.app/Contents/Resources/empty.lproj:
 PathMaker.app/Contents/Info.plist: 
 	@test -d PathMaker.app/Contents || mkdir -p PathMaker.app/Contents
 	@$(DEL_FILE) PathMaker.app/Contents/Info.plist
-	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,\$${QMAKE_SHORT_VERSION},1.0,g" -e "s,@FULL_VERSION@,1.0.0,g" -e "s,\$${QMAKE_FULL_VERSION},1.0.0,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" -e "s,@BUNDLEIDENTIFIER@,TR.PathMaker,g" -e "s,\$${PRODUCT_BUNDLE_IDENTIFIER},TR.PathMaker,g" -e "s,\$${MACOSX_DEPLOYMENT_TARGET},10.11,g" -e "s,\$${IPHONEOS_DEPLOYMENT_TARGET},,g" -e "s,\$${TVOS_DEPLOYMENT_TARGET},,g" -e "s,\$${WATCHOS_DEPLOYMENT_TARGET},,g" -e "s,@ICON@,,g" -e "s,\$${ASSETCATALOG_COMPILER_APPICON_NAME},,g" -e "s,@EXECUTABLE@,PathMaker,g" -e "s,@LIBRARY@,PathMaker,g" -e "s,\$${EXECUTABLE_NAME},PathMaker,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" ../../../Qt/5.11.0/clang_64/mkspecs/macx-clang/Info.plist.app >PathMaker.app/Contents/Info.plist
+	@sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,\$${QMAKE_SHORT_VERSION},1.0,g" -e "s,@FULL_VERSION@,1.0.0,g" -e "s,\$${QMAKE_FULL_VERSION},1.0.0,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" -e "s,@BUNDLEIDENTIFIER@,TR.PathMaker,g" -e "s,\$${PRODUCT_BUNDLE_IDENTIFIER},TR.PathMaker,g" -e "s,\$${MACOSX_DEPLOYMENT_TARGET},10.11,g" -e "s,\$${IPHONEOS_DEPLOYMENT_TARGET},,g" -e "s,\$${TVOS_DEPLOYMENT_TARGET},,g" -e "s,\$${WATCHOS_DEPLOYMENT_TARGET},,g" -e "s,@ICON@,,g" -e "s,\$${ASSETCATALOG_COMPILER_APPICON_NAME},,g" -e "s,@EXECUTABLE@,PathMaker,g" -e "s,@LIBRARY@,PathMaker,g" -e "s,\$${EXECUTABLE_NAME},PathMaker,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" /Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/macx-clang/Info.plist.app >PathMaker.app/Contents/Info.plist
 
 all: Makefile \
 		PathMaker.app/Contents/PkgInfo \
@@ -676,7 +676,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../../Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents /Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents pathmaker.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp pathmaker.cpp draw.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents pathmaker.ui $(DISTDIR)/
@@ -708,299 +708,301 @@ compiler_rcc_clean:
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
-moc_predefs.h: ../../../Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -O2 -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.11 -Wall -W -dM -E -o moc_predefs.h ../../../Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp
+moc_predefs.h: /Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -O2 -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.11 -Wall -W -dM -E -o moc_predefs.h /Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: moc_pathmaker.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_pathmaker.cpp
-moc_pathmaker.cpp: ../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/QtGui \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiglobal.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qabstracttextdocumentlayout.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessible.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessiblebridge.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbackingstore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbitmap.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbrush.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qclipboard.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcolor.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcursor.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdesktopservices.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdrag.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfont.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontmetrics.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericmatrix.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericpluginfactory.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qglyphrun.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qguiapplication.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qicon.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengine.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengineplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimage.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimageiohandler.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagereader.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagewriter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qinputmethod.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qkeysequence.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix4x4.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmovie.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qoffscreensurface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengl.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglbuffer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglcontext.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengldebug.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglextrafunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglframebufferobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglfunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpaintdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpixeltransferoptions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglshaderprogram.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltextureblitter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltimerquery.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglversionfunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglvertexarrayobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglwindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagedpaintdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagelayout.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagesize.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevicewindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintengine.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainterpath.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpalette.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpdfwriter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpen.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpicture.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpictureformatplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixelformat.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmapcache.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpolygon.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qquaternion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrasterwindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrawfont.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qregion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgb.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgba64.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qscreen.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsessionmanager.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstandarditemmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstatictext.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstylehints.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurfaceformat.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsyntaxhighlighter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextcursor.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocument.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentfragment.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentwriter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextformat.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlayout.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextoption.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtexttable.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtouchdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtransform.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvalidator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector2d.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector4d.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindowdefs.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiversion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QtCore \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobal.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractnativeeventfilter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractproxymodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractstate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracttransition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qalgorithms.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qanimationgroup.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydata.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydataops.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydatapointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qatomic.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbasictimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbitarray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbuffer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraylist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraymatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcache.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qchar.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcollator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineoption.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineparser.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcompilerdetection.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontainerfwd.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontiguouscache.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreevent.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcryptographichash.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdeadlinetimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdiriterator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeasingcurve.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qelapsedtimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qendian.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventtransition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qexception.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfactoryinterface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfiledevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileselector.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfilesystemwatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfinalstate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qflags.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuture.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfutureinterface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturesynchronizer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturewatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qgenericatomic.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobalstatic.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhash.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhashfunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhistorystate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qidentityproxymodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiodevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qisenum.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiterator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonarray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonvalue.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibrary.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibraryinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qline.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlinkedlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlocale.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlockfile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qloggingcategory.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmargins.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmath.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmessageauthenticationcode.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetatype.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedata.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedatabase.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimetype.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmutex.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnamespace.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectcleanuphandler.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectdefs.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qoperatingsystemversion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpair.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qparallelanimationgroup.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpauseanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpluginloader.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpoint.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocess.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocessordetection.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qqueue.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrandom.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qreadwritelock.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrect.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrefcount.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregexp.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregularexpression.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresource.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresultstore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrunnable.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsavefile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedpointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedvaluerollback.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsemaphore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsequentialanimationgroup.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qset.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsettings.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qshareddata.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedmemory.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignaltransition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsocketnotifier.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstack.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstandardpaths.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstatemachine.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstorageinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringalgorithms.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringbuilder.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringliteral.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringmatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringview.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsysinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemdetection.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemsemaphore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporarydir.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporaryfile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextboundaryfinder.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadpool.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadstorage.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimeline.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimezone.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtranslator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypeinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypetraits.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurl.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurlquery.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/quuid.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariant.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariantanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvarlengtharray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversionnumber.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversiontagging.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwaitcondition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwineventnotifier.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qxmlstream.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtcoreversion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QTextStream \
+moc_pathmaker.cpp: /Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/QtGui \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiglobal.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qabstracttextdocumentlayout.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessible.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessiblebridge.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbackingstore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbitmap.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbrush.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qclipboard.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcolor.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcursor.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdesktopservices.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdrag.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfont.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontmetrics.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericmatrix.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericpluginfactory.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qglyphrun.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qguiapplication.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qicon.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengine.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengineplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimage.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimageiohandler.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagereader.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagewriter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qinputmethod.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qkeysequence.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix4x4.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmovie.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qoffscreensurface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengl.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglbuffer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglcontext.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengldebug.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglextrafunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglframebufferobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpaintdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpixeltransferoptions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglshaderprogram.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltextureblitter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltimerquery.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglversionfunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglvertexarrayobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglwindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagedpaintdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagelayout.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagesize.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevicewindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintengine.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainterpath.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpalette.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpdfwriter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpen.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpicture.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpictureformatplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixelformat.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmapcache.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpolygon.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qquaternion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrasterwindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrawfont.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qregion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgb.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgba64.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qscreen.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsessionmanager.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstandarditemmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstatictext.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstylehints.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurfaceformat.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsyntaxhighlighter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextcursor.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocument.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentfragment.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentwriter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextformat.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlayout.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextoption.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtexttable.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtouchdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtransform.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvalidator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector2d.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector4d.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindowdefs.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiversion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QtCore \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobal.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractnativeeventfilter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractproxymodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractstate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracttransition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qalgorithms.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qanimationgroup.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydata.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydataops.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydatapointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qatomic.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbasictimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbitarray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbuffer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraylist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraymatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcache.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qchar.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcollator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineoption.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineparser.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcompilerdetection.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontainerfwd.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontiguouscache.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreevent.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcryptographichash.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdeadlinetimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdiriterator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeasingcurve.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qelapsedtimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qendian.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventtransition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qexception.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfactoryinterface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfiledevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileselector.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfilesystemwatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfinalstate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qflags.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuture.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfutureinterface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturesynchronizer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturewatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qgenericatomic.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobalstatic.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhash.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhashfunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhistorystate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qidentityproxymodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiodevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qisenum.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiterator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonarray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonvalue.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibrary.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibraryinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qline.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlinkedlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlocale.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlockfile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qloggingcategory.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmargins.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmath.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmessageauthenticationcode.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedata.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedatabase.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimetype.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmutex.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnamespace.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectcleanuphandler.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectdefs.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qoperatingsystemversion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpair.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qparallelanimationgroup.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpauseanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpluginloader.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpoint.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocess.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocessordetection.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qqueue.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrandom.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qreadwritelock.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrect.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrefcount.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregexp.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregularexpression.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresource.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresultstore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrunnable.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsavefile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedpointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedvaluerollback.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsemaphore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsequentialanimationgroup.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qset.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsettings.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qshareddata.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedmemory.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignaltransition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsocketnotifier.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstack.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstandardpaths.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstatemachine.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstorageinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringalgorithms.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringbuilder.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringliteral.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringmatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringview.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsysinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemdetection.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemsemaphore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporarydir.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporaryfile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextboundaryfinder.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadpool.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadstorage.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimeline.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimezone.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtranslator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypeinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypetraits.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurl.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurlquery.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/quuid.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariantanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvarlengtharray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversionnumber.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversiontagging.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwaitcondition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwineventnotifier.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qxmlstream.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtcoreversion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		pathmaker.h \
 		moc_predefs.h \
-		../../../Qt/5.11.0/clang_64/bin/moc
-	/Users/fullstackmachine/Qt/5.11.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/macx-clang -I/Users/fullstackmachine/Downloads/QT-GUI-master/PathMaker_clean -I/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.1.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/fullstackmachine/Qt/5.11.0/clang_64/lib pathmaker.h -o moc_pathmaker.cpp
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/bin/moc
+	/Users/fullstackmachine/Qt/5.11.0/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/fullstackmachine/Qt/5.11.0/clang_64/mkspecs/macx-clang -I/Users/fullstackmachine/Desktop/BevCode/AdvAlg_221/W10/PathMaker_clean -I/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers -I/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.1.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/fullstackmachine/Qt/5.11.0/clang_64/lib pathmaker.h -o moc_pathmaker.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1010,7 +1012,7 @@ compiler_uic_make_all: ui_pathmaker.h
 compiler_uic_clean:
 	-$(DEL_FILE) ui_pathmaker.h
 ui_pathmaker.h: pathmaker.ui \
-		../../../Qt/5.11.0/clang_64/bin/uic
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/bin/uic
 	/Users/fullstackmachine/Qt/5.11.0/clang_64/bin/uic pathmaker.ui -o ui_pathmaker.h
 
 compiler_rez_source_make_all:
@@ -1026,577 +1028,581 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 main.o: main.cpp pathmaker.h \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/QtGui \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiglobal.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qabstracttextdocumentlayout.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessible.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessiblebridge.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbackingstore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbitmap.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbrush.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qclipboard.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcolor.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcursor.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdesktopservices.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdrag.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfont.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontmetrics.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericmatrix.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericpluginfactory.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qglyphrun.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qguiapplication.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qicon.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengine.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengineplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimage.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimageiohandler.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagereader.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagewriter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qinputmethod.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qkeysequence.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix4x4.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmovie.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qoffscreensurface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengl.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglbuffer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglcontext.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengldebug.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglextrafunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglframebufferobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglfunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpaintdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpixeltransferoptions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglshaderprogram.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltextureblitter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltimerquery.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglversionfunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglvertexarrayobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglwindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagedpaintdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagelayout.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagesize.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevicewindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintengine.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainterpath.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpalette.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpdfwriter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpen.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpicture.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpictureformatplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixelformat.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmapcache.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpolygon.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qquaternion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrasterwindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrawfont.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qregion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgb.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgba64.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qscreen.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsessionmanager.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstandarditemmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstatictext.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstylehints.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurfaceformat.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsyntaxhighlighter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextcursor.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocument.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentfragment.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentwriter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextformat.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlayout.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextoption.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtexttable.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtouchdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtransform.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvalidator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector2d.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector4d.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindowdefs.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiversion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QtCore \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobal.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractnativeeventfilter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractproxymodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractstate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracttransition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qalgorithms.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qanimationgroup.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydata.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydataops.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydatapointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qatomic.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbasictimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbitarray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbuffer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraylist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraymatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcache.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qchar.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcollator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineoption.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineparser.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcompilerdetection.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontainerfwd.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontiguouscache.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreevent.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcryptographichash.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdeadlinetimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdiriterator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeasingcurve.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qelapsedtimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qendian.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventtransition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qexception.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfactoryinterface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfiledevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileselector.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfilesystemwatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfinalstate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qflags.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuture.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfutureinterface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturesynchronizer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturewatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qgenericatomic.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobalstatic.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhash.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhashfunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhistorystate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qidentityproxymodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiodevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qisenum.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiterator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonarray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonvalue.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibrary.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibraryinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qline.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlinkedlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlocale.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlockfile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qloggingcategory.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmargins.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmath.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmessageauthenticationcode.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetatype.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedata.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedatabase.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimetype.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmutex.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnamespace.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectcleanuphandler.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectdefs.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qoperatingsystemversion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpair.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qparallelanimationgroup.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpauseanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpluginloader.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpoint.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocess.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocessordetection.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qqueue.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrandom.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qreadwritelock.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrect.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrefcount.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregexp.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregularexpression.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresource.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresultstore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrunnable.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsavefile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedpointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedvaluerollback.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsemaphore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsequentialanimationgroup.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qset.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsettings.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qshareddata.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedmemory.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignaltransition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsocketnotifier.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstack.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstandardpaths.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstatemachine.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstorageinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringalgorithms.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringbuilder.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringliteral.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringmatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringview.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsysinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemdetection.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemsemaphore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporarydir.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporaryfile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextboundaryfinder.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadpool.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadstorage.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimeline.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimezone.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtranslator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypeinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypetraits.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurl.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurlquery.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/quuid.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariant.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariantanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvarlengtharray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversionnumber.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversiontagging.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwaitcondition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwineventnotifier.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qxmlstream.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtcoreversion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QTextStream \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/QtGui \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiglobal.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qabstracttextdocumentlayout.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessible.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessiblebridge.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbackingstore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbitmap.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbrush.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qclipboard.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcolor.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcursor.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdesktopservices.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdrag.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfont.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontmetrics.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericmatrix.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericpluginfactory.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qglyphrun.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qguiapplication.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qicon.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengine.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengineplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimage.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimageiohandler.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagereader.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagewriter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qinputmethod.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qkeysequence.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix4x4.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmovie.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qoffscreensurface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengl.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglbuffer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglcontext.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengldebug.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglextrafunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglframebufferobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpaintdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpixeltransferoptions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglshaderprogram.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltextureblitter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltimerquery.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglversionfunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglvertexarrayobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglwindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagedpaintdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagelayout.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagesize.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevicewindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintengine.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainterpath.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpalette.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpdfwriter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpen.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpicture.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpictureformatplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixelformat.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmapcache.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpolygon.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qquaternion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrasterwindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrawfont.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qregion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgb.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgba64.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qscreen.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsessionmanager.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstandarditemmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstatictext.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstylehints.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurfaceformat.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsyntaxhighlighter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextcursor.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocument.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentfragment.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentwriter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextformat.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlayout.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextoption.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtexttable.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtouchdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtransform.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvalidator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector2d.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector4d.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindowdefs.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiversion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QtCore \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobal.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractnativeeventfilter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractproxymodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractstate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracttransition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qalgorithms.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qanimationgroup.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydata.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydataops.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydatapointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qatomic.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbasictimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbitarray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbuffer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraylist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraymatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcache.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qchar.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcollator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineoption.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineparser.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcompilerdetection.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontainerfwd.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontiguouscache.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreevent.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcryptographichash.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdeadlinetimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdiriterator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeasingcurve.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qelapsedtimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qendian.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventtransition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qexception.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfactoryinterface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfiledevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileselector.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfilesystemwatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfinalstate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qflags.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuture.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfutureinterface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturesynchronizer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturewatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qgenericatomic.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobalstatic.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhash.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhashfunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhistorystate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qidentityproxymodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiodevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qisenum.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiterator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonarray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonvalue.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibrary.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibraryinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qline.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlinkedlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlocale.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlockfile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qloggingcategory.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmargins.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmath.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmessageauthenticationcode.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedata.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedatabase.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimetype.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmutex.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnamespace.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectcleanuphandler.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectdefs.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qoperatingsystemversion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpair.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qparallelanimationgroup.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpauseanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpluginloader.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpoint.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocess.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocessordetection.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qqueue.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrandom.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qreadwritelock.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrect.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrefcount.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregexp.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregularexpression.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresource.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresultstore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrunnable.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsavefile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedpointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedvaluerollback.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsemaphore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsequentialanimationgroup.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qset.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsettings.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qshareddata.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedmemory.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignaltransition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsocketnotifier.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstack.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstandardpaths.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstatemachine.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstorageinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringalgorithms.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringbuilder.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringliteral.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringmatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringview.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsysinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemdetection.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemsemaphore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporarydir.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporaryfile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextboundaryfinder.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadpool.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadstorage.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimeline.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimezone.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtranslator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypeinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypetraits.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurl.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurlquery.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/quuid.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariantanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvarlengtharray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversionnumber.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversiontagging.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwaitcondition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwineventnotifier.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qxmlstream.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtcoreversion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 pathmaker.o: pathmaker.cpp pathmaker.h \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/QtGui \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiglobal.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qabstracttextdocumentlayout.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessible.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessiblebridge.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbackingstore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbitmap.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbrush.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qclipboard.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcolor.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcursor.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdesktopservices.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdrag.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfont.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontmetrics.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericmatrix.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericpluginfactory.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qglyphrun.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qguiapplication.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qicon.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengine.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengineplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimage.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimageiohandler.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagereader.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagewriter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qinputmethod.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qkeysequence.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix4x4.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmovie.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qoffscreensurface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengl.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglbuffer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglcontext.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengldebug.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglextrafunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglframebufferobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglfunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpaintdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpixeltransferoptions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglshaderprogram.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltextureblitter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltimerquery.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglversionfunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglvertexarrayobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglwindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagedpaintdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagelayout.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagesize.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevicewindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintengine.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainterpath.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpalette.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpdfwriter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpen.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpicture.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpictureformatplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixelformat.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmapcache.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpolygon.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qquaternion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrasterwindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrawfont.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qregion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgb.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgba64.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qscreen.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsessionmanager.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstandarditemmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstatictext.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstylehints.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurfaceformat.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsyntaxhighlighter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextcursor.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocument.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentfragment.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentwriter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextformat.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlayout.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextoption.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtexttable.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtouchdevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtransform.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvalidator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector2d.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector4d.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindow.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindowdefs.h \
-		../../../Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiversion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QtCore \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobal.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractnativeeventfilter.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractproxymodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractstate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracttransition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qalgorithms.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qanimationgroup.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydata.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydataops.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydatapointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qatomic.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbasictimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbitarray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbuffer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraylist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraymatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcache.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qchar.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcollator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineoption.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineparser.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcompilerdetection.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontainerfwd.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontiguouscache.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreevent.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcryptographichash.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdeadlinetimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdiriterator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeasingcurve.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qelapsedtimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qendian.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventtransition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qexception.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfactoryinterface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfiledevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileselector.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfilesystemwatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfinalstate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qflags.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuture.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfutureinterface.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturesynchronizer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturewatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qgenericatomic.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobalstatic.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhash.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhashfunctions.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhistorystate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qidentityproxymodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiodevice.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qisenum.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiterator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonarray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonvalue.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibrary.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibraryinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qline.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlinkedlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlocale.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlockfile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qloggingcategory.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmargins.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmath.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmessageauthenticationcode.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetatype.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedata.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedatabase.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimetype.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmutex.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnamespace.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectcleanuphandler.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectdefs.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qoperatingsystemversion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpair.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qparallelanimationgroup.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpauseanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qplugin.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpluginloader.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpoint.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocess.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocessordetection.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qqueue.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrandom.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qreadwritelock.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrect.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrefcount.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregexp.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregularexpression.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresource.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresultstore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrunnable.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsavefile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedpointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedvaluerollback.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsemaphore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsequentialanimationgroup.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qset.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsettings.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qshareddata.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedmemory.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignaltransition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsocketnotifier.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstack.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstandardpaths.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstate.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstatemachine.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstorageinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringalgorithms.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringbuilder.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringliteral.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringmatcher.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringview.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsysinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemdetection.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemsemaphore.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporarydir.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporaryfile.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextboundaryfinder.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadpool.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadstorage.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimeline.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimezone.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtranslator.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypeinfo.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypetraits.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurl.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurlquery.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/quuid.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariant.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariantanimation.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvarlengtharray.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversionnumber.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversiontagging.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwaitcondition.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwineventnotifier.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qxmlstream.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtcoreversion.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QFile \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		../../../Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
-		../../../Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/QtGui \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiglobal.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qabstracttextdocumentlayout.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessible.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessiblebridge.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qaccessibleplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbackingstore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbitmap.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qbrush.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qclipboard.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcolor.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qcursor.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdesktopservices.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qdrag.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfont.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontdatabase.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qfontmetrics.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericmatrix.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qgenericpluginfactory.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qglyphrun.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qguiapplication.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qicon.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengine.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qiconengineplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimage.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimageiohandler.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagereader.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qimagewriter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qinputmethod.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qkeysequence.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmatrix4x4.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qmovie.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qoffscreensurface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengl.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglbuffer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglcontext.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengldebug.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglextrafunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglframebufferobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglfunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpaintdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglpixeltransferoptions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglshaderprogram.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltextureblitter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopengltimerquery.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglversionfunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglvertexarrayobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qopenglwindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagedpaintdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagelayout.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpagesize.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintdevicewindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpaintengine.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpainterpath.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpalette.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpdfwriter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpen.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpicture.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpictureformatplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixelformat.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpixmapcache.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qpolygon.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qquaternion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrasterwindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrawfont.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qregion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgb.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qrgba64.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qscreen.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsessionmanager.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstandarditemmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstatictext.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qstylehints.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsurfaceformat.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qsyntaxhighlighter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextcursor.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocument.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentfragment.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextdocumentwriter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextformat.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlayout.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtextoption.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtexttable.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtouchdevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtransform.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvalidator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector2d.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector3d.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qvector4d.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindow.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qwindowdefs.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtGui.framework/Headers/qtguiversion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QtCore \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobal.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractnativeeventfilter.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractproxymodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstractstate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qabstracttransition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qalgorithms.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qanimationgroup.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydata.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydataops.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qarraydatapointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qatomic.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbasictimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbitarray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbuffer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraylist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qbytearraymatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcache.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qchar.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcollator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineoption.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcommandlineparser.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcompilerdetection.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontainerfwd.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcontiguouscache.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcoreevent.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qcryptographichash.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatastream.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdeadlinetimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdir.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qdiriterator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeasingcurve.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qelapsedtimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qendian.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventloop.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qeventtransition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qexception.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfactoryinterface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfiledevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfileselector.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfilesystemwatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfinalstate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qflags.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuture.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfutureinterface.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturesynchronizer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qfuturewatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qgenericatomic.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qglobalstatic.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhash.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhashfunctions.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qhistorystate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qidentityproxymodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiodevice.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qisenum.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qitemselectionmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qiterator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonarray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qjsonvalue.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibrary.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlibraryinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qline.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlinkedlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlocale.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qlockfile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qloggingcategory.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmap.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmargins.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmath.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmessageauthenticationcode.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetaobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmetatype.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedata.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimedatabase.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmimetype.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qmutex.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnamespace.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectcleanuphandler.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qobjectdefs.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qoperatingsystemversion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpair.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qparallelanimationgroup.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpauseanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qplugin.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpluginloader.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpoint.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocess.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qprocessordetection.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qpropertyanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qqueue.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrandom.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qreadwritelock.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrect.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrefcount.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregexp.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qregularexpression.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresource.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qresultstore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qrunnable.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsavefile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedpointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qscopedvaluerollback.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsemaphore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsequentialanimationgroup.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qset.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsettings.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qshareddata.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedmemory.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsharedpointer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignalmapper.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsignaltransition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsize.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsocketnotifier.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstack.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstandardpaths.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstate.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstatemachine.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstorageinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringalgorithms.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringbuilder.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlist.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringliteral.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringmatcher.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qstringview.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsysinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemdetection.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qsystemsemaphore.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporarydir.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtemporaryfile.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextboundaryfinder.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtextstream.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthread.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadpool.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qthreadstorage.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimeline.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtimezone.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtranslator.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypeinfo.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtypetraits.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurl.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qurlquery.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/quuid.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariant.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvariantanimation.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvarlengtharray.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversionnumber.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qversiontagging.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwaitcondition.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qwineventnotifier.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qxmlstream.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/qtcoreversion.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QFile \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtCore.framework/Headers/QTextStream \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Users/fullstackmachine/Qt/5.11.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		ui_pathmaker.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pathmaker.o pathmaker.cpp
 

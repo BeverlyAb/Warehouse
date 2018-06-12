@@ -50,8 +50,8 @@ singleOrder:
 	make clean
 	make
 	make batchParser 
-	./batch 18 10 warehouse-grid.csv 10 11 35 20 5 > output.txt
-	grep -n "INDEX 5" output.txt | cut -d : -f 1 > ind.txt
+	./batch 18 10 warehouse-grid.csv 0 0 0 20 4 > output.txt
+	grep -n -w -e 'INDEX 91' output.txt | cut -d : -f 1 > ind.txt
 	./batchParser output.txt ind.txt > pathOnly.txt
 	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker
 
@@ -62,8 +62,8 @@ alg2Div:
 	make
 	make batchParser
 	make bbmain
-	./BFSMain 18 10 warehouse-grid.csv 20 20 20 20 90 > output.txt
-	grep -n "INDEX 90" output.txt | cut -d : -f 1 > ind.txt
+	./BFSMain 18 10 warehouse-grid.csv 0 0 0 20 4 > output.txt
+	grep -n -w -e 'INDEX 91' output.txt | cut -d : -f 1 > ind.txt
 	./batchParser output.txt ind.txt > pathOnly.txt
 	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker
 
@@ -73,6 +73,6 @@ fromBatch:
 	make clean
 	make
 	make batchParser 
-	grep -n "INDEX 0" bigBatchProcess.txt | cut -d : -f 1 > ind.txt
+	grep -n -w -e 'INDEX 4' bigBatchProcess.txt | cut -d : -f 1 > ind.txt
 	./batchParser bigBatchProcess.txt ind.txt > pathOnly.txt
 	./PathMaker_clean/PathMaker.app/Contents/MacOS/PathMaker
